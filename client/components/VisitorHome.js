@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 
 const VisitorHome = (props) => {
   return (
+    <div>
+      <img src="#">
+    </div>
   )
 }
 
