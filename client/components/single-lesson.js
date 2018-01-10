@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { fetchLesson } from '../store'
 
-const Lesson = (props) => {
-  const { lessons, match } = props;
-  const lesson = lessons.find(matchingLesson => matchingLesson.id === +match.params.lessonId)
-  return (
-    <div>
-      <ul>
-        <div key={lesson.id}>
-          <h2>{lesson.name}</h2>
-          <li>User: {lesson.userId}</li>
-          <li>Category: {lesson.category}</li>
-          <li>Description: {lesson.description}</li>
-          <li>Image: {lesson.imageUrl}</li>
-          <li>Price: {lesson.price}</li>
-        </div>
-      </ul>
-    </div>
-  )
+class Lesson extends Component {
+  componentDidMount() {
+    this.props.getLesson(+this.props.match.params.lessonId);
+  }
+
+  render() {
+    const lesson = this.props.lesson;
+    return (
+      <div>
+        <ul>
+          <div key={lesson.id}>
+            <h2>{lesson.name}</h2>
+            <li>User: {lesson.userId}</li>
+            <li>Category: {lesson.category}</li>
+            <li>Description: {lesson.description}</li>
+            <li>Image: {lesson.imageUrl}</li>
+            <li>Price: {lesson.price}</li>
+          </div>
+        </ul>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
   return {
-    lessons: state.lessons
+    lesson: state.lesson
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Lesson));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLesson(lessonId) {
+      dispatch(fetchLesson(lessonId))
+    }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Lesson));
