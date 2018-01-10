@@ -30,4 +30,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export const LessonsContainer = withRouter(connect(mapStateToProps)(Lessons));
+export default withRouter(connect(mapStateToProps)(Lessons));
