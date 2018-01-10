@@ -11,6 +11,15 @@ const Review = require('./review');
 User.hasMany(Review);
 Review.belongsTo(User);
 
+//CG: some kind of order that maybe allows users to get lessons.
+//how do orders relate to users? -> each order belongs to a single user.
+//how do orders relate to products? -> many to many relationship.
+//How the heck do we fix prices when someone places an order?
+//look into how to add fields to a join table.
+
+//whats the difference ebtween an order and a cart?
+//an order is simply a purchased cart.
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'

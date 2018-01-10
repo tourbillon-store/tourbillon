@@ -2,6 +2,11 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+//CG: Users maybe should have names
+//What could go wrong with strings??
+//validate email.
+//strings are not empty strings.
+
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,

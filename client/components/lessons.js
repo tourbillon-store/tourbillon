@@ -5,19 +5,20 @@ const Lessons = (props) => {
   const { lessons } = props;
   return (
     <div>
-      <ul>
-        {lessons.map(lesson => {
-          return (
-            <div key={lesson.id}>
-              <h2>{lesson.name}</h2>
+      {lessons.map(lesson => {
+        return (
+        // Maybe consider dummy lesson component. 
+          <div key={lesson.id}>
+            <h2>{lesson.name}</h2>
+            <ul>
               <li>Category: {lesson.category}</li>
               <li>Description: {lesson.description}</li>
               <li>Image: {lesson.imageUrl}</li>
               <li>Price: {lesson.price}</li>
-            </div>
-          )
-        })}
-      </ul>
+            </ul>
+          </div>
+        )
+      })} 
     </div>
   )
 }

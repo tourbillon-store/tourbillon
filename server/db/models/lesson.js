@@ -10,14 +10,17 @@ const Lesson = db.define('lesson', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  //CG: maybe text?
   description: {
     type: Sequelize.STRING,
     allowNull: false
   },
+  //CG: maybe some kind of default image.
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false
   },
+  //CG: how low can we go?
   price: {
     type: Sequelize.INTEGER,
     allowNull: false
