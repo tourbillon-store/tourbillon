@@ -12,6 +12,9 @@ const Review = require('./review');
 User.hasMany(Review);
 Review.belongsTo(User);
 
+User.hasMany(Lesson);
+Lesson.belongsTo(User);
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
