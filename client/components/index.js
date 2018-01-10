@@ -6,6 +6,6 @@
 export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './AuthForm'
-export {AllWatchesContainer as AllWatches} from './AllWatches'
+export {default as AllWatches} from './AllWatches'
 export {default as AllLessons} from './lessons'
 export {default as SingleLesson} from './single-lesson'

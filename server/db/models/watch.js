@@ -29,11 +29,3 @@ const Watch = db.define('watch', {
 })
 
 module.exports = Watch
-
-/**
- * instanceMethods
- */
-
-/**
- * classMethods
- */

@@ -5,19 +5,19 @@ const Watches = (props) => {
   const { watches } = props;
   return (
     <div>
-      <ul>
-        {watches.map(watch => {
-          return (
-            <div key={watch.id}>
-              <h2>{watch.make} {watch.model}</h2>
+      {watches.map(watch => {
+        return (
+          <div key={watch.id}>
+            <h2>{watch.make} {watch.model}</h2>
+            <ul>
               <li>Year: {watch.year}</li>
               <li>Complications: {watch.description}</li>
               <li>Image: {watch.imageUrl}</li>
               <li>Price: {watch.price}</li>
-            </div>
-          )
-        })}
-      </ul>
+            </ul>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -28,4 +28,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export const AllWatchesContainer = connect(mapStateToProps)(Watches);
+export default connect(mapStateToProps)(Watches);
