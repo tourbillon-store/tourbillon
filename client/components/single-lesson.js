@@ -12,16 +12,16 @@ class Lesson extends Component {
     const lesson = this.props.lesson;
     return (
       <div>
-        <ul>
           <div key={lesson.id}>
             <h2>{lesson.name}</h2>
-            <li>User: {lesson.userId}</li>
-            <li>Category: {lesson.category}</li>
-            <li>Description: {lesson.description}</li>
-            <li>Image: {lesson.imageUrl}</li>
-            <li>Price: {lesson.price}</li>
+            <ul>
+              <li>User: {lesson.userId}</li>
+              <li>Category: {lesson.category}</li>
+              <li>Description: {lesson.description}</li>
+              <li>Image: {lesson.imageUrl}</li>
+              <li>Price: {lesson.price}</li>
+            </ul>
           </div>
-        </ul>
       </div>
     )
   }
