@@ -2,7 +2,6 @@ node_modules
 public/bundle.js
 public/bundle.js.map
 secrets.js
-secrets.txt
 .DS_Store
 npm-debug.log
 yarn-error.log
