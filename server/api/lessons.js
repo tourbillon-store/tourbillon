@@ -7,3 +7,9 @@ router.get('/', (req, res, next) => {
     .then(lessons => res.json(lessons))
     .catch(next)
 });
+
+router.get('/:lessonId', (req, res, next) => {
+  Lesson.findById(req.params.lessonId)
+    .then(lesson => res.json(lesson))
+    .catch(next)
+});
