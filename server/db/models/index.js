@@ -20,6 +20,7 @@ Review.belongsTo(User);
 
 module.exports = {
   User,
+  Watch,
   Lesson,
   Review
 }
