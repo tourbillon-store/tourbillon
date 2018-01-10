@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import lessons from './lessons';
+import watches from './watches';
 
-const reducer = combineReducers({user, lessons})
+const reducer = combineReducers({user, lessons, watches})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
