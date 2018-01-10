@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
 
 const Lessons = (props) => {
   const { lessons } = props;
@@ -9,7 +10,8 @@ const Lessons = (props) => {
         {lessons.map(lesson => {
           return (
             <div key={lesson.id}>
-              <h2>{lesson.name}</h2>
+              <Link to={`/lessons/${lesson.id}`}><h2>{lesson.name}</h2></Link>
+              <li>User: {lesson.userId}</li>
               <li>Category: {lesson.category}</li>
               <li>Description: {lesson.description}</li>
               <li>Image: {lesson.imageUrl}</li>
@@ -28,4 +30,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export const LessonsContainer = connect(mapStateToProps)(Lessons);
+export const LessonsContainer = withRouter(connect(mapStateToProps)(Lessons));
