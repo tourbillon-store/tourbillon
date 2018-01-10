@@ -1,5 +1,6 @@
 const User = require('./user')
 const Lesson = require('./lesson');
+const Watch = require('./watch');
 const Review = require('./review');
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -23,6 +24,7 @@ Lesson.belongsTo(User);
 
 module.exports = {
   User,
+  Watch,
   Lesson,
   Review
 }

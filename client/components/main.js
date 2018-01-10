@@ -29,6 +29,7 @@ const Main = (props) => {
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/lessons">Lessons</Link>
+              <Link to="/watches">Watches</Link>
             </div>
         }
       </nav>
