@@ -16,6 +16,9 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  facebookId: {
+    type: Sequelize.STRING
   }
 })
 
