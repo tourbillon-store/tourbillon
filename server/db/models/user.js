@@ -6,13 +6,13 @@ const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
     validate: {
-      notEmpty: true
+      notEmpty: false
     }
   },
   lastName: {
     type: Sequelize.STRING,
     validate: {
-      notEmpty: true
+      notEmpty: false
     }
   },
   email: {
