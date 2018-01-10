@@ -18,7 +18,7 @@ module.exports = router
  * process.env.FACEBOOK_CALLBACK = '/your/facebook/callback'
  */
 
-if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
+if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
 
   console.log('Facebook client ID / secret not found. Skipping Facebook OAuth.')
 
@@ -27,7 +27,8 @@ if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
   const facebookConfig = {
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK
+    callbackURL: process.env.FACEBOOK_CALLBACK,
+    profileFields: ['id', 'displayName', 'email']
   }
 
   const strategy = new FacebookStrategy(facebookConfig, (token, refreshToken, profile, done) => {
