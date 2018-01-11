@@ -1,7 +1,10 @@
 const User = require('./user')
-const Lesson = require('./lesson');
-const Watch = require('./watch');
-const Review = require('./review');
+const Lesson = require('./lesson')
+const Watch = require('./watch')
+const Review = require('./review')
+const Order = require('./order')
+const OrderWatch = require('./orderWatch')
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -9,11 +12,16 @@ const Review = require('./review');
  *    BlogPost.belongsTo(User)
  */
 
-User.hasMany(Review);
-Review.belongsTo(User);
+User.hasMany(Review)
+Review.belongsTo(User)
 
-User.hasMany(Lesson);
-Lesson.belongsTo(User);
+User.hasMany(Lesson)
+Lesson.belongsTo(User)
+
+Order.belongsToMany(User)
+
+Watch.belongsToMany(Order, {through: OrderWatch})
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
