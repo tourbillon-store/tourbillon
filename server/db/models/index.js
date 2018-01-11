@@ -1,7 +1,6 @@
 const User = require('./user')
-const Lesson = require('./lesson')
-const Watch = require('./watch')
-const Review = require('./review')
+const Watch = require('./watch');
+const Review = require('./review');
 const Order = require('./order')
 const OrderWatch = require('./orderWatch')
 
@@ -15,13 +14,8 @@ const OrderWatch = require('./orderWatch')
 User.hasMany(Review)
 Review.belongsTo(User)
 
-User.hasMany(Lesson)
-Lesson.belongsTo(User)
-
 Order.belongsToMany(User)
-
 Watch.belongsToMany(Order, {through: OrderWatch})
-
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -33,6 +27,5 @@ Watch.belongsToMany(Order, {through: OrderWatch})
 module.exports = {
   User,
   Watch,
-  Lesson,
   Review
 }

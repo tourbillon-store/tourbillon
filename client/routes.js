@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, AllLessons, SingleLesson, AllWatches, SingleWatch, VisitorHome} from './components'
-import {me, fetchLessons, fetchWatches} from './store'
+import {Main, Login, Signup, UserHome, AllWatches, SingleWatch, VisitorHome} from './components'
+import {me, fetchWatches} from './store'
 
 /**
  * COMPONENT
@@ -26,8 +26,6 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route exact path="/watches" component={AllWatches} />
             <Route path="/watches/:watchId" component={SingleWatch} />
-            <Route exact path="/lessons" component={AllLessons} />
-            <Route path="/lessons/:lessonId" component={SingleLesson} />
             {
               isLoggedIn &&
                 <Switch>
@@ -59,7 +57,6 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      dispatch(fetchLessons())
       dispatch(fetchWatches())
     }
   }
