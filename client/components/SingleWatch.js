@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchLesson } from '../store'
+import { fetchWatch } from '../store'
 
 class Watch extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class Watch extends Component {
           <li>Complications: {watch.complications}</li>
           <li>Year: {watch.year}</li>
           <li>Image: {watch.imageUrl}</li>
-          <li>Price: {lesson.price}</li>
+          <li>Price: {watch.price}</li>
         </ul>
       </div>
     )
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLesson(lessonId) {
+    getWatch(watchId) {
       dispatch(fetchWatch(watchId))
     }
   }
