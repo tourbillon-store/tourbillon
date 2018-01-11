@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     resetWatch() {
-      dispatch(resetWatch({loading: true}))
+      dispatch(resetWatch({ loading: true }))
     }
   }
 }
