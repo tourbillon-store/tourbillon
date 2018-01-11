@@ -10,7 +10,9 @@ const User = db.define('user', {
       isEmail: true
     }
   },
-  password: Sequelize.STRING,
+  password: {
+   type: Sequelize.STRING
+  },
   salt: {
     type: Sequelize.STRING
   },
@@ -58,6 +60,14 @@ const setSaltAndPassword = user => {
     user.password = User.encryptPassword(user.password, user.salt)
   }
 }
+
+User.beforeCreate((user)=>{
+  if (!user.googleId && !user.facebookId && !user.password) {
+    console.log(this)
+    throw new Error('Password required')
+  }
+})
+
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
