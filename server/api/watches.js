@@ -7,3 +7,9 @@ router.get('/', (req, res, next) => {
     .then(watches => res.json(watches))
     .catch(next)
 });
+
+router.get('/:watchId', (req, res, next) => {
+  Watch.findById(req.params.watchId)
+    .then(watch => res.json(watch))
+    .catch(next)
+});
