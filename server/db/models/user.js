@@ -61,9 +61,8 @@ const setSaltAndPassword = user => {
   }
 }
 
-User.beforeCreate((user)=>{
+User.beforeCreate((user) => {
   if (!user.googleId && !user.facebookId && !user.password) {
-    console.log(this)
     throw new Error('Password required')
   }
 })
