@@ -11,20 +11,15 @@ const Watch = db.define('watch', {
     allowNull: false
   },
   complications: {
-    type: Sequelize.TEXT,
-    allowNull: false
+    type: Sequelize.TEXT
   },
   imageUrl: {
     type: Sequelize.STRING,
-    allowNull: false,
     defaultValue: 'https://goo.gl/images/usiGqr'
   },
   year: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    validate: {
-      max: 9999
-    }
   },
   price: {
     type: Sequelize.INTEGER,

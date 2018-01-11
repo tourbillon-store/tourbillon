@@ -6,14 +6,11 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
     validate: {
       isEmail: true
     }
   },
-  password: {
-    type: Sequelize.STRING,
-  },
+  password: Sequelize.STRING,
   salt: {
     type: Sequelize.STRING
   },
@@ -22,6 +19,9 @@ const User = db.define('user', {
   },
   facebookId: {
     type: Sequelize.STRING
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN
   }
 })
 
