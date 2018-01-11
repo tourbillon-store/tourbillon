@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
+import { connect } from 'react-redux'
+import { withRouter, Link } from 'react-router-dom'
+import { logout } from '../store'
 
 /**
  * COMPONENT
@@ -11,21 +11,24 @@ import {logout} from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+  const { children, handleClick, isLoggedIn } = props
 
   return (
     <div>
       <h1>GRACE SHOPPER</h1>
       <nav>
+
         {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
               <a href="#" onClick={handleClick}>Logout</a>
+              <Link to="/watches">Watches</Link>
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
+              <Link to="/home">Home</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/watches">Watches</Link>
@@ -49,7 +52,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleClick () {
+    handleClick() {
       dispatch(logout())
     }
   }
