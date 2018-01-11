@@ -11,7 +11,7 @@ class Watch extends Component {
   render() {
     const watch = this.props.watch;
     return (
-      <div>
+      !watch.loading && <div>
         <h2>{watch.make} {watch.model}</h2>
         <ul>
           <li>Complications: {watch.complications}</li>
