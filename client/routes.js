@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, AllWatches, SingleWatch, VisitorHome} from './components'
+import {Main, Login, Signup, UserHome, VisitorHome, UserCart, VisitorCart, AllWatches, SingleWatch} from './components'
 import {me, fetchWatches} from './store'
 
 /**
@@ -21,19 +21,21 @@ class Routes extends Component {
       <Router history={history}>
         <Main>
           <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route exact path="/watches" component={AllWatches} />
-            <Route path="/watches/:watchId" component={SingleWatch} />
             {
               isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
+                  <Route path="/cart" component={UserCart} />
                 </Switch>
             }
-            {/* Displays our Login component as a fallback */}
+            {/* Routes placed here are available to all visitors */}
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/cart" component={VisitorCart} />
+            <Route exact path="/watches" component={AllWatches} />
+            <Route path="/watches/:watchId" component={SingleWatch} />
+            {/* Display landing page as fallback */}
             <Route component={VisitorHome} />
           </Switch>
         </Main>

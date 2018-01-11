@@ -22,6 +22,7 @@ const Main = (props) => {
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
+              <Link to="/cart">Cart</Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -29,6 +30,7 @@ const Main = (props) => {
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/watches">Watches</Link>
+              <Link to="/cart">Cart</Link>
             </div>
         }
       </nav>
