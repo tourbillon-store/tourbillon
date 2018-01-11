@@ -17,7 +17,6 @@ const Main = (props) => {
     <div>
       <h1>GRACE SHOPPER</h1>
       <nav>
-
         {
           isLoggedIn
             ? <div>
