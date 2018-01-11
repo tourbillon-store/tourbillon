@@ -3,21 +3,21 @@ import axios from 'axios'
 /**
  * ACTION TYPES
  */
-const GET_LESSON = 'GET_LESSON';
+const GET_WATCH = 'GET_WATCH';
 
 /**
  * ACTION CREATORS
  */
-const getLesson = lesson => ({type: GET_LESSON, lesson})
+const getWatch = watch => ({type: GET_WATCH, watch})
 
 /**
  * THUNK CREATORS
  */
-export const fetchLesson = (lessonId) =>
+export const fetchWatch = (watchId) =>
   dispatch =>
-    axios.get(`/api/lessons/${lessonId}`)
-      .then(lesson => {
-        dispatch(getLesson(lesson.data))
+    axios.get(`/api/watches/${watchId}`)
+      .then(watch => {
+        dispatch(getWatch(watch.data))
       })
       .catch(err => console.log(err))
 
@@ -26,8 +26,8 @@ export const fetchLesson = (lessonId) =>
  */
 export default function (state = {}, action) {
   switch (action.type) {
-    case GET_LESSON:
-      return action.lesson
+    case GET_WATCH:
+      return action.watch
     default:
       return state
   }

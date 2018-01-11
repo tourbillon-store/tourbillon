@@ -1,21 +1,25 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Lesson = db.define('lesson', {
-  name: {
+const Watch = db.define('watch', {
+  make: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  category: {
+  model: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  description: {
+  complications: {
     type: Sequelize.STRING,
     allowNull: false
   },
   imageUrl: {
     type: Sequelize.STRING,
+    allowNull: false
+  },
+  year: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   price: {
@@ -24,12 +28,4 @@ const Lesson = db.define('lesson', {
   }
 })
 
-module.exports = Lesson
-
-/**
- * instanceMethods
- */
-
-/**
- * classMethods
- */
+module.exports = Watch
