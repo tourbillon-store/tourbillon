@@ -8,7 +8,7 @@ const Watches = (props) => {
       {watches.map(watch => {
         return (
           <div key={watch.id}>
-            <h2>{watch.make} {watch.model}</h2>
+            <Link to={`/watches/${watch.id}`}><h2>{watch.make} {watch.model}</h2></Link>
             <ul>
               <li>Year: {watch.year}</li>
               <li>Complications: {watch.complications}</li>
