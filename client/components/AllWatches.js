@@ -11,7 +11,7 @@ const Watches = (props) => {
             <h2>{watch.make} {watch.model}</h2>
             <ul>
               <li>Year: {watch.year}</li>
-              <li>Complications: {watch.description}</li>
+              <li>Complications: {watch.complications}</li>
               <li>Image: {watch.imageUrl}</li>
               <li>Price: {watch.price}</li>
             </ul>
