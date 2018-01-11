@@ -18,3 +18,4 @@ export default store
 export * from './user'
 export * from './lessons'
 export * from './lesson'
+export * from './watches'
