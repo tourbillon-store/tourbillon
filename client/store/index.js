@@ -6,8 +6,9 @@ import user from './user'
 import lessons from './lessons'
 import lesson from './lesson'
 import watches from './watches'
+import watch from './watch'
 
-const reducer = combineReducers({user, lessons, lesson, watches})
+const reducer = combineReducers({user, lessons, lesson, watches, watch})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -19,3 +20,4 @@ export * from './user'
 export * from './lessons'
 export * from './lesson'
 export * from './watches'
+export * from './watch'

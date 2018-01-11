@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import {withRouter, Link} from 'react-router-dom'
 
 const Watches = (props) => {
   const { watches } = props;
@@ -8,10 +9,10 @@ const Watches = (props) => {
       {watches.map(watch => {
         return (
           <div key={watch.id}>
-            <h2>{watch.make} {watch.model}</h2>
+            <Link to={`/watches/${watch.id}`}><h2>{watch.make} {watch.model}</h2></Link>
             <ul>
               <li>Year: {watch.year}</li>
-              <li>Complications: {watch.description}</li>
+              <li>Complications: {watch.complications}</li>
               <li>Image: {watch.imageUrl}</li>
               <li>Price: {watch.price}</li>
             </ul>
