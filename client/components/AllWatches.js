@@ -10,6 +10,7 @@ class AllWatches extends Component {
 
   render() {
     const { watches } = this.props;
+    console.log('logged in all watches', watches)
     return (
       <div>
         {watches.map(watch => {
