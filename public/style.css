@@ -20,6 +20,43 @@ form div {
   display: inline-block;
 }
 
+/* AllWatches */
 .unavailable-watch {
   color: red;
+}
+
+/* Cart */
+.cart-container {
+  margin: 1em 2.5em 2.5em 2.5em;
+}
+
+.cart-product-row {
+  display: flex;
+}
+
+.cart-product-row div {
+  flex-basis: 5em;
+  flex-grow: 1;
+}
+
+.cart-quantity-container {
+  display: flex;
+}
+
+.cart-quantity-container button,h4 {
+  /* flex-basis: 0.5em; */
+  flex-grow: 1;
+  text-align: center
+}
+
+.purchase-button {
+  text-align: center;
+}
+
+.minus-button {
+
+}
+
+.delete-button {
+
 }
