@@ -13,7 +13,6 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-// router.use('/:userId/cart', require('./cart'))
 router.use('/:userId/cart', (req, res, next) => {
   console.log('req.params', req.params)
   User.findById(req.params.userId)
