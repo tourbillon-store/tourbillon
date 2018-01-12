@@ -9,8 +9,9 @@ class AllWatches extends Component {
   }
 
   render() {
-    const { watches } = this.props;
+    const { watches, isAdmin } = this.props;
     console.log(this.props)
+    console.log(this.props.isAdmin)
     return (
       <div>
         {watches.map(watch => {
@@ -28,6 +29,17 @@ class AllWatches extends Component {
             )
           }
         })}
+        <div>
+          {isAdmin ? <div>
+                       <h1>You are an admin!</h1>
+                       <Link to={`/watches/new`}>
+                         <span>Create a watch</span>
+                       </Link>
+                     </div>
+                   :
+                     ''
+          }
+        </div>
       </div>
     )
   }
