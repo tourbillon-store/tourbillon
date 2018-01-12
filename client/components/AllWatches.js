@@ -10,6 +10,7 @@ class AllWatches extends Component {
 
   render() {
     const { watches } = this.props;
+    console.log(this.props)
     return (
       <div>
         {watches.map(watch => {
@@ -34,7 +35,8 @@ class AllWatches extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    watches: state.watches
+    watches: state.watches,
+    isAdmin: state.user.isAdmin
   }
 }
 
