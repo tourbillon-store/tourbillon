@@ -10,7 +10,7 @@ class Watch extends Component {
 
   render() {
     const watch = this.props.watch;
-    const unavailableMessage = watch.available ? '' : 'This watch is currently unavailable'
+    const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
       !watch.loading && <div>
         <h2>{watch.make} {watch.model}</h2>
