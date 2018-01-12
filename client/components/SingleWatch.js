@@ -19,7 +19,6 @@ class Watch extends Component {
         <ul>
           <li>Complications: {watch.complications}</li>
           <li>Year: {watch.year}</li>
-          <li>Image: {watch.imageUrl}</li>
           <li>Price: {watch.price}</li>
         </ul>
       </div>
