@@ -14,7 +14,7 @@ class Watch extends Component {
     return (
       !watch.loading && <div>
         <h2>{watch.make} {watch.model}</h2>
-        <h3>{unavailableMessage}</h3>
+        <h3 className='unavailable-watch'>{unavailableMessage}</h3>
         <ul>
           <li>Complications: {watch.complications}</li>
           <li>Year: {watch.year}</li>
