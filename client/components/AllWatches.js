@@ -13,6 +13,7 @@ class AllWatches extends Component {
     return (
       <div>
         {watches.map(watch => {
+          console.log(watch)
           if(watch.available) {
             return (
               <div key={watch.id}>
