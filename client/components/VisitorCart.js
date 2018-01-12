@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const VisitorCart = (props) => {
+const VisitorCart = () => {
   return (
     <div>
       <h1>Shopping Cart</h1>

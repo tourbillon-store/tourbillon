@@ -4,13 +4,11 @@ import { fetchCart } from '../store'
 
 class UserCart extends Component {
   componentDidMount () {
-    console.log('userCart props', this.props)
     this.props.getCart(this.props.user.id)
   }
 
   render() {
     const cart = this.props.cart[0]
-    console.log('this.props.cart', cart);
     return (
       <div>
         <h1>Shopping Cart</h1>
