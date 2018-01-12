@@ -27,6 +27,10 @@ const Watch = db.define('watch', {
     validate: {
       min: 0
     }
+  },
+  availabile: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 })
 
