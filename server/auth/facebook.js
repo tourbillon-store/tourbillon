@@ -33,13 +33,14 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
 
   const strategy = new FacebookStrategy(facebookConfig, (token, refreshToken, profile, done) => {
     const facebookId = profile.id
-    const name = profile.displayName
+    const firstName = profile.name.givenName
+    const lastName = profile.name.familyName
     const email = profile.emails[0].value
 
     User.find({where: {facebookId}})
       .then(foundUser => (foundUser
         ? done(null, foundUser)
-        : User.create({name, email, facebookId})
+        : User.create({firstName, lastName, email, facebookId})
           .then(createdUser => done(null, createdUser))
       ))
       .catch(done)
@@ -50,7 +51,7 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
   router.get('/', passport.authenticate('facebook', {scope: 'email'}))
 
   router.get('/callback', passport.authenticate('facebook', {
-    successRedirect: '/home',
+    successRedirect: '/watches',
     failureRedirect: '/login'
   }))
 
