@@ -36,11 +36,13 @@ const TableExamplePagination = (props) => {
             {order.updatedAt}
           </Table.Cell>
           <Table.Cell>
-            <List selection bulleted verticalAlign="middle">
+            <List selection divided verticalAlign="middle">
               {order.watches.map((watch) => (
               <List.Item key={watch.id}>
                 <List.Content>
                   <List.Header>{watch.make}</List.Header>
+                  Price: {watch.order_watch.quantity}<br />
+                  Quantity: {watch.order_watch.fixedPrice}
                 </List.Content>
               </List.Item>
               ))}
