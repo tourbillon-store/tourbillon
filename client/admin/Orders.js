@@ -36,7 +36,7 @@ const TableExamplePagination = (props) => {
             {order.updatedAt}
           </Table.Cell>
           <Table.Cell>
-            <List selection verticalAlign="middle">
+            <List selection bulleted verticalAlign="middle">
               {order.watches.map((watch) => (
               <List.Item key={watch.id}>
                 <List.Content>
