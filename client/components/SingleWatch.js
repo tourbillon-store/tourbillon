@@ -13,12 +13,12 @@ class Watch extends Component {
     const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
       !watch.loading && <div>
+        <img src={watch.imageUrl} />
         <h2>{watch.make} {watch.model}</h2>
         <h3 className='unavailable-watch'>{unavailableMessage}</h3>
         <ul>
           <li>Complications: {watch.complications}</li>
           <li>Year: {watch.year}</li>
-          <li>Image: {watch.imageUrl}</li>
           <li>Price: {watch.price}</li>
         </ul>
       </div>
