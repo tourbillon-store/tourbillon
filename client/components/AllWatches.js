@@ -13,7 +13,7 @@ class AllWatches extends Component {
     return (
       <div>
         {watches.map(watch => {
-          if(watch.available) {
+          if (watch.available) {
             return (
               <div key={watch.id}>
                 <Link to={`/watches/${watch.id}`}><h2>{watch.make} {watch.model}</h2></Link>
