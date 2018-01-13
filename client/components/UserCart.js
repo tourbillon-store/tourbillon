@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCart } from '../store'
+import { fetchCart, updateCart } from '../store'
 
 class UserCart extends Component {
   componentDidMount () {
-    this.props.getCart(this.props.user.id)
+    this.props.getCart()
   }
 
   render() {
-    const cart = this.props.cart[0]
+    const { user, cart, decrementQuantity, incrementQuantity, removeWatch} = this.props
     return (
       <div>
         <h1>Shopping Cart</h1>
-        {(cart && cart.watches && cart.watches.length)
+        {(cart && cart.length)
           ? <div>
               <div className="cart-container">
-                {cart.watches.map(cartItem => {
+                {cart.map(cartItem => {
                   return (
                     <div className="cart-product-row" key={cartItem.id}>
                       <div><h3>{cartItem.make}</h3></div>
                       <div><h3>{cartItem.model}</h3></div>
                       <div><h4>{cartItem.price}</h4></div>
                       <div className="cart-quantity-container">
-                        <button className="minus-button">-</button>
+                        <button className="minus-button" onClick={() => decrementQuantity(cartItem.id, cartItem.order_watch.quantity - 1)}>-</button>
                         <h4>{cartItem.order_watch.quantity}</h4>
-                        <button className="plus-button">+</button>
+                        <button className="plus-button" onClick={() => incrementQuantity(cartItem.id, cartItem.order_watch.quantity + 1)}>+</button>
                       </div>
-                      <button className="delete-button">Delete</button>
+                      <button className="delete-button" onClick={() => removeWatch(user.id, cartItem.id)}>Delete</button>
                     </div>
                   )
                 })}
@@ -45,7 +45,10 @@ class UserCart extends Component {
 const mapState = ({ user, cart }) => ({ user, cart })
 const mapDispatch = (dispatch) => {
   return {
-    getCart(userId) { dispatch(fetchCart(userId)) }
+    getCart() { dispatch(fetchCart()) },
+    decrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
+    incrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
+    removeWatch(watchId) {dispatch(removeWatchFromCart(watchId))}
   }
 }
 
