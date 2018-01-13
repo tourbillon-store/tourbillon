@@ -12,15 +12,3 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
-
-router.use('/:userId/cart', (req, res, next) => {
-  console.log('req.params', req.params)
-  User.findById(req.params.userId)
-    .then(user => user.getOrders({
-      attributes: ['id', 'updatedAt'],
-      include: [{ model: Watch }],
-      where: [{ status: 'cart'}]
-    }))
-    .then(orders => res.json(orders))
-    .catch(next)
-})
