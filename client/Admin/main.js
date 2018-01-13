@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Switch, Route } from 'react-router-dom'
 import { logout } from '../store'
 import Header from './Header'
 import Menu from './Menu'
-import OrderTable from './OrderTable'
+import Orders from './Orders'
 
 /**
  * COMPONENT
@@ -20,7 +20,9 @@ const Main = (props) => {
       <Header />
       <div className="admin">
         <Menu />
-        <OrderTable />
+        <Switch>
+          <Route path="/admin/orders" component={Orders} />
+        </Switch>
       </div>
     </div>
   )
