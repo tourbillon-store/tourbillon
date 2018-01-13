@@ -9,12 +9,12 @@ const TableExamplePagination = (props) => {
     <Table celled padded attached="bottom">
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>OrderId</Table.HeaderCell>
-          <Table.HeaderCell>Status</Table.HeaderCell>
-          <Table.HeaderCell>User</Table.HeaderCell>
-          <Table.HeaderCell>CreatedAt</Table.HeaderCell>
-          <Table.HeaderCell>UpdatedAt</Table.HeaderCell>
-          <Table.HeaderCell>Watches</Table.HeaderCell>
+          <Table.HeaderCell width={1}>OrderId</Table.HeaderCell>
+          <Table.HeaderCell width={1}>Status</Table.HeaderCell>
+          <Table.HeaderCell width={2}>User</Table.HeaderCell>
+          <Table.HeaderCell width={3}>CreatedAt</Table.HeaderCell>
+          <Table.HeaderCell width={3}>UpdatedAt</Table.HeaderCell>
+          <Table.HeaderCell width={6}>Watches</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
