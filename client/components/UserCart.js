@@ -15,18 +15,18 @@ class UserCart extends Component {
         {(cart && cart.length)
           ? <div>
               <div className="cart-container">
-                {cart.map(cartItem => {
+                {cart.map(watch => {
                   return (
-                    <div className="cart-product-row" key={cartItem.id}>
-                      <div><h3>{cartItem.make}</h3></div>
-                      <div><h3>{cartItem.model}</h3></div>
-                      <div><h4>{cartItem.price}</h4></div>
+                    <div className="cart-product-row" key={watch.id}>
+                      <div><h3>{watch.make}</h3></div>
+                      <div><h3>{watch.model}</h3></div>
+                      <div><h4>{watch.price}</h4></div>
                       <div className="cart-quantity-container">
-                        <button className="minus-button" onClick={() => decrementQuantity(cartItem.id, cartItem.order_watch.quantity - 1)}>-</button>
-                        <h4>{cartItem.order_watch.quantity}</h4>
-                        <button className="plus-button" onClick={() => incrementQuantity(cartItem.id, cartItem.order_watch.quantity + 1)}>+</button>
+                        <button className="minus-button" onClick={() => decrementQuantity(watch.id, watch.quantity - 1)}>-</button>
+                        <h4>{watch.quantity}</h4>
+                        <button className="plus-button" onClick={() => incrementQuantity(watch.id, watch.quantity + 1)}>+</button>
                       </div>
-                      <button className="delete-button" onClick={() => removeWatch(user.id, cartItem.id)}>Delete</button>
+                      <button className="delete-button" onClick={() => removeWatch(user.id, watch.id)}>Delete</button>
                     </div>
                   )
                 })}

@@ -4,16 +4,16 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_CART = 'GET_CART'
-const DELETE_CART = 'DELETE_CART'
-const UPDATE_WATCH_QUANTITY_IN_CART = 'UPDATE_CART'
+const EMPTY_CART = 'EMPTY_CART'
+const UPDATE_WATCH_IN_CART = 'UPDATE_CART'
 const REMOVE_WATCH_FROM_CART = 'REMOVE_WATCH_FROM_CART'
 
 /**
  * ACTION CREATORS
  */
 const getCart = cart => ({type: GET_CART, cart})
-const flushCart = cart => ({type: DELETE_CART, cart})
-const updateWatchQuantityInCart = (watchId, quantity) => ({type: UPDATE_WATCH_QUANTITY_IN_CART, watchId, quantity})
+const emptyCart = cart => ({type: EMPTY_CART, cart})
+const updateWatchInCart = (watchId, quantity) => ({type: UPDATE_WATCH_IN_CART, watchId, quantity})
 const removeWatchFromCart = cart => ({REMOVE_WATCH_FROM_CART, cart})
 
 /**
@@ -24,31 +24,45 @@ export const fetchCart = () =>
     axios.get(`/api/cart`)
       .then(cart => {
         if (cart.data) {
-          cart = cart.data[0].watches // filter out extraneous vals
+          cart = cart.data[0].watches.map(watch => {
+            return {
+              id: watch.id,
+              make: watch.make,
+              model: watch.model,
+              price: watch.price,
+              quantity: watch.order_watch.quantity,
+              createdAt: watch.createdAt
+            }
+          })
         }
-        console.log('cart', cart)
         dispatch(getCart(cart))
       })
-      .catch(err => console.log(err))
+      .catch(console.error)
 
 export const updateCart = (watchId, quantity) =>
   dispatch =>
-    axios.put('/api/cart', {watch: watchId, quantity: quantity})
+    axios.put('/api/cart', { watchId, quantity })
+      .then(watch => watch.data)
       .then(() => {
-        dispatch(updateWatchQuantityInCart(watchId, quantity))
+        dispatch(updateWatchInCart(watchId, quantity))
       })
       .catch(err => console.log(err))
 /**
  * REDUCER
  */
-export default function (cart = [], action) {
-  let watch = {};
+export default function (state = [], action) {
+  let watch
   switch (action.type) {
     case GET_CART:
       return action.cart
-    case UPDATE_WATCH_QUANTITY_IN_CART:
-      return cart
+    case UPDATE_WATCH_IN_CART:
+      watch = state.find(cartWatch => cartWatch.id === action.watchId)
+      if (action.quantity) watch.quantity = action.quantity
+      if (action.fixedPrice) watch.fixedPrice = action.fixedPrice
+      return [...state.filter(cartWatch => cartWatch.id !== action.watchId), watch]
+    case EMPTY_CART:
+      return []
     default:
-      return cart
+      return state
   }
 }
