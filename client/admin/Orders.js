@@ -2,8 +2,8 @@ import React from 'react'
 import { Rating, Header, Table, Segment } from 'semantic-ui-react'
 
 const TableExamplePagination = () => (
-  <Segment attached='bottom'>
-    <Table celled padded attached='bottom'>
+  <Segment attached="bottom">
+    <Table celled padded attached="bottom">
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell singleLine>Evidence Rating</Table.HeaderCell>
@@ -13,19 +13,18 @@ const TableExamplePagination = () => (
           <Table.HeaderCell>Comments</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
-
       <Table.Body>
         <Table.Row>
           <Table.Cell>
-            <Header as='h2' textAlign='center'>A</Header>
+            <Header as="h2" textAlign="center">A</Header>
           </Table.Cell>
           <Table.Cell singleLine>Power Output</Table.Cell>
           <Table.Cell>
-            <Rating icon='star' defaultRating={3} maxRating={3} />
+            <Rating icon="star" defaultRating={3} maxRating={3} />
           </Table.Cell>
-          <Table.Cell textAlign='right'>
+          <Table.Cell textAlign="right">
             80% <br />
-            <a href='#'>18 studies</a>
+            <a href="#">18 studies</a>
           </Table.Cell>
           <Table.Cell>
             Creatine supplementation is the reference compound for increasing muscular creatine levels; there is
@@ -34,15 +33,15 @@ const TableExamplePagination = () => (
         </Table.Row>
         <Table.Row>
           <Table.Cell>
-            <Header as='h2' textAlign='center'>A</Header>
+            <Header as="h2" textAlign="center">A</Header>
           </Table.Cell>
           <Table.Cell singleLine>Weight</Table.Cell>
           <Table.Cell>
-            <Rating icon='star' defaultRating={3} maxRating={3} />
+            <Rating icon="star" defaultRating={3} maxRating={3} />
           </Table.Cell>
-          <Table.Cell textAlign='right'>
+          <Table.Cell textAlign="right">
             100% <br />
-            <a href='#'>65 studies</a>
+            <a href="#">65 studies</a>
           </Table.Cell>
           <Table.Cell>
             Creatine is the reference compound for power improvement, with numbers from one meta-analysis to assess
