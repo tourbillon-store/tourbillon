@@ -5,8 +5,7 @@ module.exports = router
 router.get('/', (req, res, next) => {
   Order.findAll({
     include: [{
-      model: Watch,
-      attributes: ['id', 'make']
+      model: Watch
     }]
   })
   .then(orders => res.json(orders))
