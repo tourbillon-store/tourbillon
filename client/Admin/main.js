@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
-import Sidebar from './Sidebar'
+import Header from './Header'
+import Menu from './Menu'
+import OrderTable from './OrderTable'
 
 /**
  * COMPONENT
@@ -14,7 +16,13 @@ import Sidebar from './Sidebar'
 const Main = (props) => {
   const { children, handleClick } = props
   return (
-    <Sidebar />
+    <div>
+      <Header />
+      <div className="admin">
+        <Menu />
+        <OrderTable />
+      </div>
+    </div>
   )
 }
 
