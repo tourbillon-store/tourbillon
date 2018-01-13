@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.use('/:userId/cart', (req, res, next) => {
+  console.log('req.user', req.user)
   User.findById(req.params.userId)
     .then(user => user.getOrders({
       attributes: ['id', 'updatedAt'],

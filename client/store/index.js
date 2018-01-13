@@ -6,7 +6,6 @@ import user from './user'
 import watches from './watches'
 import watch from './watch'
 import cart from './cart'
-import unauthcart from './unauthcart'
 
 const reducer = combineReducers({user, watches, watch, cart})
 const middleware = composeWithDevTools(applyMiddleware(
@@ -20,4 +19,4 @@ export * from './user'
 export * from './watches'
 export * from './watch'
 export * from './cart'
-export * from './unauthcart'
+
