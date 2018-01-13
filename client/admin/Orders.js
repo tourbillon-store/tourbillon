@@ -1,56 +1,58 @@
 import React from 'react'
-import { Rating, Header, Table, Segment } from 'semantic-ui-react'
+import { List, Table, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-const TableExamplePagination = () => (
+const TableExamplePagination = (props) => {
+  return (
   <Segment attached="bottom">
     <Table celled padded attached="bottom">
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell singleLine>Evidence Rating</Table.HeaderCell>
-          <Table.HeaderCell>Effect</Table.HeaderCell>
-          <Table.HeaderCell>Efficacy</Table.HeaderCell>
-          <Table.HeaderCell>Consensus</Table.HeaderCell>
-          <Table.HeaderCell>Comments</Table.HeaderCell>
+          <Table.HeaderCell>OrderId</Table.HeaderCell>
+          <Table.HeaderCell>Status</Table.HeaderCell>
+          <Table.HeaderCell>User</Table.HeaderCell>
+          <Table.HeaderCell>CreatedAt</Table.HeaderCell>
+          <Table.HeaderCell>UpdatedAt</Table.HeaderCell>
+          <Table.HeaderCell>Watches</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        <Table.Row>
+        {props.orders.map(order => (
+        <Table.Row key={order.id}>
           <Table.Cell>
-            <Header as="h2" textAlign="center">A</Header>
-          </Table.Cell>
-          <Table.Cell singleLine>Power Output</Table.Cell>
-          <Table.Cell>
-            <Rating icon="star" defaultRating={3} maxRating={3} />
-          </Table.Cell>
-          <Table.Cell textAlign="right">
-            80% <br />
-            <a href="#">18 studies</a>
+            {order.id}
           </Table.Cell>
           <Table.Cell>
-            Creatine supplementation is the reference compound for increasing muscular creatine levels; there is
-          variability in this increase, however, with some nonresponders.
-      </Table.Cell>
+            {order.status}
+          </Table.Cell>
+          <Table.Cell>
+            {order.userId}
+          </Table.Cell>
+          <Table.Cell>
+            {order.createdAt}
+          </Table.Cell>
+          <Table.Cell>
+            {order.updatedAt}
+          </Table.Cell>
+          <Table.Cell>
+            <List selection verticalAlign="middle">
+              {order.watches.map((watch) => (
+              <List.Item key={watch.id}>
+                <List.Content>
+                  <List.Header>{watch.make}</List.Header>
+                </List.Content>
+              </List.Item>
+              ))}
+            </List>
+          </Table.Cell>
         </Table.Row>
-        <Table.Row>
-          <Table.Cell>
-            <Header as="h2" textAlign="center">A</Header>
-          </Table.Cell>
-          <Table.Cell singleLine>Weight</Table.Cell>
-          <Table.Cell>
-            <Rating icon="star" defaultRating={3} maxRating={3} />
-          </Table.Cell>
-          <Table.Cell textAlign="right">
-            100% <br />
-            <a href="#">65 studies</a>
-          </Table.Cell>
-          <Table.Cell>
-            Creatine is the reference compound for power improvement, with numbers from one meta-analysis to assess
-          potency
-      </Table.Cell>
-        </Table.Row>
+        ))}
       </Table.Body>
     </Table>
   </Segment>
-)
+)}
 
-export default TableExamplePagination
+const mapStateToProps = ({orders, users}) => ({orders, users})
+
+export default withRouter(connect(mapStateToProps)(TableExamplePagination))

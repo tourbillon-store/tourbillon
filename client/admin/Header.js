@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Segment, Button } from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { logout } from '../store'
