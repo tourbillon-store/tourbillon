@@ -15,7 +15,7 @@ const Watch = db.define('watch', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://goo.gl/images/usiGqr'
+    defaultValue: 'http://bit.ly/2mwXQKu'
   },
   year: {
     type: Sequelize.INTEGER,
