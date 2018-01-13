@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 
 const AllOrders = (props) => {
-  const { orders } = props;
+  let { orders, user } = props;
+  orders = orders.filter(order => order.status !== 'cart' && order.userId === user.id);
   return (
     <div>
       {orders.map(order => {
@@ -11,6 +12,7 @@ const AllOrders = (props) => {
           <div key={order.id}>
             <Link to={`/orders/${order.id}`}><h2>ORDER ID: {order.id}</h2></Link>
             <ul>
+              <li>Status: {order.status}</li>
               <li>Created At: {order.createdAt}</li>
               <li>Updated At: {order.updateAt}</li>
               <li>Watches: </li>
@@ -34,6 +36,6 @@ const AllOrders = (props) => {
   )
 }
 
-const mapStateToProps = ({ orders }) => ({ orders })
+const mapStateToProps = ({ orders, user }) => ({ orders, user })
 
 export default withRouter(connect(mapStateToProps)(AllOrders));
