@@ -9,30 +9,30 @@ const TableExamplePagination = (props) => {
     <Table celled padded attached="bottom">
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell width={1}>OrderId</Table.HeaderCell>
-          <Table.HeaderCell width={1}>Status</Table.HeaderCell>
-          <Table.HeaderCell width={2}>User</Table.HeaderCell>
-          <Table.HeaderCell width={3}>CreatedAt</Table.HeaderCell>
-          <Table.HeaderCell width={3}>UpdatedAt</Table.HeaderCell>
-          <Table.HeaderCell width={6}>Watches</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Order Id</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Status</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>User</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>CreatedAt</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>UpdatedAt</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Watches</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {props.orders.map(order => (
         <Table.Row key={order.id}>
-          <Table.Cell>
+          <Table.Cell textAlign="center">
             {order.id}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell textAlign="center">
             {order.status}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell textAlign="center">
             {order.userId}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell textAlign="center">
             {order.createdAt}
           </Table.Cell>
-          <Table.Cell>
+          <Table.Cell textAlign="center">
             {order.updatedAt}
           </Table.Cell>
           <Table.Cell>
