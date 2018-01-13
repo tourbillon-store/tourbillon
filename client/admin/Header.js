@@ -1,10 +1,25 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Segment, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { logout } from '../store'
 
-const HeaderExampleBlock = () => (
-  <Header attached='top' as='h3' block>
-    ADMIN
-  </Header>
+const HeaderExampleBlock = (props) => (
+    <Header attached="top" as="h1" block>
+      ADMIN
+      <Button floated="right" negative onClick={props.handleClick}>
+      Logout
+    </Button>
+    </Header>
+
 )
 
-export default HeaderExampleBlock
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick() {
+      dispatch(logout())
+    }
+  }
+}
+
+export default withRouter(connect(null, mapDispatch)(HeaderExampleBlock))
