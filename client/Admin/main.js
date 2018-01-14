@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Header from './Header'
 import Menu from './Menu'
-import Orders from './Orders'
+import AllOrders from './AllOrders'
 
 const Main = () => {
   return (
@@ -11,7 +11,7 @@ const Main = () => {
       <div className="admin">
         <Menu />
         <Switch>
-          <Route path="/admin/orders" component={Orders} />
+          <Route path="/admin/orders" component={AllOrders} />
         </Switch>
       </div>
     </div>

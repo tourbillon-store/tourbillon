@@ -1,12 +1,12 @@
 import React from 'react'
 import { List, Table, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
-const TableExamplePagination = (props) => {
+const AllOrders = (props) => {
   return (
   <Segment attached="bottom">
-    <Table celled padded attached="bottom">
+    <Table selectable celled padded attached="bottom">
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell textAlign="center" width={2}>Order Id</Table.HeaderCell>
@@ -61,4 +61,4 @@ const TableExamplePagination = (props) => {
 
 const mapStateToProps = ({orders, users}) => ({orders, users})
 
-export default withRouter(connect(mapStateToProps)(TableExamplePagination))
+export default withRouter(connect(mapStateToProps)(AllOrders))
