@@ -37,7 +37,7 @@ const AllOrdersModal = (props) => {
             </List>
           </Table.Cell>
         </Table.Row>
-      }>
+    }>
       <Modal.Header>ORDER ID: {order.id}</Modal.Header>
       <Modal.Content>
         <ul>
