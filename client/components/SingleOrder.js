@@ -10,7 +10,6 @@ class Order extends Component {
 
   render() {
     const order = this.props.order;
-    console.log(this.props);
     return (
       !order.loading &&
       <div key={order.id}>
