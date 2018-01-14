@@ -6,8 +6,7 @@ const AllOrdersModal = (props) => {
   let orderUser = users.find(user => user.id === order.userId)
   let name = `${orderUser.firstName} ${orderUser.lastName}`
   return (
-    <Modal
-      key={order.id} trigger={
+    <Modal trigger={
         <Table.Row >
           <Table.Cell textAlign="center">
             {order.id}
