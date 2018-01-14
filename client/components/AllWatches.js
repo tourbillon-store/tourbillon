@@ -13,17 +13,19 @@ class AllWatches extends Component {
     return (
       <div>
         {watches.map(watch => {
-          return (
-            <div key={watch.id}>
-              <Link to={`/watches/${watch.id}`}><h2>{watch.make} {watch.model}</h2></Link>
-              <ul>
-                <li>Year: {watch.year}</li>
-                <li>Complications: {watch.complications}</li>
-                <li>Image: {watch.imageUrl}</li>
-                <li>Price: {watch.price}</li>
-              </ul>
-            </div>
-          )
+          if(watch.available) {
+            return (
+              <div key={watch.id}>
+                <Link to={`/watches/${watch.id}`}><h2>{watch.make} {watch.model}</h2></Link>
+                <ul>
+                  <li>Year: {watch.year}</li>
+                  <li>Complications: {watch.complications}</li>
+                  <li>Image: {watch.imageUrl}</li>
+                  <li>Price: {watch.price}</li>
+                </ul>
+              </div>
+            )
+          }
         })}
       </div>
     )

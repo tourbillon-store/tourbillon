@@ -15,7 +15,7 @@ const Watch = db.define('watch', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://goo.gl/images/usiGqr'
+    defaultValue: 'http://bit.ly/2mwXQKu'
   },
   year: {
     type: Sequelize.INTEGER,
@@ -27,6 +27,10 @@ const Watch = db.define('watch', {
     validate: {
       min: 0
     }
+  },
+  available: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 })
 
