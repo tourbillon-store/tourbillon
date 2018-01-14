@@ -1,15 +1,13 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Header from './Header'
-import Menu from './Menu'
-import AllOrders from './AllOrders'
+import { AdminHeader, AdminMenu, AllOrders } from './index'
 
 const Main = () => {
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <div className="admin">
-        <Menu />
+        <AdminMenu />
         <Switch>
           <Route path="/admin/orders" component={AllOrders} />
         </Switch>
