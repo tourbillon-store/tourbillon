@@ -1,7 +1,5 @@
 import React from 'react'
 import { List, Table, Modal } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 
 const AllOrdersModal = (props) => {
   const { order, users } = props
@@ -65,4 +63,4 @@ const AllOrdersModal = (props) => {
   )
 }
 
-export default withRouter(connect()(AllOrdersModal))
+export default AllOrdersModal
