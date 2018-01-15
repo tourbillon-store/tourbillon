@@ -1,43 +1,13 @@
 import React from 'react'
-import { List, Table, Modal } from 'semantic-ui-react'
+import { Table, Modal } from 'semantic-ui-react'
+import { AllOrdersTableRow } from './index'
 
 const AllOrdersModal = (props) => {
   const { order, users } = props
   let orderUser = users.find(user => user.id === order.userId)
   let name = `${orderUser.firstName} ${orderUser.lastName}`
   return (
-    <Modal trigger={
-      <Table.Row >
-        <Table.Cell textAlign="center">
-          {order.id}
-        </Table.Cell>
-        <Table.Cell textAlign="center">
-          {order.status}
-        </Table.Cell>
-        <Table.Cell textAlign="center">
-          {name}
-        </Table.Cell>
-        <Table.Cell textAlign="center">
-          {order.createdAt}
-        </Table.Cell>
-        <Table.Cell textAlign="center">
-          {order.updatedAt}
-        </Table.Cell>
-        <Table.Cell>
-          <List selection divided verticalAlign="middle">
-            {order.watches.map((watch) => (
-              <List.Item key={watch.id}>
-                <List.Content>
-                  <List.Header>ID: {watch.id}</List.Header>
-                  Price: {watch.order_watch.quantity}<br />
-                  Quantity: {watch.order_watch.fixedPrice}
-                </List.Content>
-              </List.Item>
-            ))}
-          </List>
-        </Table.Cell>
-      </Table.Row>
-    }>
+    <Modal trigger={<Table.Row><AllOrdersTableRow name={name} order={order} /></Table.Row>}>
       <Modal.Header>ORDER ID: {order.id}</Modal.Header>
       <Modal.Content>
         <ul>
