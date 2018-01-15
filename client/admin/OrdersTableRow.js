@@ -31,8 +31,8 @@ const OrdersTableRow = (props) => {
           <List.Item key={watch.id}>
             <List.Content>
               <List.Header>ID: {watch.id}</List.Header>
-              Price: {watch.order_watch.quantity}<br />
-              Quantity: {watch.order_watch.fixedPrice}
+              Price: {watch.order_watch.fixedPrice}<br />
+              Quantity: {watch.order_watch.quantity}
             </List.Content>
           </List.Item>
         ))}
