@@ -14,7 +14,10 @@ import users from './users'
 const reducer = combineReducers({user, watches, watch, cart, orders, users, order, form: formReducer})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
+  createLogger({
+    collapsed: true,
+    predicate: (getState, action) => (!action.type.includes('@@redux-form'))
+  })
 ))
 const store = createStore(reducer, middleware)
 
