@@ -1,13 +1,13 @@
 import React from 'react'
 import { Table, List } from 'semantic-ui-react'
 
-const AllOrdersTableRow = (props) => {
+const OrdersTableRow = (props) => {
   const { order, name } = props
   let key = 0;
   return (
     /*
     Returning a single jsx element work-around. Could use react fragments
-    but Babel support is still in beta. Using an array requires a key on every element.
+    but Babel support still in beta. Using an array requires a key on every element.
     */
     [
     <Table.Cell key={key++} textAlign="center">
@@ -42,4 +42,4 @@ const AllOrdersTableRow = (props) => {
   )
 }
 
-export default AllOrdersTableRow
+export default OrdersTableRow
