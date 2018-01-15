@@ -110,6 +110,10 @@ orders.map(order => {
   })
 })
 
+watches.map(watch => delete watch.id)
+users.map(user => delete user.id)
+orders.map(order => delete order.id)
+
 const seed = () =>
   Promise.all(watches.map(watch => Watch.create(watch)))
   .then(() => Promise.all(users.map(user => User.create(user))))
