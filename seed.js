@@ -28,45 +28,57 @@ for (let i = 0; i < makes.length; i++) {
 }
 
 const users = []
-const names = ['David Sehl', 'Sandy Mak', 'Jesse Moskowitz', 'Kevin Ho', 'James DeLay', 'Shayan Sheikh', 'Eetai Ben-Sasson', 'Sarah Zhao', 'Owen Hagerty', 'Robin Luongo', 'Bryan Clark', 'Josh Baruch', 'Shannen Ye', 'Vesna Tan', 'Han Hung', 'Jonathan Schwartz', 'Jeff Hatcher', 'Yahua Chen', 'Ari Kramer', 'Guanhong Chen', 'Kenneth Koch', 'Sam Alsmadi', 'Abraham Johnson', 'Allen Johnson', 'Diana Lease', 'Elis Dervishi', 'Mark Lopez', 'Samuel Kwon', 'Abel McElroy', 'Hassan Elsherbini', 'Randy Tsao', 'Tim LaTorre', 'Jon Rea', 'Vanessa Jimenez', 'James Abels', 'William Lee', 'Arnold Salas', 'Benjamin Friedman', 'Josh Luria', 'Daniel Hollcraft', 'Jeffrey Cheung', 'Daniela Tizon', 'Leigh Blechman', 'Elizabeth Farrier', 'Samuel Chai', 'Maxwell Legocki', 'Vinit Parkar', 'Hunsoo Kim', 'Jason Ioannides'];
-for (let i = 0; i < names.length; i++) {
-  let [firstName, lastName] = names[i].split(' ');
+const admins = ['Sam Chai', 'Jesse Moskowitz', 'Allen Johnson', 'Josh Luria']
+const names = ['David Sehl', 'Sandy Mak', 'Kevin Ho', 'James DeLay', 'Shayan Sheikh', 'Eetai Ben-Sasson', 'Sarah Zhao', 'Owen Hagerty', 'Robin Luongo', 'Bryan Clark', 'Josh Baruch', 'Shannen Ye', 'Vesna Tan', 'Han Hung', 'Jonathan Schwartz', 'Jeff Hatcher', 'Yahua Chen', 'Ari Kramer', 'Guanhong Chen', 'Kenneth Koch', 'Sam Alsmadi', 'Abraham Johnson', 'Diana Lease', 'Elis Dervishi', 'Mark Lopez', 'Samuel Kwon', 'Abel McElroy', 'Hassan Elsherbini', 'Randy Tsao', 'Tim LaTorre', 'Jon Rea', 'Vanessa Jimenez', 'James Abels', 'William Lee', 'Arnold Salas', 'Benjamin Friedman', 'Daniel Hollcraft', 'Jeffrey Cheung', 'Daniela Tizon', 'Leigh Blechman', 'Elizabeth Farrier', 'Maxwell Legocki', 'Vinit Parkar', 'Hunsoo Kim', 'Jason Ioannides'];
+//add user helper function
+const addUsers = (i, namesList, isAdmin) => {
+  let [firstName, lastName] = namesList[i].split(' ');
   let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`;
   let password = '123'
-  let id = i + 1;
+  let id = users.length + 1;
   users.push({
     id,
     firstName,
     lastName,
     email,
-    password
+    password,
+    isAdmin
   })
 }
+for (let i = 0; i < admins.length; i++) {
+  addUsers(i, admins, true)
+}
+for (let i = 0; i < names.length; i++) {
+  addUsers(i, names, false)
+}
+
 
 const orders = []
 const statuses = ['created', 'processing', 'cancelled', 'completed']
 //every user has a chance to have an order
-for (let i = 0; i < users.length; i++) {
+users.map(user => {
   //max orders is 5
   let numOrders = chance.integer({min: 0, max: 5})
-  let userId = i + 1
+  let userId = user.id
   for (let j = 0; j < numOrders ; j++) {
     //If first order, create cart order, else create other order
+    let id = orders.length + 1
     let status = j === 0 ? 'cart' : chance.pickone(statuses)
     orders.push({
+      id,
       status,
       userId
     })
   }
-}
+})
 
 const reviews = []
 //every watch has a review
-for (let i = 0; i < watches.length; i++) {
-  let watchId = i + 1
+watches.map(watch => {
+  let watchId = watch.id
   //every watch has at max 5 reviews
   let reviewUsers = chance.pickset(users, chance.integer({min: 0, max: 5}))
-  reviewUsers.forEach(user => {
+  reviewUsers.map(user => {
     let userId = user.id
     let rating = chance.integer({min: 1, max: 5})
     let content = chance.paragraph()
@@ -77,12 +89,12 @@ for (let i = 0; i < watches.length; i++) {
       content
     })
   })
-}
+})
 
 const orderWatches = [];
 //every order has a watch
-for (let i = 0; i < orders.length; i++) {
-  let orderId = i + 1;
+orders.map(order => {
+  let orderId = order.id;
   //every order has at max 5 watches
   let randWatches = chance.pickset(watches, chance.integer({min: 0, max: 5}))
   randWatches.forEach(watch => {
@@ -96,7 +108,7 @@ for (let i = 0; i < orders.length; i++) {
       quantity
     })
   })
-}
+})
 
 const seed = () =>
   Promise.all(watches.map(watch => Watch.create(watch)))
