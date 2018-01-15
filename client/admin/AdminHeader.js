@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { logout } from '../store'
 
-const HeaderExampleBlock = (props) => (
+const AdminHeader = (props) => (
   <Header attached="top" as="h1" block>
     ADMIN
       <Button floated="right" negative onClick={props.handleClick}>
@@ -21,4 +21,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatch)(HeaderExampleBlock))
+export default withRouter(connect(null, mapDispatch)(AdminHeader))

@@ -24,6 +24,7 @@ const Main = (props) => {
               <Link to="/watches">Watches</Link>
               {isAdmin && <Link to="/admin">Admin</Link>}
               <Link to="/cart">Cart</Link>
+              <Link to="/orders">Order History</Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
