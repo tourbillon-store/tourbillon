@@ -78,3 +78,39 @@ for (let i = 0; i < watches.length; i++) {
     quantity
   })
 }
+
+const seed = () =>
+  Promise.all(watches.map(watch =>
+    Watch.create(watch)))
+    .then(() =>
+    Promise.all(users.map(user =>
+      Users.create(user)
+    ))
+  );
+  .then(() =>
+    Promise.all(orders.map(order =>
+      Order.create(order)
+    ))
+  );
+
+const main = () => {
+  console.log('Syncing db...');
+  db.sync({
+      force: true
+    })
+    .then(() => {
+      console.log('Seeding database...');
+      return seed();
+    })
+    .catch(err => {
+      console.log('Error while seeding');
+      console.log(err.stack);
+    })
+    .then(() => {
+      console.log('Seeding done!');
+      db.close();
+      return null;
+    });
+};
+
+main();
