@@ -13,6 +13,11 @@ const AllWatchesModal = (props) => {
         <ul>
           <li>Make: {watch.make}</li>
           <li>Model: {watch.model}</li>
+          <li>Complications: {watch.complications}</li>
+          <li>Image URL: {watch.imageUrl}</li>
+          <li>Year: {watch.year}</li>
+          <li>Price: {watch.price}</li>
+          <li>Available: {watch.available ? "Available" : "Unavailable"}</li>
           <li>Created At: {watch.createdAt}</li>
           <li>Updated At: {watch.updatedAt}</li>
           {/*
