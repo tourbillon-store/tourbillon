@@ -6,7 +6,7 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const EMPTY_CART = 'EMPTY_CART'
 const ADD_WATCH_TO_CART = 'ADD_WATCH_TO_CART'
-const UPDATE_WATCH_IN_CART = 'UPDATE_CART'
+const UPDATE_WATCH_IN_CART = 'UPDATE_CART' // UPDATE_WATCH_IN_CART
 const REMOVE_WATCH_FROM_CART = 'REMOVE_WATCH_FROM_CART'
 
 /**
@@ -29,7 +29,7 @@ export const fetchCart = () =>
         console.log('fetchCart', cart)
         if (cart && cart[0] && cart[0].watches) {
           cart = cart[0].watches.map(watch => {
-            return {
+            return { // look into sequelize exclude
               id: watch.id,
               make: watch.make,
               model: watch.model,

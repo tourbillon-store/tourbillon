@@ -23,6 +23,7 @@ module.exports = app
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
+// CG: user is created here (for cart api)
 passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)

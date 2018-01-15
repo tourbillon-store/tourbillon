@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { OrdersModal } from './index'
 
+// destructure 'Table'
+// wrap components in divs to use classNames
 const Orders = (props) => {
   return (
   <Segment attached="bottom">

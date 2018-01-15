@@ -3,6 +3,9 @@ const { User, Watch, Order, OrderWatch } = require('../db/models')
 const { hasCart } = require('../utils/gateKeeperMiddleware')
 module.exports = router
 
+// you know you have a user or not before hitting these
+// place cart middleware elsewhere
+
 router.get('/', hasCart, (req, res, next) => {
   if (req.user) {
     User.findById(req.user.id)

@@ -12,6 +12,7 @@ class AllWatches extends Component {
     const { watches } = this.props;
     return (
       <div>
+        {/* JC: do a filter on availability */}
         {watches.map(watch => {
           if (watch.available) {
             return (
