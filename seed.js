@@ -5,93 +5,105 @@ const { User, Watch, Review, Order, OrderWatch } = require('./server/db/models/'
 const watches = []
 const makes = ['Cartier', 'Laurent Ferrier', 'A. Lange & Söhne', 'Richard Mille', 'Baume & Mercier', 'Urwerk', 'Jaeger-LeCoultre', 'Parmigiani Fleurier', 'Panerai', 'Hermeès']
 const models = ['Drive de Cartier Extra-Flat', 'Galet Annual Calendar Montre École', 'Saxonia Triple Split', 'RM 53-01 Tourbillon Pablo Mac Donough', 'Clifton Club Legend Tributes', 'UR-210 Black Platinum', 'Polaris Memovox Limited Edition', 'Kalpa Hebdomadaire', 'Lo Scienziato  Luminor 1950 Tourbillon GMT Titanio', 'Carré H']
-const complications = ['Simple chronograph', 'Simple calendar',	'Alarm', 'Counter chronograph',	'Annual calendar', 'Quarter repeater', 'Split-second flyback chronograph',	'Perpetual calendar',	'Half-quarter repeater', 'Independent second-hand chronograph',	'Equation of time',	'Five-minute repeater', 'Jumping second-hand chronograph', 'Moon phases', 'Minute repeater']
+const complicationOptions = ['Simple chronograph', 'Simple calendar',	'Alarm', 'Counter chronograph',	'Annual calendar', 'Quarter repeater', 'Split-second flyback chronograph',	'Perpetual calendar',	'Half-quarter repeater', 'Independent second-hand chronograph',	'Equation of time',	'Five-minute repeater', 'Jumping second-hand chronograph', 'Moon phases', 'Minute repeater']
 const minYear = 2000, maxYear = 2018
 const minPrice = 500000, maxPrice = 1500000
 for (let i = 0; i < makes.length; i++) {
   let make = makes[i]
   let model = models[i]
-  let complication = chance.pickone(complications)
+  let complications = chance.pickone(complicationOptions)
   let year = chance.integer({min: minYear, max: maxYear})
   let price = chance.integer({min: minPrice, max: maxPrice})
+  let available = chance.weighted([false, true], [10, 90])
+  let id = i + 1
   watches.push({
+    id,
     make,
     model,
-    complication,
+    complications,
     year,
-    price
+    price,
+    available
   })
 }
 
 const users = []
 const names = ['David Sehl', 'Sandy Mak', 'Jesse Moskowitz', 'Kevin Ho', 'James DeLay', 'Shayan Sheikh', 'Eetai Ben-Sasson', 'Sarah Zhao', 'Owen Hagerty', 'Robin Luongo', 'Bryan Clark', 'Josh Baruch', 'Shannen Ye', 'Vesna Tan', 'Han Hung', 'Jonathan Schwartz', 'Jeff Hatcher', 'Yahua Chen', 'Ari Kramer', 'Guanhong Chen', 'Kenneth Koch', 'Sam Alsmadi', 'Abraham Johnson', 'Allen Johnson', 'Diana Lease', 'Elis Dervishi', 'Mark Lopez', 'Samuel Kwon', 'Abel McElroy', 'Hassan Elsherbini', 'Randy Tsao', 'Tim LaTorre', 'Jon Rea', 'Vanessa Jimenez', 'James Abels', 'William Lee', 'Arnold Salas', 'Benjamin Friedman', 'Josh Luria', 'Daniel Hollcraft', 'Jeffrey Cheung', 'Daniela Tizon', 'Leigh Blechman', 'Elizabeth Farrier', 'Samuel Chai', 'Maxwell Legocki', 'Vinit Parkar', 'Hunsoo Kim', 'Jason Ioannides'];
-names.map(name => {
-  let [firstName, lastName] = name.split(' ');
+for (let i = 0; i < names.length; i++) {
+  let [firstName, lastName] = names[i].split(' ');
   let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`;
+  let password = '123'
+  let id = i + 1;
   users.push({
+    id,
     firstName,
     lastName,
-    email
-  })
-})
-
-const orders = []
-const statuses = ['cart', 'created', 'processing', 'cancelled', 'completed']
-const numOrders = 20
-for (let i = 0; i < numOrders; i++) {
-  let status = chance.pickone(statuses)
-  let userId = chance.integer({min: 0, max: users.length - 1})
-  orders.push({
-    status,
-    userId
+    email,
+    password
   })
 }
 
+const orders = []
+const statuses = ['created', 'processing', 'cancelled', 'completed']
+//every user has a chance to have an order
+for (let i = 0; i < users.length; i++) {
+  //max orders is 5
+  let numOrders = chance.integer({min: 0, max: 5})
+  let userId = i + 1
+  for (let j = 0; j < numOrders ; j++) {
+    //If first order, create cart order, else create other order
+    let status = j === 0 ? 'cart' : chance.pickone(statuses)
+    orders.push({
+      status,
+      userId
+    })
+  }
+}
+
 const reviews = []
-const numReviews = 50
-for (let i = 0;i < numReviews; i++) {
-  let watchId = chance.integer({min: 0, max: watches.length - 1})
-  let userId = chance.integer({min: 0, max: users.length - 1})
-  let rating = chance.integer({min: 0, max: 5})
-  let content = chance.paragraph()
-  reviews.push({
-    watchId,
-    userId,
-    rating,
-    content
+//every watch has a review
+for (let i = 0; i < watches.length; i++) {
+  let watchId = i + 1
+  //every watch has at max 5 reviews
+  let reviewUsers = chance.pickset(users, chance.integer({min: 0, max: 5}))
+  reviewUsers.forEach(user => {
+    let userId = user.id
+    let rating = chance.integer({min: 1, max: 5})
+    let content = chance.paragraph()
+    reviews.push({
+      watchId,
+      userId,
+      rating,
+      content
+    })
   })
 }
 
 const orderWatches = [];
-//every watch has an order
-for (let i = 0; i < watches.length; i++) {
-  //a watch can be on max all orders.
-  let randOrders = chance.integer({min: 0, max: numOrders})
-  let watchId = i;
-  let orderId = chance.integer({min: 0, max: randOrders})
-  let fixedPrice = chance.integer({min: minPrice, max: maxPrice})
-  let quantity = chance.integer({min: 0, max: 4})
-  orderWatches.push({
-    watchId,
-    orderId,
-    fixedPrice,
-    quantity
+//every order has a watch
+for (let i = 0; i < orders.length; i++) {
+  let orderId = i + 1;
+  //every order has at max 5 watches
+  let randWatches = chance.pickset(watches, chance.integer({min: 0, max: 5}))
+  randWatches.forEach(watch => {
+    let watchId = watch.id
+    let fixedPrice = chance.integer({min: minPrice, max: maxPrice})
+    let quantity = chance.integer({min: 1, max: 4})
+    orderWatches.push({
+      watchId,
+      orderId,
+      fixedPrice,
+      quantity
+    })
   })
 }
 
 const seed = () =>
-  Promise.all(watches.map(watch =>
-    Watch.create(watch)))
-    .then(() =>
-    Promise.all(users.map(user =>
-      Users.create(user)
-    ))
-  );
-  .then(() =>
-    Promise.all(orders.map(order =>
-      Order.create(order)
-    ))
-  );
+  Promise.all(watches.map(watch => Watch.create(watch)))
+  .then(() => Promise.all(users.map(user => User.create(user))))
+  .then(() => Promise.all(orders.map(order => Order.create(order))))
+  .then(() => Promise.all(reviews.map(review => Review.create(review))))
+  .then(() => Promise.all(orderWatches.map(orderWatch => OrderWatch.create(orderWatch))))
 
 const main = () => {
   console.log('Syncing db...');
