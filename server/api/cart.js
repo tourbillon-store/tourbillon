@@ -63,7 +63,8 @@ router.put('/', hasCart, (req, res, next) => {
       .then(() => res.sendStatus(202))
       .catch(next)
   } else {
-    console.log("I ran")
+    // req.session.cart = req.session.cart.push('test')
+    res.json(req.session.cart)
   }
 })
 
