@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Table, List } from 'semantic-ui-react'
+import { OrderStatusForm } from './index'
+import { updateOrder } from '../store'
 
 const SingleOrder = (props) => {
   const { order } = props
@@ -8,7 +11,9 @@ const SingleOrder = (props) => {
       <Table.Body >
         <Table.Row>
           <Table.Cell textAlign="center">Status</Table.Cell>
-          <Table.Cell>{order.status}</Table.Cell>
+          <Table.Cell>
+            <OrderStatusForm order={order} />
+          </Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell textAlign="center">CreatedAt</Table.Cell>
@@ -39,4 +44,12 @@ const SingleOrder = (props) => {
   )
 }
 
-export default SingleOrder
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleFormSubmit(status) {
+      dispatch(updateOrder(status))
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SingleOrder)
