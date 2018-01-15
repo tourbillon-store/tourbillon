@@ -29,7 +29,6 @@ passport.deserializeUser((id, done) =>
     .then(user => done(null, user))
     .catch(done))
 
-
 const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
