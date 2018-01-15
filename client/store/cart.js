@@ -27,8 +27,6 @@ export const fetchCart = (userId) =>
       .then(res => res.data)
       .then(cart => {
         console.log('fetchCart', cart)
-        //sequelize exclude???? flattening on backend
-        //api/users/id/cart
         if (cart && cart[0] && cart[0].watches) {
           cart = cart[0].watches.map(watch => {
             return {
@@ -45,7 +43,7 @@ export const fetchCart = (userId) =>
       })
       .catch(console.error)
 
-export const pushWatchToCart = (watchId, userId)  =>
+export const pushWatchToCart = (watchId, userId) =>
   dispatch =>
     axios.post(`/api/users/${userId || 'visitor'}/cart`, { watchId })
       .then(res => res.data)
