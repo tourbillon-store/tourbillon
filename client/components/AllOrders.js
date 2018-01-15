@@ -20,7 +20,7 @@ class AllOrders extends Component {
               <ul>
                 <li>Status: {order.status}</li>
                 <li>Created At: {order.createdAt}</li>
-                <li>Updated At: {order.updateAt}</li>
+                <li>Updated At: {order.updatedAt}</li>
                 <li>Watches: </li>
                   {order.watches.map(watch => (
                   <div key={watch.id}>
@@ -29,7 +29,8 @@ class AllOrders extends Component {
                       <li>Year: {watch.year}</li>
                       <li>Complications: {watch.complications}</li>
                       <li>Image: {watch.imageUrl}</li>
-                      <li>Price: {watch.price}</li>
+                      <li>Order Price: {watch.order_watch.fixedPrice}</li>
+                      <li>Order Quantity: {watch.order_watch.quantity}</li>
                     </ul>
                   </div>
                   ))}
