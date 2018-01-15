@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_CART = 'GET_CART'
 const EMPTY_CART = 'EMPTY_CART'
+const ADD_WATCH_TO_CART = 'ADD_WATCH_TO_CART'
 const UPDATE_WATCH_IN_CART = 'UPDATE_CART'
 const REMOVE_WATCH_FROM_CART = 'REMOVE_WATCH_FROM_CART'
 
@@ -13,8 +14,9 @@ const REMOVE_WATCH_FROM_CART = 'REMOVE_WATCH_FROM_CART'
  */
 const getCart = cart => ({type: GET_CART, cart})
 const emptyCart = cart => ({type: EMPTY_CART, cart})
+const addWatchToCart = watch => ({type: ADD_WATCH_TO_CART, watch})
 const updateWatchInCart = (watchId, quantity) => ({type: UPDATE_WATCH_IN_CART, watchId, quantity})
-const removeWatchFromCart = cart => ({REMOVE_WATCH_FROM_CART, cart})
+const removeWatchFromCart = watchId => ({type: REMOVE_WATCH_FROM_CART, watchId})
 
 /**
  * THUNK CREATORS
@@ -22,16 +24,18 @@ const removeWatchFromCart = cart => ({REMOVE_WATCH_FROM_CART, cart})
 export const fetchCart = () =>
   dispatch =>
     axios.get(`/api/cart`)
+      .then(res => res.data)
       .then(cart => {
-        if (cart.data) {
-          cart = cart.data[0].watches.map(watch => {
+        console.log('fetchCart', cart)
+        if (cart && cart[0] && cart[0].watches) {
+          cart = cart[0].watches.map(watch => {
             return {
               id: watch.id,
               make: watch.make,
               model: watch.model,
               price: watch.price,
               quantity: watch.order_watch.quantity,
-              createdAt: watch.createdAt
+              createdAt: watch.order_watch.createdAt
             }
           })
         }
@@ -39,27 +43,50 @@ export const fetchCart = () =>
       })
       .catch(console.error)
 
+export const pushWatchToCart = watchId =>
+  dispatch =>
+    axios.post('/api/cart', { watchId })
+      .then(res => res.data)
+      .then(watch => {
+        console.log('pushedWatch', watch)
+        dispatch(addWatchToCart(watch))
+      })
+      .catch(console.error)
+
 export const updateCart = (watchId, quantity) =>
   dispatch =>
     axios.put('/api/cart', { watchId, quantity })
-      .then(watch => watch.data)
+      .then(res => res.data)
       .then(() => {
         dispatch(updateWatchInCart(watchId, quantity))
       })
-      .catch(err => console.log(err))
+      .catch(console.error)
+
+export const deleteWatchFromCart = watchId =>
+  dispatch =>
+    axios.delete(`api/cart/${watchId}`)
+      .then(res => res.data)
+      .then(() => dispatch(removeWatchFromCart(watchId)))
+      .catch(console.error)
+
 /**
  * REDUCER
  */
 export default function (state = [], action) {
   let watch
+  console.log('watchId', action.watchId)
   switch (action.type) {
     case GET_CART:
       return action.cart
+    case ADD_WATCH_TO_CART:
+      return [...state.filter(cartWatch => cartWatch.id !== action.watchId), action.watch]
     case UPDATE_WATCH_IN_CART:
       watch = state.find(cartWatch => cartWatch.id === action.watchId)
       if (action.quantity) watch.quantity = action.quantity
       if (action.fixedPrice) watch.fixedPrice = action.fixedPrice
       return [...state.filter(cartWatch => cartWatch.id !== action.watchId), watch]
+    case REMOVE_WATCH_FROM_CART:
+      return [...state.filter(cartWatch => cartWatch.id !== action.watchId)]
     case EMPTY_CART:
       return []
     default:
