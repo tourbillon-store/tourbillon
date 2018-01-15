@@ -43,7 +43,7 @@ class UserCart extends Component {
 }
 
 const mapState = ({ cart, user }) => ({ cart, user })
-const mapDispatch = (dispatch, ) => {
+const mapDispatch = (dispatch) => {
   return {
     getCart(userId) { dispatch(fetchCart(userId)) },
     decrementQuantity(watchId, newQuantity, userId) {dispatch(updateCart(watchId, newQuantity, userId))},
