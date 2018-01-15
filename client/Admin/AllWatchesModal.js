@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Modal } from 'semantic-ui-react'
+import { Table, Modal, Modal.Header as Header, Modal.Content as Content } from 'semantic-ui-react'
 //import { AllWatchesTableRow } from './index'
 
 const AllWatchesModal = (props) => {
@@ -8,8 +8,8 @@ const AllWatchesModal = (props) => {
   //let name = `${orderUser.firstName} ${orderUser.lastName}`
   return (
     <Modal trigger={<Table.Row><AllWatchesTableRow name={name} watch={watch} /></Table.Row>}>
-      <Modal.Header>WATCH ID: {watch.id}</Modal.Header>
-      <Modal.Content>
+      <Header>WATCH ID: {watch.id}</Header>
+      <Content>
         <ul>
           <li>Make: {watch.Make}</li>
           <li>Created At: {order.createdAt}</li>
@@ -28,7 +28,7 @@ const AllWatchesModal = (props) => {
             </div>
             ))}
         </ul>
-      </Modal.Content>
+      </Content>
     </Modal>
   )
 }

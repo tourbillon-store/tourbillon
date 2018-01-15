@@ -25,13 +25,13 @@ const AllWatches = (props) => {
       </Header>
       <Body>
         {/*props.users.length ? props.orders.map(order =>
-           <AllOrdersModal key={order.id} order={order} users={props.users} />
+           <AllWatchesModal key={order.id} order={order} users={props.users} />
         ) : null*/}
       </Body>
     </Table>
   </Segment>
 )}
 
-const mapStateToProps = ({watches, users}) => ({watches, users})
+const mapStateToProps = ({watches}) => ({watches})
 
 export default withRouter(connect(mapStateToProps)(AllWatches))
