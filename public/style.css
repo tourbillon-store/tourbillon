@@ -69,3 +69,11 @@ form div {
 .admin-menu {
   height: -webkit-fill-available;
 }
+
+.view-as-user {
+  color: white;
+}
+
+.view-as-user:hover {
+  color: white;
+}
