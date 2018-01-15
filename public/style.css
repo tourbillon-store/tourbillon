@@ -60,3 +60,12 @@ form div {
 .delete-button {
 
 }
+
+/* admin */
+.admin {
+  display: flex
+}
+
+.admin-menu {
+  height: -webkit-fill-available;
+}

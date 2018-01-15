@@ -6,8 +6,11 @@ import user from './user'
 import watches from './watches'
 import watch from './watch'
 import cart from './cart'
+import orders from './orders'
+import order from './order'
+import users from './users'
 
-const reducer = combineReducers({user, watches, watch, cart})
+const reducer = combineReducers({user, watches, watch, cart, orders, users, order})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -19,4 +22,6 @@ export * from './user'
 export * from './watches'
 export * from './watch'
 export * from './cart'
-
+export * from './orders'
+export * from './users'
+export * from './order'

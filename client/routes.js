@@ -1,44 +1,49 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Route, Switch, Router} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, VisitorHome, UserCart, VisitorCart, AllWatches, SingleWatch} from './components'
-import {me, fetchWatches} from './store'
+import { Main, Login, Signup, UserHome, VisitorHome, UserCart, VisitorCart, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { AdminMain } from './admin'
+import { me, fetchWatches, fetchOrders, fetchUsers } from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn} = this.props
-
+  render() {
+    const { isLoggedIn, isAdmin } = this.props
     return (
       <Router history={history}>
-        <Main>
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route exact path="/watches" component={AllWatches} />
-            <Route path="/watches/:watchId" component={SingleWatch} />
-            {
-              isLoggedIn &&
+        <Switch>
+          {isAdmin && <Route path="/admin" component={AdminMain} />}
+          <Main>
+            <Switch>
+              {/* Routes placed here are available to all visitors */}
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route exact path="/watches" component={AllWatches} />
+              <Route path="/watches/:watchId" component={SingleWatch} />
+              {
+                isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
                   <Route path="/cart" component={UserCart} />
+                  <Route exact path="/orders" component={AllOrders} />
+                  <Route path="/orders/:orderId" component={SingleOrder} />
                 </Switch>
-            }
-            {/* Display landing page as fallback */}
-            <Route path="/cart" component={UserCart} />
-            <Route component={VisitorHome} />
-          </Switch>
-        </Main>
+              }
+              {/* Display landing page as fallback */}
+              <Route path="/cart" component={UserCart} />
+              <Route component={VisitorHome} />
+            </Switch>
+          </Main>
+        </Switch>
       </Router>
     )
   }
@@ -51,15 +56,18 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
       dispatch(fetchWatches())
+      dispatch(fetchOrders())
+      dispatch(fetchUsers())
     }
   }
 }
