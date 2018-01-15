@@ -9,8 +9,8 @@ const Main = () => {
       <div className="admin">
         <AdminMenu />
         <Switch>
-          <Route path="/admin/orders" component={AllOrders} />
           <Route path="/admin/watches" component={AllWatches} />
+          <Route path="/admin/orders" component={AllOrders} />
         </Switch>
       </div>
     </div>
