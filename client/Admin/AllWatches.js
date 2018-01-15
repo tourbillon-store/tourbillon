@@ -1,8 +1,8 @@
 import React from 'react'
-import { Table, Table.Header as Header, Table.Row as Row, Table.HeaderCell as HeaderCell, Table.Body as Body, Segment } from 'semantic-ui-react'
+import { Table, TableHeader as Header, TableRow as Row, TableHeaderCell as HeaderCell, TableBody as Body, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-//import { AllWatchesModal } from './index'
+import { AllWatchesModal } from './index'
 
 const AllWatches = (props) => {
   return (
@@ -20,13 +20,12 @@ const AllWatches = (props) => {
           <HeaderCell textAlign="center" width={2}>Available</HeaderCell>
           <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
           <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Watches</HeaderCell>
         </Row>
       </Header>
       <Body>
-        {/*props.users.length ? props.orders.map(order =>
-           <AllWatchesModal key={order.id} order={order} users={props.users} />
-        ) : null*/}
+        {props.watches.length ? props.watches.map(watch =>
+           <AllWatchesModal key={watch.id} watch={watch} />
+        ) : null}
       </Body>
     </Table>
   </Segment>

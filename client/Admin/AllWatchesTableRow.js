@@ -1,8 +1,8 @@
 import React from 'react'
-import { Table.Cell as Cell, List } from 'semantic-ui-react'
+import { TableCell as Cell, List } from 'semantic-ui-react'
 
 const AllWatchesTableRow = (props) => {
-  const { watch, name } = props
+  const { watch } = props
   let key = 0;
   return (
     /*
@@ -11,21 +11,37 @@ const AllWatchesTableRow = (props) => {
     */
     [
     <Cell key={key++} textAlign="center">
-      {order.id}
+      {watch.id}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {order.status}
+      {watch.make}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {name}
+      {watch.model}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {order.createdAt}
+      {watch.complications}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {order.updatedAt}
+      {watch.imageUrl}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      {watch.year}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      {watch.price}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      {watch.available}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      {watch.createdAt}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      {watch.updatedAt}
     </Cell>,
     <Cell key={key++} >
+    {/*
       <List selection divided verticalAlign="middle">
         {order.watches.map((watch) => (
           <List.Item key={watch.id}>
@@ -37,9 +53,10 @@ const AllWatchesTableRow = (props) => {
           </List.Item>
         ))}
       </List>
+     */}
     </Cell>
     ]
   )
 }
 
-export default AllOrdersTableRow
+export default AllWatchesTableRow

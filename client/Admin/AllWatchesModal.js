@@ -1,19 +1,20 @@
 import React from 'react'
-import { Table, Modal, Modal.Header as Header, Modal.Content as Content } from 'semantic-ui-react'
-//import { AllWatchesTableRow } from './index'
+import { Table, Modal, ModalHeader as Header, ModalContent as Content } from 'semantic-ui-react'
+import { AllWatchesTableRow } from './index'
 
 const AllWatchesModal = (props) => {
   const { watch, users } = props
   //let orderUser = users.find(user => user.id === order.userId)
   //let name = `${orderUser.firstName} ${orderUser.lastName}`
   return (
-    <Modal trigger={<Table.Row><AllWatchesTableRow name={name} watch={watch} /></Table.Row>}>
+    <Modal trigger={<Table.Row><AllWatchesTableRow watch={watch} /></Table.Row>}>
       <Header>WATCH ID: {watch.id}</Header>
       <Content>
         <ul>
           <li>Make: {watch.Make}</li>
-          <li>Created At: {order.createdAt}</li>
-          <li>Updated At: {order.updatedAt}</li>
+          <li>Created At: {watch.createdAt}</li>
+          <li>Updated At: {watch.updatedAt}</li>
+          {/*
           <li>Watches: </li>
             {order.watches.map(watch => (
             <div key={watch.id}>
@@ -27,10 +28,11 @@ const AllWatchesModal = (props) => {
               </ul>
             </div>
             ))}
+           */}
         </ul>
       </Content>
     </Modal>
   )
 }
 
-export default AllOrdersModal
+export default AllWatchesModal
