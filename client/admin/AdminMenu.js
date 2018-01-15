@@ -11,7 +11,7 @@ export default class MenuExampleInvertedVertical extends Component {
     return (
       <Menu inverted vertical attached="bottom" className="admin-menu">
         <Menu.Item as={Link} to={'/admin/users'} name="users" active={activeItem === 'users'} onClick={this.handleItemClick} />
-        <Menu.Item as={Link} to={'/admin/products'} name="products" active={activeItem === 'products'} onClick={this.handleItemClick} />
+        <Menu.Item as={Link} to={'/admin/watches'} name="watches" active={activeItem === 'watches'} onClick={this.handleItemClick} />
         <Menu.Item as={Link} to={'/admin/orders'} name="orders" active={activeItem === 'orders'} onClick={this.handleItemClick} />
       </Menu>
     )
