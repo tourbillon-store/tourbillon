@@ -39,7 +39,7 @@ class Routes extends Component {
                 </Switch>
               }
               {/* Display landing page as fallback */}
-              <Route path="/cart" component={VisitorCart} />
+              <Route path="/cart" component={UserCart} />
               <Route component={VisitorHome} />
             </Switch>
           </Main>
