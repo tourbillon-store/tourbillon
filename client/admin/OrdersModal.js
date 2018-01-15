@@ -1,13 +1,13 @@
 import React from 'react'
 import { Table, Modal } from 'semantic-ui-react'
-import { AllOrdersTableRow } from './index'
+import { OrdersTableRow } from './index'
 
-const AllOrdersModal = (props) => {
+const OrdersModal = (props) => {
   const { order, users } = props
   let orderUser = users.find(user => user.id === order.userId)
   let name = `${orderUser.firstName} ${orderUser.lastName}`
   return (
-    <Modal trigger={<Table.Row><AllOrdersTableRow name={name} order={order} /></Table.Row>}>
+    <Modal trigger={<Table.Row><OrdersTableRow name={name} order={order} /></Table.Row>}>
       <Modal.Header>ORDER ID: {order.id}</Modal.Header>
       <Modal.Content>
         <ul>
@@ -33,4 +33,4 @@ const AllOrdersModal = (props) => {
   )
 }
 
-export default AllOrdersModal
+export default OrdersModal

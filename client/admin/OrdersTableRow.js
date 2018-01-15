@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, List } from 'semantic-ui-react'
 
-const AllOrdersTableRow = (props) => {
+const OrdersTableRow = (props) => {
   const { order, name } = props
   let key = 0;
   return (
@@ -42,4 +42,4 @@ const AllOrdersTableRow = (props) => {
   )
 }
 
-export default AllOrdersTableRow
+export default OrdersTableRow
