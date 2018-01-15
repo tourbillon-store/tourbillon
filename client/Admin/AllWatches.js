@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-//import { AllOrdersModal } from './index'
+//import { AllWatchesModal } from './index'
 
 const AllWatches = (props) => {
   return (
