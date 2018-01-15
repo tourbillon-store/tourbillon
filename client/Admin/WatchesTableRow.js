@@ -1,7 +1,7 @@
 import React from 'react'
 import { TableCell as Cell, List } from 'semantic-ui-react'
 
-const AllWatchesTableRow = (props) => {
+const WatchesTableRow = (props) => {
   const { watch } = props
   let key = 0;
   return (
@@ -44,4 +44,4 @@ const AllWatchesTableRow = (props) => {
   )
 }
 
-export default AllWatchesTableRow
+export default WatchesTableRow

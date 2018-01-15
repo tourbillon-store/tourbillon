@@ -2,9 +2,9 @@ import React from 'react'
 import { Table, TableHeader as Header, TableRow as Row, TableHeaderCell as HeaderCell, TableBody as Body, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { AllWatchesModal } from './index'
+import { WatchesModal } from './index'
 
-const AllWatches = (props) => {
+const Watches = (props) => {
   return (
   <Segment attached="bottom">
     <Table selectable celled padded attached="bottom">
@@ -24,7 +24,7 @@ const AllWatches = (props) => {
       </Header>
       <Body>
         {props.watches.length ? props.watches.map(watch =>
-           <AllWatchesModal key={watch.id} watch={watch} />
+           <WatchesModal key={watch.id} watch={watch} />
         ) : null}
       </Body>
     </Table>
@@ -33,4 +33,4 @@ const AllWatches = (props) => {
 
 const mapStateToProps = ({watches}) => ({watches})
 
-export default withRouter(connect(mapStateToProps)(AllWatches))
+export default withRouter(connect(mapStateToProps)(Watches))

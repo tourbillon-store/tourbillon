@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { AdminHeader, AdminMenu, AllOrders, AllWatches } from './index'
+import { AdminHeader, AdminMenu, Orders, Watches } from './index'
 
 const Main = () => {
   return (
@@ -9,8 +9,8 @@ const Main = () => {
       <div className="admin">
         <AdminMenu />
         <Switch>
-          <Route path="/admin/watches" component={AllWatches} />
-          <Route path="/admin/orders" component={AllOrders} />
+          <Route path="/admin/watches" component={Watches} />
+          <Route path="/admin/orders" component={Orders} />
         </Switch>
       </div>
     </div>
