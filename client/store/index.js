@@ -2,6 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { reducer as formReducer } from 'redux-form';
 import user from './user'
 import watches from './watches'
 import watch from './watch'
@@ -10,7 +11,7 @@ import orders from './orders'
 import order from './order'
 import users from './users'
 
-const reducer = combineReducers({user, watches, watch, cart, orders, users, order})
+const reducer = combineReducers({user, watches, watch, cart, orders, users, order, form: formReducer})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
