@@ -11,8 +11,13 @@ const AllWatches = (props) => {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell textAlign="center" width={2}>Watch Id</Table.HeaderCell>
-          <Table.HeaderCell textAlign="center" width={2}>Status</Table.HeaderCell>
-          <Table.HeaderCell textAlign="center" width={2}>User</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Make</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Model</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Complications</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Image URL</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Year</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Price</Table.HeaderCell>
+          <Table.HeaderCell textAlign="center" width={2}>Available</Table.HeaderCell>
           <Table.HeaderCell textAlign="center" width={2}>CreatedAt</Table.HeaderCell>
           <Table.HeaderCell textAlign="center" width={2}>UpdatedAt</Table.HeaderCell>
           <Table.HeaderCell textAlign="center" width={2}>Watches</Table.HeaderCell>
