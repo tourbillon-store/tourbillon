@@ -14,13 +14,13 @@ const OrderWatch = require('./orderWatch')
 Review.belongsTo(Watch)
 Watch.hasMany(Review)
 Review.belongsTo(User)
-User.hasMany(Review)
+User.hasMany(Review) //
 
 Order.belongsTo(User)
-User.hasMany(Order)
+User.hasMany(Order) //
 
-Watch.belongsToMany(Order, {through: OrderWatch})
-Order.belongsToMany(Watch, {through: OrderWatch})
+Watch.belongsToMany(Order, {through: OrderWatch}) // 
+Order.belongsToMany(Watch, {through: OrderWatch}) //
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

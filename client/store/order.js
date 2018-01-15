@@ -11,7 +11,7 @@ const RESET_ORDER = 'RESET_ORDER'
  * ACTION CREATORS
  */
 export const getOrder = order => ({type: GET_ORDER, order})
-export const resetOrder = order => ({type: RESET_ORDER, order})
+export const resetOrder = order => ({type: RESET_ORDER, order}) // what does reset order do and where do you use it?
 
 /**
  * THUNK CREATORS

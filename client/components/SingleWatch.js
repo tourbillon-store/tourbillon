@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchWatch, pushWatchToCart } from '../store'
+import { fetchWatch } from '../store'
 
 class Watch extends Component {
   componentDidMount() {
@@ -9,8 +9,7 @@ class Watch extends Component {
   }
 
   render() {
-    const {watch, addWatchToCart} = this.props;
-    console.log('singleWatch', watch)
+    const watch = this.props.watch;
     const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
       !watch.loading && <div>
@@ -22,9 +21,6 @@ class Watch extends Component {
           <li>Year: {watch.year}</li>
           <li>Price: {watch.price}</li>
         </ul>
-        {watch.available &&
-          <button onClick={() => addWatchToCart(watch.id)}>Add to Cart</button>
-        }
       </div>
     )
   }
@@ -36,13 +32,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+// not dry, combine with AllWatches.js
+
 const mapDispatchToProps = (dispatch) => {
   return {
     getWatch(watchId) {
       dispatch(fetchWatch(watchId))
-    },
-    addWatchToCart(watchId) {
-      dispatch(pushWatchToCart(watchId))
     }
   }
 }

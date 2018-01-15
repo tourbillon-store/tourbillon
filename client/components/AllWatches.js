@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetWatch() {
+    resetWatch() { // what does reset watch do?
       dispatch(resetWatch({ loading: true }))
     }
   }

@@ -13,6 +13,7 @@ const Review = db.define('review', {
   content: {
     type: Sequelize.TEXT,
     allowNull: false
+    // validate length of reviews
   }
 })
 
