@@ -1,5 +1,8 @@
 //Admin components
 export {default as AdminMain} from './main'
+export {default as Watches} from './Watches'
+export {default as WatchesModal} from './WatchesModal'
+export {default as WatchesTableRow} from './WatchesTableRow'
 export {default as Orders} from './Orders'
 export {default as OrdersModal} from './OrdersModal'
 export {default as OrdersTableRow} from './OrdersTableRow'
