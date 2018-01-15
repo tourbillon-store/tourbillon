@@ -5,6 +5,10 @@ const AllOrdersTableRow = (props) => {
   const { order, name } = props
   let key = 0;
   return (
+    /*
+    need to return a single jsx element work-around. Could use react fragments
+    but still in beta. Using an array requires a key on every element.
+    */
     [
     <Table.Cell key={key++} textAlign="center">
       {order.id}
