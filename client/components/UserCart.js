@@ -8,7 +8,7 @@ class UserCart extends Component {
   }
 
   render() {
-    const {cart, decrementQuantity, incrementQuantity, removeWatch} = this.props
+    const {cart, updateQuantity, removeWatch} = this.props
     return (
       <div>
         <h1>Shopping Cart</h1>
@@ -22,9 +22,9 @@ class UserCart extends Component {
                       <div><h3>{watch.model}</h3></div>
                       <div><h4>{watch.price}</h4></div>
                       <div className="cart-quantity-container">
-                        <button className="minus-button" onClick={() => decrementQuantity(watch.id, watch.quantity - 1)}>-</button>
+                        <button className="minus-button" onClick={() => updateQuantity(watch.id, watch.quantity - 1)}>-</button>
                         <h4>{watch.quantity}</h4>
-                        <button className="plus-button" onClick={() => incrementQuantity(watch.id, watch.quantity + 1)}>+</button>
+                        <button className="plus-button" onClick={() => updateQuantity(watch.id, watch.quantity + 1)}>+</button>
                       </div>
                       <button className="delete-button" onClick={() => removeWatch(watch.id)}>Delete</button>
                     </div>
@@ -46,9 +46,7 @@ const mapState = ({ cart }) => ({ cart })
 const mapDispatch = (dispatch) => {
   return {
     getCart() { dispatch(fetchCart()) },
-    // repetitive! One function will do
-    decrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
-    incrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
+    updateQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
     removeWatch(watchId) {dispatch(deleteWatchFromCart(watchId))}
   }
 }
