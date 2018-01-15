@@ -10,17 +10,11 @@ class Watch extends Component {
 
   render() {
     const {watch, addWatchToCart} = this.props;
-    console.log('singleWatch', watch)
-    const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
-      !watch.loading && <div>
-        {/* use classNames! */}
+      !watch.loading && <div className = "single-watch">
         <img src={watch.imageUrl} />
         <h2>{watch.make} {watch.model}</h2>
-        { !watch.available &&
-        (<h3 className='unavailable-watch'>{unavailableMessage}</h3>)
-        }
-        {/* conditional rendering! you sneaks :P */}
+        { !watch.available && <h3 className="unavailable-watch">Currently Unavailable</h3>}
         <ul>
           <li>Complications: {watch.complications}</li>
           <li>Year: {watch.year}</li>
