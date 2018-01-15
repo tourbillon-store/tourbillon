@@ -17,7 +17,9 @@ class Watch extends Component {
         {/* use classNames! */}
         <img src={watch.imageUrl} />
         <h2>{watch.make} {watch.model}</h2>
-        <h3 className='unavailable-watch'>{unavailableMessage}</h3>
+        { !watch.available &&
+        (<h3 className='unavailable-watch'>{unavailableMessage}</h3>)
+        }
         {/* conditional rendering! you sneaks :P */}
         <ul>
           <li>Complications: {watch.complications}</li>

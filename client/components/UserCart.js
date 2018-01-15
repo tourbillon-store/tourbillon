@@ -46,6 +46,7 @@ const mapState = ({ cart }) => ({ cart })
 const mapDispatch = (dispatch) => {
   return {
     getCart() { dispatch(fetchCart()) },
+    // repetitive! One function will do
     decrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
     incrementQuantity(watchId, newQuantity) {dispatch(updateCart(watchId, newQuantity))},
     removeWatch(watchId) {dispatch(deleteWatchFromCart(watchId))}
