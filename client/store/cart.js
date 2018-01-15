@@ -6,7 +6,7 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const EMPTY_CART = 'EMPTY_CART'
 const ADD_WATCH_TO_CART = 'ADD_WATCH_TO_CART'
-const UPDATE_WATCH_IN_CART = 'UPDATE_CART'
+const UPDATE_WATCH_IN_CART = 'UPDATE_WATCH_IN_CART'
 const REMOVE_WATCH_FROM_CART = 'REMOVE_WATCH_FROM_CART'
 
 /**
@@ -21,9 +21,9 @@ const removeWatchFromCart = watchId => ({type: REMOVE_WATCH_FROM_CART, watchId})
 /**
  * THUNK CREATORS
  */
-export const fetchCart = () =>
+export const fetchCart = (userId) =>
   dispatch =>
-    axios.get(`/api/cart`)
+    axios.get(`/api/users/${userId || 'visitor'}/cart`)
       .then(res => res.data)
       .then(cart => {
         console.log('fetchCart', cart)
@@ -43,9 +43,9 @@ export const fetchCart = () =>
       })
       .catch(console.error)
 
-export const pushWatchToCart = watchId =>
+export const pushWatchToCart = (watchId, userId) =>
   dispatch =>
-    axios.post('/api/cart', { watchId })
+    axios.post(`/api/users/${userId || 'visitor'}/cart`, { watchId })
       .then(res => res.data)
       .then(watch => {
         console.log('pushedWatch', watch)
@@ -53,18 +53,18 @@ export const pushWatchToCart = watchId =>
       })
       .catch(console.error)
 
-export const updateCart = (watchId, quantity) =>
+export const updateCart = (watchId, quantity, userId) =>
   dispatch =>
-    axios.put('/api/cart', { watchId, quantity })
+    axios.put(`/api/users/${userId || 'visitor'}/cart/${watchId}`, { quantity })
       .then(res => res.data)
       .then(() => {
         dispatch(updateWatchInCart(watchId, quantity))
       })
       .catch(console.error)
 
-export const deleteWatchFromCart = watchId =>
+export const deleteWatchFromCart = (watchId, userId) =>
   dispatch =>
-    axios.delete(`api/cart/${watchId}`)
+    axios.delete(`/api/users/${userId || 'visitor'}/cart/${watchId}`)
       .then(res => res.data)
       .then(() => dispatch(removeWatchFromCart(watchId)))
       .catch(console.error)

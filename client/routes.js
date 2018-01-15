@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, VisitorHome, UserCart, VisitorCart, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { Main, Login, Signup, UserHome, VisitorHome, UserCart, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
 import { AdminMain } from './admin'
 import { me, fetchWatches, fetchOrders, fetchUsers } from './store'
 
