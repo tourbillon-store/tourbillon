@@ -29,6 +29,7 @@ passport.deserializeUser((id, done) =>
     .then(user => done(null, user))
     .catch(done))
 
+
 const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
@@ -49,6 +50,14 @@ const createApp = () => {
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+  app.use('*', (req, res, next) => {
+    if (req.session.cart) {
+      next()
+    } else {
+      req.session.cart = []
+      next()
+    }
+  })
 
   // auth and api routes
   app.use('/auth', require('./auth'))

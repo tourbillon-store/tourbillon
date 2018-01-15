@@ -1,9 +1,8 @@
 const router = require('express').Router()
 const { User, Watch, Order, OrderWatch } = require('../db/models')
-const { hasCart } = require('../utils/gateKeeperMiddleware')
 module.exports = router
 
-router.get('/', hasCart, (req, res, next) => {
+router.get('/', (req, res, next) => {
   if (req.user) {
     User.findById(req.user.id)
     .then(user => user.getOrders({
@@ -19,12 +18,12 @@ router.get('/', hasCart, (req, res, next) => {
   }
 })
 
-router.post('/', hasCart, (req, res, next) => {
+router.post('/', (req, res, next) => {
   if (req.user) {
     console.log('post to logged in user cart')
   } else {
-    console.log('cart', req.session.cart)
-    const watch = req.session.cart.find(cartWatch => cartWatch.id === req.body.watchId)
+    console.log('cart makes it here', req.session.cart)
+    let watch = req.session.cart.find(cartWatch => cartWatch.id === req.body.watchId)
     if (watch) {
       console.log('watch found')
       watch.quantity++;
@@ -51,7 +50,7 @@ router.post('/', hasCart, (req, res, next) => {
   }
 })
 
-router.put('/', hasCart, (req, res, next) => {
+router.put('/', (req, res, next) => {
   if (req.user) {
     getCart(req.user.id)
       .then(order => OrderWatch.update(req.body, {
@@ -68,7 +67,7 @@ router.put('/', hasCart, (req, res, next) => {
   }
 })
 
-router.delete('/:watchId', hasCart, (req, res, next) => {
+router.delete('/:watchId', (req, res, next) => {
   if (req.user) {
     getCart(req.user.id)
       .then(order => OrderWatch.destroy({
