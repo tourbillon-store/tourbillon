@@ -10,7 +10,6 @@ class Watch extends Component {
 
   render() {
     const {watch, addWatchToCart} = this.props;
-    console.log('singleWatch', watch)
     const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
       !watch.loading && <div>
