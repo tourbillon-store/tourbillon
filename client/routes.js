@@ -27,9 +27,10 @@ class Routes extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
-              <Route path="/watches/:watchId" component={SingleWatch} />
+              <Route exact path="/watches/:watchId" component={SingleWatch} />
               <Route exact path="/reviews" component={AllReviews} />
-              <Route path="/reviews/:reviewId" component={SingleReview} />
+              <Route exact path="/watches/:watchId/reviews" component={AllReviews} />
+              <Route path="/watches/:watchId/reviews/:reviewId" component={SingleReview} />
               {
                 isLoggedIn &&
                 <Switch>

@@ -22,7 +22,7 @@ class AllWatches extends Component {
                   <li>Complications: {watch.complications}</li>
                   <li>Image: {watch.imageUrl}</li>
                   <li>Price: {watch.price}</li>
-                  <Link to={`/reviews`}><li>Reviews: ({watch.reviews.length})</li></Link>
+                  <Link to={`/watches/${watch.id}/reviews`}><li>Reviews: ({watch.reviews.length})</li></Link>
                 </ul>
               </div>
             )

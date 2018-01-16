@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { resetReview } from '../store'
-
+import { Review } from './SingleReview'
 class AllReviews extends Component {
   componentDidMount() {
     this.props.resetReview();
   }
+
   render() {
-    const { reviews } = this.props;
+    let { reviews, watches } = this.props;
+    const watchId = +this.props.match.params.watchId
+    let reviewWatch = {};
+    if (watchId) {
+      reviews = reviews.filter(review => review.watch.id === watchId)
+      reviewWatch = watches.find(watch => watch.id === watchId)
+    }
     return (
-      <div>
+      reviews.length && watches.length && <div>
+        <h2>{reviewWatch.make} {reviewWatch.model}</h2>
         {reviews.map(review => {
           return (
-            <div key={review.id}>
-              <Link to={`/reviews/${review.id}`}><h2>{review.title}</h2></Link>
-              <ul>
-                <li>Rating: {review.rating}</li>
-                <li>Content: {review.content}</li>
-              </ul>
-            </div>
+            <Review key={review.id} review={review} />
           )
         })}
       </div>
@@ -27,7 +29,7 @@ class AllReviews extends Component {
   }
 }
 
-const mapStateToProps = ({reviews}) => ({reviews})
+const mapStateToProps = ({reviews, watches}) => ({reviews, watches})
 
 const mapDispatchToProps = (dispatch) => {
   return {

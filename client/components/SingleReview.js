@@ -3,7 +3,20 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { fetchReview } from '../store'
 
-class Review extends Component {
+export const Review = (props) => {
+  const { review } = props
+  const watchId = review.watch.id
+  return (
+    <div>
+      <Link to={`/watches/${watchId}/reviews/${review.id}`}>{review.title}</Link>
+        <ul>
+          <li>Rating: {review.rating}</li>
+          <li>Content: {review.content}</li>
+        </ul>
+    </div>
+  )
+}
+class SingleReview extends Component {
   componentDidMount() {
     this.props.getReview(+this.props.match.params.reviewId);
   }
@@ -12,12 +25,9 @@ class Review extends Component {
     const review = this.props.review;
     return (
       !review.loading &&
-      <div>
-        <Link to={`/reviews/${review.id}`}><h2>{review.title}</h2></Link>
-          <ul>
-            <li>Rating: {review.rating}</li>
-            <li>Content: {review.content}</li>
-          </ul>
+      <div className="SingleReview">
+        <h2>{review.watch.make} {review.watch.model}</h2>
+        <Review review={review} />
       </div>
     )
   }
@@ -33,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Review));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleReview));
