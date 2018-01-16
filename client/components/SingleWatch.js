@@ -10,8 +10,6 @@ class Watch extends Component {
 
   render() {
     const {watch, addWatchToCart, user} = this.props;
-    console.log('singleWatch', watch)
-    console.log('user', this.props.user)
     const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     return (
       !watch.loading && <div>
@@ -24,7 +22,13 @@ class Watch extends Component {
           <li>Price: {watch.price}</li>
         </ul>
         {watch.available &&
-          <button onClick={() => addWatchToCart(watch.id, user.id )}>Add to Cart</button>
+          <button onClick={() => addWatchToCart({
+            id: watch.id,
+            make: watch.make,
+            model: watch.model,
+            price: watch.price,
+            createdAt: watch.createdAt
+          }, user.id )}>Add to Cart</button>
         }
       </div>
     )
@@ -35,11 +39,11 @@ const mapStateToProps = ({watch, user}) => ({ watch,  user })
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getWatch(watchId, userId ) {
+    getWatch(watchId) {
       dispatch(fetchWatch(watchId))
     },
-    addWatchToCart(watchId, userId) {
-      dispatch(pushWatchToCart(watchId, userId))
+    addWatchToCart(watch, userId) {
+      dispatch(pushWatchToCart(watch, userId))
     }
   }
 }
