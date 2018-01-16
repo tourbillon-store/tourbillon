@@ -27,36 +27,40 @@ class AllWatches extends Component {
   }
 
   render() {
-    const { watches } = this.props
+    const { watches } = this.props;
     return (
       <div className="all-watches">
         <div>
          {this.renderWatchSearch()}
        </div>
         <div>
+        <div className="all-watches-float">
+        <Card.Group>
           {watches.filter(this.filterWatch).map(watch => {
             if (watch.available){
               return (
                 <div key={watch.id}>
                 <Link to={`/watches/${watch.id}`}>
-                <Card >
-                <h2 className="all-watch-card-title">{watch.make} {watch.model}</h2>
-                  <Image src={watch.imageUrl} />
-                  <content className="all-watch-card">
-                    <header>Make: {watch.make}</header>
-                    <header>Model: {watch.model}</header>
-                    <p> Year: {watch.year} </p>
-                    <p>Complications: {watch.complications}</p>
-                    <Cdesc>Price: {watch.price}</Cdesc>
-                  </content>
-                 </Card>
+                    <Card className="all-watch-single-card" raised={true} >
+                    <h2 className="all-watch-card-title">{watch.make} {watch.model}</h2>
+                      <Image src={watch.imageUrl} />
+                      <content className="all-watch-card">
+                        <header>Make: {watch.make}</header>
+                        <header>Model: {watch.model}</header>
+                        <p> Year: {watch.year} </p>
+                        <p>Complications: {watch.complications}</p>
+                        <Cdesc>Price: {watch.price}</Cdesc>
+                      </content>
+                    </Card>
                  </Link>
                 </div>
               )
             }
           })}
+          </Card.Group>
         </div>
       </div>
+    </div>
     )
   }
 
