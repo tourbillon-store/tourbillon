@@ -94,7 +94,7 @@ export default function (state = [], action) {
       return [...state.filter(cartWatch => cartWatch.id !== action.watchId), watch]
       .sort((a, b) => a.createdAt > b.createdAt)
     case REMOVE_WATCH_FROM_CART:
-      return [...state.filter(cartWatch => cartWatch.id !== action.watchId)]
+      return state.filter(cartWatch => cartWatch.id !== action.watchId)
     case EMPTY_CART:
       return []
     default:

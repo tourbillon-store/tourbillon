@@ -26,7 +26,6 @@ router.get('/:userId/cart', (req, res, next) => {
     .then(orders => res.json(orders))
     .catch(next)
   } else if (userId === 'visitor'){
-    console.log('get visitor cart', req.session.cart)
     res.json(req.session.cart)
   } else {
     res.status(401).send('You are not authorized')
@@ -72,9 +71,7 @@ router.post('/:userId/cart/:watchId', (req, res, next) => {
     let cartWatch = req.session.cart.find(item => item.id === watch.id)
     if (cartWatch) {
       cartWatch.quantity++
-      console.log('bef add', req.session.cart)
       req.session.cart = [...req.session.cart.filter(item => item.id !== watch.id), cartWatch]
-      console.log('after add', req.session.cart)
       res.json(watch)
     } else {
       Watch.findById(watch.id)
