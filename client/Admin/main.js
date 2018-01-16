@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { AdminHeader, AdminMenu, Orders, Watches } from './index'
+import { AdminHeader, AdminMenu, Orders, Watches, Users } from './index'
 
 const Main = () => {
   return (

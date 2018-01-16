@@ -6,17 +6,17 @@ const UsersModal = (props) => {
   const { user } = props
 
   return (
-    <Modal trigger={<Row><WatchesTableRow user={user} /></Row>}>
+    <Modal trigger={<Row><UsersTableRow user={user} /></Row>}>
       <Header>USER ID: {user.id}</Header>
       <Content>
         <ul>
           <li>Name: {user.firstName} {user.lastName}</li>
           <li>Email: {user.email}</li>
-          <li>Google Id: {user.googleId}</li>
-          <li>Facebook Id: {user.facebookId}</li>
+          <li>Google Id: {user.googleId || "Did not use"}</li>
+          <li>Facebook Id: {user.facebookId || "Did not use"}</li>
           <li>Admin Status: {user.isAdmin ? "Admin" : "Regular User"}</li>
-          <li>Created At: {watch.createdAt}</li>
-          <li>Updated At: {watch.updatedAt}</li>
+          <li>Created At: {user.createdAt}</li>
+          <li>Updated At: {user.updatedAt}</li>
         </ul>
       </Content>
     </Modal>

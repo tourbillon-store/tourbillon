@@ -20,10 +20,10 @@ const UsersTableRow = (props) => {
       {user.email}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {user.googleId}
+      {user.googleId || "Did not use"}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {user.facebookId}
+      {user.facebookId || "Did not use"}
     </Cell>,
     <Cell key={key++} textAlign="center">
       {user.isAdmin ? "Admin" : "Regular User"}

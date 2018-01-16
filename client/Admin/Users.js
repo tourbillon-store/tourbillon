@@ -21,9 +21,9 @@ const Users = (props) => {
         </Row>
       </Header>
       <Body>
-        {/*props.users.length ? props.users.map(user =>
+        {props.users.length ? props.users.map(user =>
            <UsersModal key={user.id} user={user} />
-        ) : null*/}
+        ) : null}
       </Body>
     </Table>
   </Segment>
