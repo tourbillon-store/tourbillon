@@ -42,9 +42,10 @@ class AllWatches extends Component {
                 <div key={watch.id}>
                 <Link to={`/watches/${watch.id}`}>
                     <Card className="all-watch-single-card" raised={true} >
-                    <h2 className="all-watch-card-title">{watch.make} {watch.model}</h2>
+                    <h2 className="all-watch-card-title">{watch.make} </h2>
                       <Image src={watch.imageUrl} />
                       <content className="all-watch-card">
+                        <header>{watch.model}</header>
                         <header>Make: {watch.make}</header>
                         <header>Model: {watch.model}</header>
                         <p> Year: {watch.year} </p>
@@ -69,28 +70,28 @@ renderWatchSearch () {
  return (
    <div className="all-watch-form">
       <Input
-      type="text"
-      focus placeholder="MAKE"
-      className=""
-      onChange={evt => this.setState({ make: evt.target.value })}
+        type="text"
+        focus placeholder="MAKE"
+        className=""
+        onChange={evt => this.setState({ make: evt.target.value })}
     />
     <Input
-    type="text"
-    focus placeholder="MODEL"
-    className=""
-    onChange={evt => this.setState({ model: evt.target.value })}
+        type="text"
+        focus placeholder="MODEL"
+        className=""
+        onChange={evt => this.setState({ model: evt.target.value })}
       />
     <Input
-      type="text"
-      focus placeholder="YEAR"
-      className=""
-      onChange={evt => this.setState({ year: evt.target.value })}
+        type="text"
+        focus placeholder="YEAR"
+        className=""
+        onChange={evt => this.setState({ year: evt.target.value })}
     />
     <Input
-      type="text"
-      focus placeholder="COMPLICATIONS"
-      className=""
-      onChange={evt => this.setState({ complications: evt.target.value })}
+        type="text"
+        focus placeholder="COMPLICATIONS"
+        className=""
+        onChange={evt => this.setState({ complications: evt.target.value })}
       />
       <Radio label="Available" defaultChecked />
     </div>
