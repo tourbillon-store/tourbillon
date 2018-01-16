@@ -77,3 +77,7 @@ form div {
 .view-as-user:hover {
   color: white;
 }
+
+.order-status-dropdown {
+  margin-bottom: 1em;
+}

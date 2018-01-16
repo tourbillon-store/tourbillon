@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Segment } from 'semantic-ui-react'
+import { Table, Segment, Dropdown, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { OrdersModal } from './index'
@@ -8,8 +8,6 @@ class Orders extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
-      results: props.orders,
       status: ''
     };
 
@@ -20,8 +18,8 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        {this.renderOrderSearch()}
         <Segment attached="bottom">
+          {this.renderOrderSearch()}
           <Table selectable celled padded attached="bottom">
             <Table.Header>
               <Table.Row>
@@ -52,15 +50,22 @@ class Orders extends Component {
   }
 
   renderOrderSearch = () => {
+    const statuses = ['created', 'processing', 'cancelled', 'completed']
+    let statusOptions = [{key: 'select', value: '', text: 'Select a Status'}]
+    statuses.map((status, i) => {
+      statusOptions.push({key: i, value: status, text: status});
+    })
     return (
-      <div className="list-group-item order-item">
-        <input
-          type="text"
-          placeholder="Order Status"
-          className="form-like large-font"
-          onChange={evt => this.setState({ status: evt.target.value })}
+      <div className="order-status-dropdown">
+        <Dropdown
+          button
+          floating
+          labeled
+          options={statusOptions}
+          text="Select Status"
+          search
+          onChange={(evt, { value }) => this.setState({ status: value })}
         />
-        <span className="glyphicon glyphicon-search" />
       </div>
     );
   }
