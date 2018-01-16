@@ -3,6 +3,13 @@ import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-default class DeleteButton extends Component {
+export default const DeleteButton  = props => {
+
+  return (
+    <div>
+      <Button icon='delete' negative>
+      </Button>
+    </div>
+  )
 
 }
