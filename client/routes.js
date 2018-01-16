@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, VisitorHome, Cart, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { Main, Login, Signup, UserHome, VisitorHome, Cart, AllWatches, SingleWatch, AllOrders, SingleOrder, AllReviews } from './components'
 import { AdminMain } from './admin'
 import { me, fetchWatches, fetchReviews } from './store'
 
@@ -28,6 +28,7 @@ class Routes extends Component {
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
               <Route path="/watches/:watchId" component={SingleWatch} />
+              <Route path="/reviews" component={AllReviews} />
               {
                 isLoggedIn &&
                 <Switch>

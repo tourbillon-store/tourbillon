@@ -5,7 +5,7 @@ import { resetReview } from '../store'
 
 class AllReviews extends Component {
   componentDidMount() {
-    this.props.getOrder(+this.props.match.params.orderId);
+    this.props.resetReview();
   }
   render() {
     const { reviews } = this.props;
