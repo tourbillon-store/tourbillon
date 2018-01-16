@@ -12,9 +12,6 @@ class Users extends Component {
 
   render() {
     const users = this.props.users
-    console.log("something")
-    console.log("something else")
-    console.log("a third something else")
     return (
       <Segment attached="bottom">
         <Table selectable celled padded attached="bottom">

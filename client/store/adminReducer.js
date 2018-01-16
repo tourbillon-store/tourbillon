@@ -10,7 +10,7 @@ const DELETE_USER = 'DELETE_USER';
  * ACTION CREATORS
  */
 const getUsers = users => ({type: GET_USERS, users})
-const deleteUser = user => ({type: DELETE_USER, userId})
+const deleteUser = userId => ({type: DELETE_USER, userId})
 
 /**
  * THUNK CREATORS
@@ -24,11 +24,13 @@ export const adminFetchUsers = () =>
     .catch(err => console.log(err))
 
 export const adminDeleteUser = id =>
-  dispatch =>
-    axios.delete(`api/admin/users/${id}`)
+  dispatch => {
+    return axios.delete(`/api/admin/users/${id}`)
     .then(res => res.data)
     .then(() => dispatch(deleteUser(+id)))
+    .then(() => dispatch(adminFetchUsers()))
     .catch(err => console.log(err))
+  }
 
 /**
  * REDUCER
@@ -38,7 +40,7 @@ export default function (state = [], action) {
     case GET_USERS:
       return action.users
     case DELETE_USER:
-      return action.user
+      return action.userId
     default:
       return state
   }

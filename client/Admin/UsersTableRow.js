@@ -36,7 +36,7 @@ const UsersTableRow = (props) => {
       {user.updatedAt}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      <DeleteButton type={"user"} userId={user.id} />
+      <DeleteButton className="delete-button" type={"user"} userId={user.id} />
     </Cell>
     ]
   )
