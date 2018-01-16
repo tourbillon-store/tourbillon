@@ -26,8 +26,7 @@ form div {
 }
 
 /* Cart */
-.cart-container {
-  margin: 1em 2.5em 2.5em 2.5em;
+/* .cart-container {
 }
 
 .cart-product-row {
@@ -44,7 +43,6 @@ form div {
 }
 
 .cart-quantity-container button,h4 {
-  /* flex-basis: 0.5em; */
   flex-grow: 1;
   text-align: center
 }
@@ -59,12 +57,12 @@ form div {
 
 .delete-button {
 
-}
+} */
 
 .quantity-error {
   color: rgb(182, 48, 48);
   font-weight: bold;
-}
+} */
 
 /* admin */
 .admin {
@@ -81,4 +79,8 @@ form div {
 
 .view-as-user:hover {
   color: white;
+}
+
+.checkout-container {
+  margin: 5em;
 }
