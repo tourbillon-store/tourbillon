@@ -29,11 +29,7 @@ class AllReviews extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    reviews: state.reviews
-  }
-}
+const mapStateToProps = ({reviews}) => ({reviews})
 
 const mapDispatchToProps = (dispatch) => {
   return {

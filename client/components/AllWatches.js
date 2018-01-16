@@ -33,11 +33,7 @@ class AllWatches extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    watches: state.watches
-  }
-}
+const mapStateToProps = ({watches}) => ({watches})
 
 const mapDispatchToProps = (dispatch) => {
   return {
