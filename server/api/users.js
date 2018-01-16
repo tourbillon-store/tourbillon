@@ -128,7 +128,7 @@ router.delete('/:userId/cart/:watchId', (req, res, next) => {
       .then(() => res.sendStatus(202))
       .catch(next)
   } else if (userId === 'visitor') {
-    req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== +watchId)]
+    req.session.cart = req.session.cart.filter(cartWatch => cartWatch.id !== +watchId)
     res.sendStatus(202)
   } else {
     res.status(401).send('You are not authorized')
