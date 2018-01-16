@@ -68,13 +68,13 @@ router.post('/:userId/cart/:watchId', (req, res, next) => {
       })
       .catch(next)
   } else if (userId === 'visitor') {
-    let watch = req.session.cart.find(cartWatch => cartWatch.id === req.body.watchId)
-    if (watch) {
-      watch.quantity = req.body.quantity;
-      req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId), watch]
+    let cartWatch = req.session.cart.find(item => item.id === watch.id)
+    if (cartWatch) {
+      cartWatch.quantity++
+      req.session.cart = [...req.session.cart.filter(item => item.id !== watch.id), cartWatch]
       res.json(watch)
     } else {
-      Watch.findById(req.body.watchId)
+      Watch.findById(watch.id)
         .then(watchData => {
           req.session.cart.push({
           id: watchData.id,
