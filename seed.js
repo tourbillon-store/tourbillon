@@ -79,10 +79,20 @@ watches.map(watch => {
   //every watch has at max 5 reviews
   let reviewUsers = chance.pickset(users, chance.integer({min: 0, max: 5}))
   reviewUsers.map(user => {
+    const numWords = chance.natural({
+      min: 1,
+      max: 8
+    })
+    let title = chance.sentence({words: numWords})
+    .replace(/\b\w/g, function (m) {
+      return m.toUpperCase()
+    })
+    .slice(0, -1)
     let userId = user.id
     let rating = chance.integer({min: 1, max: 5})
     let content = chance.paragraph()
     reviews.push({
+      title,
       watchId,
       userId,
       rating,

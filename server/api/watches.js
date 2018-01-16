@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Watch, Review} = require('../db/models')
+const { Watch, Review } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
