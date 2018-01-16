@@ -82,7 +82,7 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
       .then(() => res.sendStatus(202))
       .catch(next)
   } else if (userId === 'visitor') {
-    let watch = req.session.cart.find(cartWatch => +cartWatch.id === +req.params.watchId)
+    let watch = req.session.cart.find(cartWatch => cartWatch.id === +req.params.watchId)
     watch.quantity = req.body.quantity
     req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId), watch]
     res.sendStatus(202)
