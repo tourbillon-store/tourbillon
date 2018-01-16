@@ -4,7 +4,6 @@ import { UsersTableRow } from './index'
 
 const UsersModal = (props) => {
   const { user } = props
-
   return (
     <Modal trigger={<Row><UsersTableRow user={user} /></Row>}>
       <Header>USER ID: {user.id}</Header>
