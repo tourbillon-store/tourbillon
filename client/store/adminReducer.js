@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { fetchWatches } from './index'
 
 /**
  * ACTION TYPES
@@ -38,8 +39,8 @@ export const adminDeleteWatch = id =>
   dispatch => {
     return axios.delete(`/api/admin/watches/${id}`)
     .then(res => res.data)
-    .then(() => dispatch(deleteUser(+id)))
-    .then(() => dispatch(adminFetchUsers()))
+    .then(() => dispatch(deleteWatch(+id)))
+    .then(() => dispatch(fetchWatches()))
     .catch(err => console.log(err))
   }
 
