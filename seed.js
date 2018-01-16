@@ -6,7 +6,7 @@ const watches = []
 const makes = ['Cartier', 'Laurent Ferrier', 'A. Lange & Söhne', 'Richard Mille', 'Baume & Mercier', 'Urwerk', 'Jaeger-LeCoultre', 'Parmigiani Fleurier', 'Panerai', 'Hermeès']
 const models = ['Drive de Cartier Extra-Flat', 'Galet Annual Calendar Montre École', 'Saxonia Triple Split', 'RM 53-01 Tourbillon Pablo Mac Donough', 'Clifton Club Legend Tributes', 'UR-210 Black Platinum', 'Polaris Memovox Limited Edition', 'Kalpa Hebdomadaire', 'Lo Scienziato  Luminor 1950 Tourbillon GMT Titanio', 'Carré H']
 const complicationOptions = ['Simple chronograph', 'Simple calendar',	'Alarm', 'Counter chronograph',	'Annual calendar', 'Quarter repeater', 'Split-second flyback chronograph',	'Perpetual calendar',	'Half-quarter repeater', 'Independent second-hand chronograph',	'Equation of time',	'Five-minute repeater', 'Jumping second-hand chronograph', 'Moon phases', 'Minute repeater']
-const minYear = 2000, maxYear = 2018
+const minYear = 1755, maxYear = 2018
 const minPrice = 500000, maxPrice = 1500000
 for (let i = 0; i < makes.length; i++) {
   let make = makes[i]
@@ -29,13 +29,13 @@ for (let i = 0; i < makes.length; i++) {
 
 const users = []
 const admins = ['Sam Chai', 'Jesse Moskowitz', 'Allen Johnson', 'Josh Luria']
-const names = ['David Sehl', 'Sandy Mak', 'Kevin Ho', 'James DeLay', 'Shayan Sheikh', 'Eetai Ben-Sasson', 'Sarah Zhao', 'Owen Hagerty', 'Robin Luongo', 'Bryan Clark', 'Josh Baruch', 'Shannen Ye', 'Vesna Tan', 'Han Hung', 'Jonathan Schwartz', 'Jeff Hatcher', 'Yahua Chen', 'Ari Kramer', 'Guanhong Chen', 'Kenneth Koch', 'Sam Alsmadi', 'Abraham Johnson', 'Diana Lease', 'Elis Dervishi', 'Mark Lopez', 'Samuel Kwon', 'Abel McElroy', 'Hassan Elsherbini', 'Randy Tsao', 'Tim LaTorre', 'Jon Rea', 'Vanessa Jimenez', 'James Abels', 'William Lee', 'Arnold Salas', 'Benjamin Friedman', 'Daniel Hollcraft', 'Jeffrey Cheung', 'Daniela Tizon', 'Leigh Blechman', 'Elizabeth Farrier', 'Maxwell Legocki', 'Vinit Parkar', 'Hunsoo Kim', 'Jason Ioannides'];
+const names = ['David Sehl', 'Sandy Mak', 'Kevin Ho', 'James DeLay', 'Shayan Sheikh', 'Eetai Ben-Sasson', 'Sarah Zhao', 'Owen Hagerty', 'Robin Luongo', 'Bryan Clark', 'Josh Baruch', 'Shannen Ye', 'Vesna Tan', 'Han Hung', 'Jonathan Schwartz', 'Jeff Hatcher', 'Yahua Chen', 'Ari Kramer', 'Guanhong Chen', 'Kenneth Koch', 'Sam Alsmadi', 'Abraham Johnson', 'Diana Lease', 'Elis Dervishi', 'Mark Lopez', 'Samuel Kwon', 'Abel McElroy', 'Hassan Elsherbini', 'Randy Tsao', 'Tim LaTorre', 'Jon Rea', 'Vanessa Jimenez', 'James Abels', 'William Lee', 'Arnold Salas', 'Benjamin Friedman', 'Daniel Hollcraft', 'Jeffrey Cheung', 'Daniela Tizon', 'Leigh Blechman', 'Elizabeth Farrier', 'Maxwell Legocki', 'Vinit Parkar', 'Hunsoo Kim', 'Jason Ioannides']
 //add user helper function
 const addUsers = (i, namesList, isAdmin) => {
-  let [firstName, lastName] = namesList[i].split(' ');
-  let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`;
+  let [firstName, lastName] = namesList[i].split(' ')
+  let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@gmail.com`
   let password = '123'
-  let id = users.length + 1;
+  let id = users.length + 1
   users.push({
     id,
     firstName,
@@ -122,23 +122,23 @@ const seed = () =>
   .then(() => Promise.all(orderWatches.map(orderWatch => OrderWatch.create(orderWatch))))
 
 const main = () => {
-  console.log('Syncing db...');
+  console.log('Syncing db...')
   db.sync({
       force: true
     })
     .then(() => {
-      console.log('Seeding database...');
-      return seed();
+      console.log('Seeding database...')
+      return seed()
     })
     .catch(err => {
-      console.log('Error while seeding');
-      console.log(err.stack);
+      console.log('Error while seeding')
+      console.log(err.stack)
     })
     .then(() => {
-      console.log('Seeding done!');
+      console.log('Seeding done!')
       db.close();
-      return null;
-    });
-};
+      return null
+    })
+}
 
-main();
+main()
