@@ -1,5 +1,6 @@
 import React from 'react'
 import { TableCell as Cell, List } from 'semantic-ui-react'
+import { DeleteButton } from './index'
 
 const WatchesTableRow = (props) => {
   const { watch } = props
@@ -39,6 +40,9 @@ const WatchesTableRow = (props) => {
     </Cell>,
     <Cell key={key++} textAlign="center">
       {watch.updatedAt}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      <DeleteButton className="delete-button" type={"watch"} watchId={watch.id} />
     </Cell>
     ]
   )
