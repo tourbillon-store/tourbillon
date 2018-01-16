@@ -67,27 +67,27 @@ class AllWatches extends Component {
 
 
 renderWatchSearch () {
- return (
-   <div className="all-watch-form">
+  return (
+    <div className="all-watch-form">
       <Input
         type="text"
         focus placeholder="MAKE"
         className=""
         onChange={evt => this.setState({ make: evt.target.value })}
-    />
-    <Input
+      />
+      <Input
         type="text"
         focus placeholder="MODEL"
         className=""
         onChange={evt => this.setState({ model: evt.target.value })}
       />
-    <Input
+      <Input
         type="text"
         focus placeholder="YEAR"
         className=""
         onChange={evt => this.setState({ year: evt.target.value })}
-    />
-    <Input
+      />
+      <Input
         type="text"
         focus placeholder="COMPLICATIONS"
         className=""
@@ -95,8 +95,8 @@ renderWatchSearch () {
       />
       <Radio label="Available" defaultChecked />
     </div>
-    )
-  }
+  )
+}
 
   filterWatch (watch) {
     const makeMatch = new RegExp(this.state.make, 'i');
@@ -105,9 +105,9 @@ renderWatchSearch () {
     const complicationsMatch = new RegExp(this.state.complications, 'i');
 
     return yearMatch.test(watch.year)
-        && makeMatch.test(watch.make)
-        && modelMatch.test(watch.model)
-        && complicationsMatch.test(watch.complications)
+      && makeMatch.test(watch.make)
+      && modelMatch.test(watch.model)
+      && complicationsMatch.test(watch.complications)
   }
 }
 
