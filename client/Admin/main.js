@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { AdminHeader, AdminMenu, Orders, Watches } from './index'
+import { AdminHeader, AdminMenu, Orders, Watches, Users } from './index'
 import { fetchOrders, fetchUsers } from '../store'
 import { connect } from 'react-redux'
 
@@ -17,6 +17,7 @@ class Main extends Component {
         <div className="admin">
           <AdminMenu />
           <Switch>
+            <Route path="/admin/users" component={Users} />
             <Route path="/admin/watches" component={Watches} />
             <Route path="/admin/orders" component={Orders} />
           </Switch>
