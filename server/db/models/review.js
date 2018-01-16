@@ -1,7 +1,14 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+/* eslint-disable new-cap */
 const Review = db.define('review', {
+  title: {
+    type: Sequelize.STRING(100),
+    validate: {
+      notEmpty: false,
+    }
+  },
   rating: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -17,11 +24,3 @@ const Review = db.define('review', {
 })
 
 module.exports = Review
-
-/**
- * instanceMethods
- */
-
-/**
- * classMethods
- */
