@@ -43,13 +43,12 @@ export const fetchCart = (userId) =>
       })
       .catch(console.error)
 
-export const pushWatchToCart = (watchId, userId) =>
+export const pushWatchToCart = (watch, userId) =>
   dispatch =>
-    axios.post(`/api/users/${userId || 'visitor'}/cart`, { watchId })
+    axios.post(`/api/users/${userId || 'visitor'}/cart/${watch.id}`, { watch })
       .then(res => res.data)
-      .then(watch => {
-        console.log('pushedWatch', watch)
-        dispatch(addWatchToCart(watch))
+      .then(pushedWatch => {
+        dispatch(addWatchToCart(pushedWatch))
       })
       .catch(console.error)
 
@@ -74,7 +73,6 @@ export const deleteWatchFromCart = (watchId, userId) =>
  */
 export default function (state = [], action) {
   let watch
-  console.log('watchId', action.watchId)
   switch (action.type) {
     case GET_CART:
       return action.cart
