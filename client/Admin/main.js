@@ -1,6 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { AdminHeader, AdminMenu, Orders, Watches } from './index'
+import { fetchOrders, fetchUsers } from '../store'
+import { connect } from 'react-redux'
 
 const Main = () => {
   return (
@@ -17,4 +19,13 @@ const Main = () => {
   )
 }
 
-export default Main
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadInitialData() {
+      dispatch(fetchOrders())
+      dispatch(fetchUsers())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Main)
