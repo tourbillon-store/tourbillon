@@ -30,7 +30,7 @@ class Users extends Component {
           </Header>
           <Body>
             {users.length ? users.map(user =>
-                 <UsersModal key={user.id} user={user} />
+              <UsersModal key={user.id} user={user} />
             ) : null}
           </Body>
         </Table>
