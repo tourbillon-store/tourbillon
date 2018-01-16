@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { adminDeleteUser } from '../store'
+import { adminDeleteUser, adminDeleteWatch } from '../store'
 
 const DeleteButton  = props => {
   return (
@@ -18,6 +18,12 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
       onDeleteClick: () => {
         dispatch(adminDeleteUser(props.userId))
+      }
+    }
+  } else if(props.type === "watch") {
+    return {
+      onDeleteClick: () => {
+        dispatch(adminDeleteWatch(props.watchId))
       }
     }
   }
