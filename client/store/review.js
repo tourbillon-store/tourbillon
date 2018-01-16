@@ -4,7 +4,7 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_REVIEW = 'GET_REVIEW'
-//when going back to view all reviewes
+//when going back to view all reviews
 const RESET_REVIEW = 'RESET_REVIEW'
 
 /**
@@ -18,7 +18,7 @@ export const resetReview = review => ({type: RESET_REVIEW, review})
  */
 export const fetchReview = (reviewId) =>
   dispatch =>
-    axios.get(`/api/reviewes/${reviewId}`)
+    axios.get(`/api/reviews/${reviewId}`)
       .then(review => {
         dispatch(getReview(review.data))
       })
