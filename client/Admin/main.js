@@ -1,21 +1,39 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { AdminHeader, AdminMenu, Orders, Watches, Users } from './index'
+import { fetchOrders, fetchUsers } from '../store'
+import { connect } from 'react-redux'
 
-const Main = () => {
-  return (
-    <div>
-      <AdminHeader />
-      <div className="admin">
-        <AdminMenu />
-        <Switch>
-          <Route path="/admin/users" component={Users} />
-          <Route path="/admin/watches" component={Watches} />
-          <Route path="/admin/orders" component={Orders} />
-        </Switch>
+class Main extends Component {
+  componentDidMount() {
+    this.props.loadInitialData()
+  }
+
+  /* eslint-disable class-methods-use-this*/
+  render() {
+    return (
+      <div>
+        <AdminHeader />
+        <div className="admin">
+          <AdminMenu />
+          <Switch>
+            <Route path="/admin/users" component={Users} />
+            <Route path="/admin/watches" component={Watches} />
+            <Route path="/admin/orders" component={Orders} />
+          </Switch>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default Main
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadInitialData() {
+      dispatch(fetchOrders())
+      dispatch(fetchUsers())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Main)

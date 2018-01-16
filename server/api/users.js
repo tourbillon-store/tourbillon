@@ -108,7 +108,7 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
   } else if (userId === 'visitor') {
     let watch = req.session.cart.find(cartWatch => cartWatch.id === +req.params.watchId)
     watch.quantity = req.body.quantity
-    req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId), watch]
+    req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== watch.id), watch]
     res.sendStatus(202)
   } else {
     res.status(401).send('You are not authorized')
@@ -116,19 +116,19 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
 })
 
 router.delete('/:userId/cart/:watchId', (req, res, next) => {
-  let userId = req.params.userId
+  let { userId, watchId } = req.params
   if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
     getCart(userId)
       .then(order => OrderWatch.destroy({
         where: {
           orderId: order.id,
-          watchId: req.params.watchId
+          watchId
         }
       }))
       .then(() => res.sendStatus(202))
       .catch(next)
   } else if (userId === 'visitor') {
-    req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId)]
+    req.session.cart = req.session.cart.filter(cartWatch => cartWatch.id !== +watchId)
     res.sendStatus(202)
   } else {
     res.status(401).send('You are not authorized')

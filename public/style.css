@@ -61,6 +61,11 @@ form div {
 
 }
 
+.quantity-error {
+  color: rgb(182, 48, 48);
+  font-weight: bold;
+}
+
 /* admin */
 .admin {
   display: flex
