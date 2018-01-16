@@ -15,6 +15,6 @@ router.delete('/users/:userId', (req, res, next) => {
   const id = req.params.userId
 
   User.destroy({where: { id } })
-    .then(() => res.status.(204).end())
+    .then(() => res.status(204).end())
     .catch(next)
 })
