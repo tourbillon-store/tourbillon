@@ -13,8 +13,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-//cart section beigns here
-
+// Cart subroutes
 router.get('/:userId/cart', (req, res, next) => {
   let userId = req.params.userId
   if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
@@ -27,29 +26,55 @@ router.get('/:userId/cart', (req, res, next) => {
     .then(orders => res.json(orders))
     .catch(next)
   } else if (userId === 'visitor'){
-    console.log('get req.session.cart', req.session.cart)
     res.json(req.session.cart)
-  } else { res.status(401).send('You are not authorized')
+  } else {
+    res.status(401).send('You are not authorized')
   }
 })
 
-router.post('/:userId/cart', (req, res, next) => {
-  let userId = req.params.userId
+router.post('/:userId/cart/:watchId', (req, res, next) => {
+  let { userId } = req.params,
+      { watch } = req.body,
+      orderId,
+      newQuantity
   if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
-    console.log('post to logged in user cart')
-    console.log('req.user', req.user)
+    getCart(userId)
+      .then(order => {
+        orderId = order.id
+        return OrderWatch.findOne({
+          where: {
+            watchId: watch.id,
+            orderId
+          }
+        })
+      })
+      .then(orderWatch => {
+        if (orderWatch && orderWatch.quantity) {
+          newQuantity = orderWatch.quantity
+          return orderWatch.update({ quantity: orderWatch.quantity + 1 })
+        }
+        else {
+          return OrderWatch.create({
+            quantity: 1,
+            fixedPrice: watch.price,
+            watchId: watch.id,
+            orderId
+          })
+        }
+      })
+      .then(() => {
+        watch.quantity = newQuantity || 1
+        res.json(watch)
+      })
+      .catch(next)
   } else if (userId === 'visitor') {
-    console.log('cart makes it here', req.session.cart)
-    let watch = req.session.cart.find(cartWatch => cartWatch.id === req.body.watchId)
-    if (watch) {
-      console.log('watch found')
-      watch.quantity++;
-      req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId), watch]
-      console.log('updated cart', req.session.cart)
+    let cartWatch = req.session.cart.find(item => item.id === watch.id)
+    if (cartWatch) {
+      cartWatch.quantity++
+      req.session.cart = [...req.session.cart.filter(item => item.id !== watch.id), cartWatch]
       res.json(watch)
     } else {
-      console.log('watch not found')
-      Watch.findById(req.body.watchId)
+      Watch.findById(watch.id)
         .then(watchData => {
           req.session.cart.push({
           id: watchData.id,
@@ -59,7 +84,6 @@ router.post('/:userId/cart', (req, res, next) => {
           quantity: 1,
           createdAt: Date.now()
           })
-          console.log('updated cart', req.session.cart)
           res.json(watch)
         })
         .catch(next)
@@ -82,7 +106,9 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
       .then(() => res.sendStatus(202))
       .catch(next)
   } else if (userId === 'visitor') {
-    // req.session.cart = req.session.cart.push('test')
+    let watch = req.session.cart.find(cartWatch => cartWatch.id === +req.params.watchId)
+    watch.quantity = req.body.quantity
+    req.session.cart = [...req.session.cart.filter(cartWatch => cartWatch.id !== req.body.watchId), watch]
     res.sendStatus(202)
   } else {
     res.status(401).send('You are not authorized')
