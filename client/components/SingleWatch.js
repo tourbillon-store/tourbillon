@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchWatch, pushWatchToCart } from '../store'
+import { AddReviewModal } from './index'
 
 class Watch extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class Watch extends Component {
         {watch.available &&
           <button onClick={() => addWatchToCart(watch.id, user.id )}>Add to Cart</button>
         }
+        <AddReviewModal />
       </div>
     )
   }
