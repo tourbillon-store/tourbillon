@@ -88,6 +88,10 @@ form div {
   font-weight: bold;
 }
 
+.add-review-button {
+  margin-left: 1em;
+}
+
 /* admin */
 .admin {
   display: flex

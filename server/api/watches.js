@@ -13,7 +13,11 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:watchId', (req, res, next) => {
-  Watch.findById(req.params.watchId)
+  Watch.findById(req.params.watchId, {
+    include: [{
+      model: Review
+    }]
+  })
     .then(watch => res.json(watch))
     .catch(next)
 });

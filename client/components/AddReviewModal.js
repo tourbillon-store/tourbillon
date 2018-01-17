@@ -32,7 +32,7 @@ class AddReviewModal extends Component {
 
   render() {
     return (
-      <Modal closeIcon size="tiny" open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={<Button positive onClick={() => this.handleOpen()} className="add-review-button">ADD A REVIEW</Button>}>
+      <Modal closeIcon size="tiny" open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={<button onClick={() => this.handleOpen()} className="add-review-button">Write a Review</button>}>
         <Modal.Header>Add a Review</Modal.Header>
         <Modal.Content>
           <ReviewForm handleFormSubmit={this.handleFormSubmit.bind(this)} handleClose={this.handleClose.bind(this)} />
