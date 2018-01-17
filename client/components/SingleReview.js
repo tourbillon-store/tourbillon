@@ -7,7 +7,6 @@ import { Header, Label, Rating } from 'semantic-ui-react'
 export const Review = (props) => {
   const { review, user } = props
   const watchId = review.watch.id
-  console.log(user)
   return (
     <div className="single-review-container">
       <Header as="h3"><Link to={`/watches/${watchId}/reviews/${review.id}`}>{review.title}</Link></Header>

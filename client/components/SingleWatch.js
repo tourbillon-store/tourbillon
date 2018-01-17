@@ -13,7 +13,6 @@ class SingleWatch extends Component {
 
   render() {
     const {watch, addWatchToCart, user} = this.props
-    console.log(user)
     let rating
     if (watch.reviews) rating = watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length
     return (
