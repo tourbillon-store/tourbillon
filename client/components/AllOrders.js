@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { resetOrder } from '../store'
+import { resetOrder, fetchUserOrders } from '../store'
 
 class AllOrders extends Component {
   componentDidMount() {
     this.props.resetOrder()
+    this.props.getUserOrders(this.props.user.id)
   }
 
   render() {
     let { orders, user } = this.props;
-    orders = orders.filter(order => order.status !== 'cart' && order.userId === user.id);
     return (
       <div>
         {orders.map(order => {
@@ -50,6 +50,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     resetOrder() {
       dispatch(resetOrder({ loading: true }))
+    },
+    getUserOrders(userId) {
+      dispatch(fetchUserOrders(userId))
     }
   }
 }

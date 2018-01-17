@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const Sequelize = require('sequelize')
 const { User, Watch, Order, OrderWatch } = require('../db/models')
 const { isAdmin } = require('../utils/gatekeepermiddleware')
 module.exports = router
@@ -176,6 +177,28 @@ router.put('/:userId/orders/:orderId', isAdmin, (req, res, next) => {
   .then(order => order.update(req.body))
   .then(order => res.json(order))
   .catch(next)
+})
+
+// Order subroutes
+router.get('/:userId/orders', (req, res, next) => {
+  let userId = req.params.userId
+
+  if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
+    User.findById(userId)
+    .then(user => user.getOrders({
+      include: [{ model: Watch }],
+      where: {
+        status: {
+          [Sequelize.Op.not]: 'cart'
+        }
+      }
+    }))
+    .then(orders =>
+      res.json(orders))
+    .catch(next)
+  } else {
+    res.status(401).send('You are not authorized')
+  }
 })
 
 // utils
