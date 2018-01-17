@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetWatch } from '../store'
-import { Rating, Input, Card, Image, CardContent as content, CardHeader as header, CardDescription as Cdesc, Radio} from 'semantic-ui-react'
+import { Rating, Container, Header, Input, Card, Image, CardContent as Content, CardHeader, CardMeta, CardDescription, Radio} from 'semantic-ui-react'
+import { numberWithCommas } from '../utils'
 
 class AllWatches extends Component {
   constructor(props){
@@ -29,48 +30,46 @@ class AllWatches extends Component {
   render() {
     const { watches } = this.props;
     return (
-      <div className="all-watches">
+      <Container className="all-watches">
+        <Header as="h1">Browse Watches</Header>
+        <Header as="h3">Filter Results </Header>
         <div>
          {this.renderWatchSearch()}
-       </div>
-        <div>
-        <div className="all-watches-float">
-        <Card.Group>
+        </div>
+        <Card.Group className="all-watches-card-container">
           {watches.filter(this.filterWatch).map(watch => {
             if (watch.available) {
               const rating = Math.round(watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length)
               return (
                 <div key={watch.id}>
-                  <Card className="all-watch-single-card" raised={true} >
-                    <Link to={`/watches/${watch.id}`}>
-                      <h2 className="all-watch-card-title">{watch.make} </h2>
-                        <Image src={watch.imageUrl} />
-                    </Link>
-                    <content className="all-watch-card">
-                      <header>{watch.model}</header>
-                      <header>Make: {watch.make}</header>
-                      <header>Model: {watch.model}</header>
-                      <p> Year: {watch.year} </p>
-                      <p>Complications: {watch.complications}</p>
-                      <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
-                      <Cdesc>Price: {watch.price}</Cdesc>
-                    </content>
-                  </Card>
+                <Link to={`/watches/${watch.id}`}>
+                    <Card className="all-watches-single-card" raised centered color="blue">
+                      <Image className="all-watches-img" src={watch.imageUrl} />
+                      <Content className="all-watch-card">
+                        <CardHeader>{watch.make}</CardHeader>
+                        <CardMeta>{watch.model}</CardMeta>
+                        <CardMeta>Complications: {watch.complications}</CardMeta>
+                      </Content>
+                      <Content extra>
+                        <CardMeta>Year: {watch.year},</CardMeta>
+                        <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
+                        Price: ${numberWithCommas(watch.price)}
+                      </Content>
+                    </Card>
+                 </Link>
                 </div>
               )
             }
           })}
-          </Card.Group>
-        </div>
-      </div>
-    </div>
+      </Card.Group>
+    </Container>
     )
   }
 
 
 renderWatchSearch () {
   return (
-    <div className="all-watch-form">
+    <div className="all-watches-form">
       <Input
         type="text"
         focus placeholder="MAKE"
@@ -95,7 +94,7 @@ renderWatchSearch () {
         className=""
         onChange={evt => this.setState({ complications: evt.target.value })}
       />
-      <Radio label="Available" defaultChecked />
+      {/*<Radio label="Available" defaultChecked /> */}
     </div>
   )
 }

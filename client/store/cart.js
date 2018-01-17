@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -23,6 +24,21 @@ export const showQuantityUnderflowError = watchId => ({type: SHOW_QUANTITY_UNDER
 /**
  * THUNK CREATORS
  */
+export const flushCart = userId =>
+  dispatch => {
+    if (userId) {
+      axios.put(`/api/users/${userId}/new`)
+      .then(res => res.data)
+      .then(() => {
+        dispatch(emptyCart())
+      })
+    } else {
+      dispatch(emptyCart())
+    }
+    console.log('history', history)
+    history.push('/watches')
+  }
+
 export const fetchCart = (userId) =>
   dispatch =>
     axios.get(`/api/users/${userId || 'visitor'}/cart`)

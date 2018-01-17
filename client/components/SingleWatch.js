@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { fetchWatch, pushWatchToCart } from '../store'
+import { Rating, Container, Header, Image, Button, Icon } from 'semantic-ui-react'
 import { AddReviewModal } from './index'
-import { Rating, Card, Image, CardContent as content, CardHeader as header, CardDescription as Cdesc} from 'semantic-ui-react'
+import { numberWithCommas } from '../utils'
 
 class Watch extends Component {
   componentDidMount() {
@@ -17,28 +18,44 @@ class Watch extends Component {
     if (watch.reviews) rating = Math.round(watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length)
     return (
       !watch.loading &&
-        <div className="single-watch">
-          <Card className="single-card" raised={true} >
-            <Link to={`/watches/${watch.id}`}>
-              <h2 className="all-watch-card-title">{watch.make} </h2>
-                <Image src={watch.imageUrl} />
-              <h3 className="unavailable-watch">{unavailableMessage}</h3>
-            </Link>
-            <content className="all-watch-card">
-              <header>{watch.model}</header>
-              <header>Make: {watch.make}</header>
-              <header>Model: {watch.model}</header>
-              <p> Year: {watch.year} </p>
-              <p>Complications: {watch.complications}</p>
-              <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
-              <Cdesc>Price: {watch.price}</Cdesc>
-            </content>
-          </Card>
-          {watch.available &&
-            <button onClick={() => addWatchToCart(watch.id, user.id )}>Add to Cart</button>
-          }
-          <AddReviewModal />
-      </div>
+      <Container className="single-watch-container">
+        <Link to="/watches">
+          <Button animated color="grey">
+            <Button.Content visible>Back</Button.Content>
+            <Button.Content hidden>
+              <Icon name="left arrow" />
+            </Button.Content>
+          </Button>
+        </Link>
+        <Header as="h1">{watch.make} {watch.model}</Header>
+        <Image className="single-watch-image" src={watch.imageUrl} size="large" rounded />
+        <Header as="h3" className="unavailable-watch">{unavailableMessage}</Header>
+          <Header as="h4">Complications: {watch.complications}</Header>
+          <Header as="h4">Year: {watch.year}</Header>
+          <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
+          <Header as="h4">Price: ${numberWithCommas(watch.price)}</Header>
+        {watch.available &&
+          <Button
+            primary
+            animated
+            onClick={() => addWatchToCart({
+              id: watch.id,
+              make: watch.make,
+              model: watch.model,
+              price: watch.price,
+              createdAt: watch.createdAt
+              },
+              user.id
+            )}
+          >
+            <Button.Content visible>Add to Cart</Button.Content>
+            <Button.Content hidden>
+              <Icon name="shop" />
+            </Button.Content>
+          </Button>
+        }
+      <AddReviewModal />
+      </Container>
     )
   }
 }
