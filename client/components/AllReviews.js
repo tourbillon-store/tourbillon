@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { resetReview } from '../store'
 import { Review } from './SingleReview'
 class AllReviews extends Component {
@@ -18,7 +18,7 @@ class AllReviews extends Component {
     }
     return (
       reviews.length && watches.length && <div>
-        <h2>{reviewWatch.make} {reviewWatch.model}</h2>
+        <Link to={`/watches/${watchId}`}><h2>{reviewWatch.make} {reviewWatch.model}</h2></Link>
         {reviews.map(review => {
           return (
             <Review key={review.id} review={review} />
