@@ -173,6 +173,28 @@ form div {
   margin: 5em;
 }
 
+.cart-quantity-container div {
+  display: inline;
+}
+
+.quanity-button {
+  margin-right: 0.5em;
+}
+
+button.ui.mini.icon.button.quantity-button {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.delete-button {
+  width: 5em;
+  text-align: center;
+}
+
+.quanity-number {
+  font-size: 12px;
+}
+
 .purchase-button {
   float: right;
 }
