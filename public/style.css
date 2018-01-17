@@ -1,9 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: auto 0;
+}
+
 body {
   font-family: sans-serif;
 }
 
 a {
   text-decoration: none;
+}
+
+nav a:hover {
+  font-weight: bold;
 }
 
 label {
@@ -15,86 +24,95 @@ nav a {
   margin: 1em;
 }
 
+nav div {
+  text-align: center;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
 }
 
+#main-title {
+  /* height: 5em; */
+  padding-top: 1em;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-size: 2em;
+  font-weight: 100;
+  letter-spacing: 0.75em;
+}
+
 /* AllWatches */
 .all-watches {
-  margin: 1em;
+  margin: 5em;
 }
 
-.all-watches-float{
-  margin-left: 3em;
-
-}
-.all-watch-form{
-  padding: 15px;
+.all-watches-form {
+  margin-bottom: 3em;
+  display: flex;
 }
 
-.all-watch-card{
-  background-color: rgba(247, 242, 241, 0.893);
+.all-watches-form div{
+  flex-basis: 7em;
+  flex-grow: 1;
 }
 
-.all-watch-card-title{
-  background-color: rgba(233, 230, 229, 0.893);
+.all-watches-card-container {
+  display: flex;
 }
 
-.all-watch-single-card{
-
+.all-watches-card-container > div {
+  margin-bottom: 5em;
+  flex-basis: 4em;
+  flex-grow: 1;
 }
+
+.all-watches-single-card{
+  height: 30em;
+  transition: all, 0.2s;
+}
+
+.all-watches-single-card:hover {
+  box-shadow: 0 0 30px 6px rgba(31,51,73,.1);
+}
+
+.all-watches-img {
+  height: 15em;
+  object-fit: cover;
+}
+
 .unavailable-watch {
   color: red;
 }
-/* Cart */
-.cart-container {
-  margin: 1em 2.5em 2.5em 2.5em;
+
+/* Single Watch */
+.single-watch-container {
+  margin: 5em;
+}
+.single-watch-image {
+  max-height: 400px;
+  max-width: 600px;
 }
 
-.cart-product-row {
+/* Review Form */
+.review-form-title-content {
   display: flex;
+  flex-direction: column;
 }
 
-.cart-product-row div {
-  flex-basis: 5em;
-  flex-grow: 1;
-}
-
-.cart-quantity-container {
-  display: flex;
-}
-
-.cart-quantity-container button,h4 {
-  /* flex-basis: 0.5em; */
-  flex-grow: 1;
-  text-align: center
-}
-
-.purchase-button {
-  text-align: center;
-}
-
-.minus-button {
-
-}
-
-.delete-button {
-
-}
-
-.quantity-error {
-  color: rgb(182, 48, 48);
-  font-weight: bold;
+.review-form-title {
+  margin: 0;
 }
 
 /* admin */
 .admin {
-  display: flex
+  display: flex;
 }
 
-.admin-menu {
-  height: -webkit-fill-available;
+.ui.inverted.vertical.bottom.attached.admin-menu.menu {
+  min-width: 12em;
+  max-width: 12em;
 }
 
 .view-as-user {
@@ -107,4 +125,43 @@ form div {
 
 .order-status-dropdown {
   margin-bottom: 1em;
+}
+
+/* Cart */
+.cart-container {
+  margin: 5em;
+}
+
+.purchase-button {
+  float: right;
+}
+
+.quantity-error {
+  color: rgb(182, 48, 48);
+  font-weight: bold;
+}
+
+.add-review-button {
+  margin-left: 1em;
+}
+
+/* Checkout */
+.checkout-container {
+  margin: 5em;
+}
+
+.checkout-column {
+  padding: 1em;
+}
+
+.checkout-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3em 4em 3em 3em;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: .28571429rem;
+}
+
+.checkout-form div {
+  flex-basis: 100%;
 }

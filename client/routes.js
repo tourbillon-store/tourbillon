@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, VisitorHome, Cart, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { Main, Login, Signup, UserHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder, AllReviews, SingleReview } from './components'
 import { AdminMain } from './Admin'
-import { me, fetchWatches } from './store'
+import { me, fetchWatches, fetchReviews } from './store'
 
 /**
  * COMPONENT
@@ -27,20 +27,25 @@ class Routes extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
-              <Route path="/watches/:watchId" component={SingleWatch} />
+              <Route exact path="/watches/:watchId" component={SingleWatch} />
+              <Route exact path="/watches/:watchId/reviews" component={AllReviews} />
+              <Route path="/watches/:watchId/reviews/:reviewId" component={SingleReview} />
+              <Route path="/cart" component={Cart} />
+              <Route path="/checkout" component={Checkout} />
               {
                 isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
-                  <Route path="/cart" component={Cart} />
                   <Route exact path="/orders" component={AllOrders} />
                   <Route path="/orders/:orderId" component={SingleOrder} />
+
                 </Switch>
               }
-              {/* Display landing page as fallback */}
               <Route path="/cart" component={Cart} />
-              <Route component={VisitorHome} />
+              <Route path="/checkout" component={Checkout} />
+              {/* Display watches page as fallback */}
+              <Route component={AllWatches} />
             </Switch>
           </Main>
         </Switch>
@@ -66,6 +71,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchWatches())
+      dispatch(fetchReviews())
     }
   }
 }
