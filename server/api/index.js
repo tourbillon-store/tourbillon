@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { isAdmin } = require('../utils/gatekeepermiddleware')
+const { isAdmin } = require('../utils/gateKeepermiddleware')
 module.exports = router
 
 router.use('/users', require('./users'))
