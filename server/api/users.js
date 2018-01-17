@@ -115,6 +115,29 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
   }
 })
 
+router.delete('/:userId/cart', (req, res, next) => {
+  console.log('delete cart api params', req.params)
+  let { userId } = req.params
+  if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
+    getCart(userId)
+      .then(order => order.update({status: 'created'}))
+      .then(() =>
+        Order.create({
+          status: 'cart',
+          userId
+        })
+      )
+      .then(() => res.sendStatus(202))
+      .catch(next)
+  } else if (userId === 'visitor') {
+    console.log('in visitor bloc')
+    req.session.cart = []
+    res.sendStatus(202)
+  } else {
+    res.status(401).send('You are not authorized')
+  }
+})
+
 router.delete('/:userId/cart/:watchId', (req, res, next) => {
   let { userId, watchId } = req.params
   if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
@@ -134,6 +157,8 @@ router.delete('/:userId/cart/:watchId', (req, res, next) => {
     res.status(401).send('You are not authorized')
   }
 })
+
+
 
 // utils
 const getCart = (userId) => {

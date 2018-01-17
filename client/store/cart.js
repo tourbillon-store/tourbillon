@@ -26,21 +26,17 @@ export const showQuantityUnderflowError = watchId => ({type: SHOW_QUANTITY_UNDER
  */
 export const flushCart = userId =>
   dispatch => {
-    if (userId) {
-      axios.put(`/api/users/${userId}/new`)
-      .then(res => res.data)
-      .then(() => {
-        dispatch(emptyCart())
-      })
-    } else {
+    console.log('flush cart user', userId)
+    axios.delete(`/api/users/${userId || 'visitor'}/cart`)
+    .then(res => res.data)
+    .then(() => {
       dispatch(emptyCart())
-    }
-    history.push('/watches')
+      history.push('/watches')
+    })
   }
 
 export const fetchCart = (userId) =>
   dispatch => {
-    console.log('fetchCart userId', userId)
     axios.get(`/api/users/${userId || 'visitor'}/cart`)
       .then(res => res.data)
       .then(cart => {
