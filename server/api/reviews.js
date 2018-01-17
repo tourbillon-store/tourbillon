@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   })
     .then(reviews => res.json(reviews))
     .catch(next)
-});
+})
 
 router.get('/:reviewId', (req, res, next) => {
   Review.findById(req.params.reviewId, {
@@ -20,4 +20,10 @@ router.get('/:reviewId', (req, res, next) => {
   })
     .then(review => res.json(review))
     .catch(next)
-});
+})
+
+router.post('/', (req, res, next) => {
+  Review.create(req.body)
+    .then(user => res.status(201).json(user))
+    .catch(next);
+})

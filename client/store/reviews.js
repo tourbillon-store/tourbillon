@@ -4,11 +4,13 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_REVIEWS = 'GET_REVIEWS';
+const CREATE_REVIEW = 'CREATE_REVIEW';
 
 /**
  * ACTION CREATORS
  */
 const getReviews = reviews => ({type: GET_REVIEWS, reviews})
+const createReview = review => ({type: CREATE_REVIEW, review})
 
 /**
  * THUNK CREATORS
@@ -21,6 +23,15 @@ export const fetchReviews = () =>
       })
       .catch(err => console.log(err))
 
+export const postReview = review =>
+  dispatch =>
+    axios.post('/api/reviews', review)
+      .then(newReview => {
+        newReview.data.watch = review.watch
+        return dispatch(createReview(newReview.data))
+      })
+      .catch(err => console.log(err))
+
 /**
  * REDUCER
  */
@@ -28,6 +39,8 @@ export default function (state = [], action) {
   switch (action.type) {
     case GET_REVIEWS:
       return action.reviews
+    case CREATE_REVIEW:
+      return [...state, action.review]
     default:
       return state
   }
