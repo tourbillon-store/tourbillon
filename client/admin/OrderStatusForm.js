@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 
 const OrderStatusForm = (props) => {
   const { order, orders } = props
-  const statuses = ['created', 'processing', 'cancelled', 'completed']
+  const statuses = ['cart', 'created', 'processing', 'cancelled', 'completed']
   let statusOptions = [{key: 'select', value: '', text: 'Select a Status'}]
   statuses.map((status, i) => {
     statusOptions.push({key: i, value: status, text: status});
