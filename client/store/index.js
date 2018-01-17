@@ -12,8 +12,10 @@ import orders from './orders'
 import order from './order'
 import users from './users'
 import adminReducer from './adminReducer'
+import review from './review'
+import reviews from './reviews'
 
-const reducer = combineReducers({user, watches, watch, cart, checkout, orders, users, order, adminReducer, form: formReducer})
+const reducer = combineReducers({user, watches, watch, cart, checkout, orders, users, order, review, reviews, adminReducer, form: formReducer})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({
@@ -32,4 +34,6 @@ export * from './checkout'
 export * from './orders'
 export * from './users'
 export * from './order'
+export * from './reviews'
+export * from './review'
 export * from './adminReducer'

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetWatch } from '../store'
-import { Container, Header, Input, Card, Image, CardContent as Content, CardHeader, CardMeta, CardDescription, Radio} from 'semantic-ui-react'
+import { Rating, Container, Header, Input, Card, Image, CardContent as Content, CardHeader, CardMeta, CardDescription, Radio} from 'semantic-ui-react'
 import { numberWithCommas } from '../utils'
 
 class AllWatches extends Component {
@@ -38,23 +38,25 @@ class AllWatches extends Component {
         </div>
         <Card.Group className="all-watches-card-container">
           {watches.filter(this.filterWatch).map(watch => {
-            if (watch.available){
+            if (watch.available) {
+              const rating = Math.round(watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length)
               return (
                 <div key={watch.id}>
-                <Link to={`/watches/${watch.id}`}>
                     <Card className="all-watches-single-card" raised centered color="blue">
-                      <Image className="all-watches-img" src={watch.imageUrl} />
-                      <Content className="all-watch-card">
-                        <CardHeader>{watch.make}</CardHeader>
-                        <CardMeta>{watch.model}</CardMeta>
-                        <CardMeta>Complications: {watch.complications}</CardMeta>
-                      </Content>
+                      <Link to={`/watches/${watch.id}`}>
+                        <Image className="all-watches-img" src={watch.imageUrl} />
+                        <Content className="all-watch-card">
+                          <CardHeader>{watch.make}</CardHeader>
+                          <CardMeta>{watch.model}</CardMeta>
+                          <CardMeta>Complications: {watch.complications}</CardMeta>
+                        </Content>
+                      </Link>
                       <Content extra>
+                        <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link><br />
                         <CardMeta>Year: {watch.year},</CardMeta>
-                        Price: ${numberWithCommas(watch.price)}
+                        Price: ${numberWithCommas(watch.price / 100)}
                       </Content>
                     </Card>
-                 </Link>
                 </div>
               )
             }
@@ -110,12 +112,7 @@ renderWatchSearch () {
   }
 }
 
-
-const mapStateToProps = (state) => {
-  return {
-    watches: state.watches
-  }
-}
+const mapStateToProps = ({watches}) => ({watches})
 
 const mapDispatchToProps = (dispatch) => {
   return {

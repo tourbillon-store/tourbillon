@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
-import { AdminMain } from './admin'
-import { me, fetchWatches} from './store'
-
+import { Main, Login, Signup, UserHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder, AllReviews, SingleReview } from './components'
+import { AdminMain } from './Admin'
+import { me, fetchWatches, fetchReviews } from './store'
 
 /**
  * COMPONENT
@@ -28,9 +27,11 @@ class Routes extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
-              <Route path="/watches/:watchId" component={SingleWatch} />
+              <Route exact path="/watches/:watchId" component={SingleWatch} />
+              <Route exact path="/watches/:watchId/reviews" component={AllReviews} />
+              <Route path="/watches/:watchId/reviews/:reviewId" component={SingleReview} />
               <Route path="/cart" component={Cart} />
-                  <Route path="/checkout" component={Checkout} />
+              <Route path="/checkout" component={Checkout} />
               {
                 isLoggedIn &&
                 <Switch>
@@ -70,6 +71,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchWatches())
+      dispatch(fetchReviews())
     }
   }
 }

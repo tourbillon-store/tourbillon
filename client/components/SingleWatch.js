@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchWatch, pushWatchToCart } from '../store'
-import { Container, Header, Image, Button, Icon } from 'semantic-ui-react'
+import { Rating, Container, Header, Image, Button, Icon } from 'semantic-ui-react'
+import { AddReviewModal } from './index'
 import { numberWithCommas } from '../utils'
 
 class Watch extends Component {
@@ -13,6 +14,8 @@ class Watch extends Component {
   render() {
     const {watch, addWatchToCart, user} = this.props;
     const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
+    let rating
+    if (watch.reviews) rating = watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length
     return (
       !watch.loading &&
       <Container className="single-watch-container">
@@ -28,8 +31,10 @@ class Watch extends Component {
         <Image className="single-watch-image" src={watch.imageUrl} size="large" rounded />
         <Header as="h3" className="unavailable-watch">{unavailableMessage}</Header>
           <Header as="h4">Complications: {watch.complications}</Header>
+          <Rating name="rating" disabled icon="star" defaultRating={Math.round(rating)} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
+          <div>{parseFloat(rating).toFixed(2)} out of 5 stars</div>
           <Header as="h4">Year: {watch.year}</Header>
-          <Header as="h4">Price: ${numberWithCommas(watch.price)}</Header>
+          <Header as="h4">Price: ${numberWithCommas(watch.price / 100)}</Header>
         {watch.available &&
           <Button
             primary
@@ -50,6 +55,7 @@ class Watch extends Component {
             </Button.Content>
           </Button>
         }
+      <AddReviewModal />
       </Container>
     )
   }
@@ -62,8 +68,8 @@ const mapDispatchToProps = (dispatch) => {
     getWatch(watchId) {
       dispatch(fetchWatch(watchId))
     },
-    addWatchToCart(watch, userId) {
-      dispatch(pushWatchToCart(watch, userId))
+    addWatchToCart(watchId, userId) {
+      dispatch(pushWatchToCart(watchId, userId))
     }
   }
 }

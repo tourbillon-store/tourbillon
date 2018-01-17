@@ -95,13 +95,24 @@ form div {
   max-width: 600px;
 }
 
-/* admin */
-.admin {
-  display: flex
+/* Review Form */
+.review-form-title-content {
+  display: flex;
+  flex-direction: column;
 }
 
-.admin-menu {
-  height: -webkit-fill-available;
+.review-form-title {
+  margin: 0;
+}
+
+/* admin */
+.admin {
+  display: flex;
+}
+
+.ui.inverted.vertical.bottom.attached.admin-menu.menu {
+  min-width: 12em;
+  max-width: 12em;
 }
 
 .view-as-user {
@@ -128,6 +139,10 @@ form div {
 .quantity-error {
   color: rgb(182, 48, 48);
   font-weight: bold;
+}
+
+.add-review-button {
+  margin-left: 1em;
 }
 
 /* Checkout */
