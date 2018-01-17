@@ -42,21 +42,21 @@ class AllWatches extends Component {
               const rating = Math.round(watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length)
               return (
                 <div key={watch.id}>
+                  <Link to={`/watches/${watch.id}`}>
                     <Card className="all-watches-single-card" raised centered color="blue">
-                      <Link to={`/watches/${watch.id}`}>
                         <Image className="all-watches-img" src={watch.imageUrl} />
                         <Content className="all-watch-card">
                           <CardHeader>{watch.make}</CardHeader>
                           <CardMeta>{watch.model}</CardMeta>
                           <CardMeta>Complications: {watch.complications}</CardMeta>
                         </Content>
-                      </Link>
                       <Content extra>
                         <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link><br />
                         <CardMeta>Year: {watch.year},</CardMeta>
                         Price: ${numberWithCommas(watch.price / 100)}
                       </Content>
                     </Card>
+                  </Link>
                 </div>
               )
             }
