@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { AdminHeader, AdminMenu, Orders, Watches, Users } from './index'
-import { fetchOrders, fetchUsers } from '../store'
+import { fetchOrders, adminFetchUsers } from '../store'
 import { connect } from 'react-redux'
 
 class Main extends Component {
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(fetchOrders())
-      dispatch(fetchUsers())
+      dispatch(adminFetchUsers())
     }
   }
 }

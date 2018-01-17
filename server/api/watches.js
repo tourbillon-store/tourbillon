@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   })
     .then(watches => res.json(watches))
     .catch(next)
-});
+})
 
 router.get('/:watchId', (req, res, next) => {
   Watch.findById(req.params.watchId, {
@@ -20,4 +20,10 @@ router.get('/:watchId', (req, res, next) => {
   })
     .then(watch => res.json(watch))
     .catch(next)
-});
+})
+
+router.post('/', (req, res, next) => {
+  Watch.create(req.body)
+    .then(watch => res.status(201).json(watch))
+    .catch(next);
+})

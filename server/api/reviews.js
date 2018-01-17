@@ -28,6 +28,6 @@ router.get('/:reviewId', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Review.create(req.body)
-    .then(user => res.status(201).json(user))
+    .then(review => res.status(201).json(review))
     .catch(next);
 })
