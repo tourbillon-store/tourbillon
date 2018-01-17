@@ -157,7 +157,7 @@ router.delete('/:userId/cart/:watchId', (req, res, next) => {
   }
 })
 
-router.get('users/:userId/orders/:orderId', (req, res, next) => {
+router.get('/:userId/orders/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId, {
     include: [{
         model: Watch
@@ -167,7 +167,7 @@ router.get('users/:userId/orders/:orderId', (req, res, next) => {
   .catch(next)
 })
 
-router.put('users/:userId/orders/:orderId', isAdmin, (req, res, next) => {
+router.put('/:userId/orders/:orderId', isAdmin, (req, res, next) => {
   Order.findById(req.params.orderId, {
     include: [{
         model: Watch
