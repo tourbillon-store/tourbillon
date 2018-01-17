@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal } from 'semantic-ui-react'
 import { ReviewForm } from './index'
-import { postReview, fetchWatches } from '../store'
+import { postReview, fetchWatches, fetchWatch } from '../store'
 
 
 class AddReviewModal extends Component {
@@ -26,13 +26,13 @@ class AddReviewModal extends Component {
     review.userId = this.props.user.id
     review.watchId = this.props.watch.id
     review.watch = this.props.watch
-    this.props.handleFormSubmit(review)
+    this.props.handleFormSubmit(review, this.props.watch.id)
     this.handleClose()
   }
 
   render() {
     return (
-      <Modal closeIcon size="tiny" open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={<Button primary onClick={() => this.handleOpen()} className="add-review-button">Write a Review</Button>}>
+      <Modal closeIcon open={this.state.modalOpen} onClose={() => this.handleClose()} trigger={<Button primary onClick={() => this.handleOpen()} className="add-review-button">Write a Review</Button>}>
         <Modal.Header>Add a Review</Modal.Header>
         <Modal.Content>
           <ReviewForm handleFormSubmit={this.handleFormSubmit.bind(this)} handleClose={this.handleClose.bind(this)} />
@@ -46,9 +46,10 @@ const mapStateToProps = ({ user, watch }) => ({ user, watch })
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleFormSubmit(review) {
+    handleFormSubmit(review, watchId) {
       dispatch(postReview(review))
-      .then(dispatch(fetchWatches()))
+      .then(() => dispatch(fetchWatch(watchId)))
+      .then(() => dispatch(fetchWatches()))
     }
   }
 }
