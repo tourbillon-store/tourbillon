@@ -31,9 +31,9 @@ class Watch extends Component {
         <Image className="single-watch-image" src={watch.imageUrl} size="large" rounded />
         <Header as="h3" className="unavailable-watch">{unavailableMessage}</Header>
           <Header as="h4">Complications: {watch.complications}</Header>
-          <Header as="h4">Year: {watch.year}</Header>
           <Rating name="rating" disabled icon="star" defaultRating={Math.round(rating)} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
           <div>{parseFloat(rating).toFixed(2)} out of 5 stars</div>
+          <Header as="h4">Year: {watch.year}</Header>
           <Header as="h4">Price: ${numberWithCommas(watch.price / 100)}</Header>
         {watch.available &&
           <Button
