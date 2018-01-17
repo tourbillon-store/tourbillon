@@ -18,7 +18,7 @@ class AllOrders extends Component {
         {orders.map(order => {
           return (
             <div key={order.id} className="order-listing">
-              <Link to={`/orders/${order.id}`}><Header as="h1">Status: {order.status}</Header></Link>
+              <Link to={`users/${order.userId}/orders/${order.id}`}><Header as="h1">Status: {order.status}</Header></Link>
                 <Table className="cart-table">
                   <TableHeader>
                     <Row>

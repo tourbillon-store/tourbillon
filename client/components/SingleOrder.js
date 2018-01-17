@@ -13,7 +13,7 @@ class Order extends Component {
     return (
       !order.loading &&
       <div>
-        <Link to={`/orders/${order.id}`}><h2>ORDER ID: {order.id}</h2></Link>
+        <Link to={`/users/${order.userId}/orders/${order.id}`}><h2>ORDER ID: {order.id}</h2></Link>
         <ul>
           <li>Status: {order.status}</li>
           <li>Created At: {order.createdAt}</li>
