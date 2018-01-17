@@ -4,14 +4,8 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome, VisitorHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
-<<<<<<< HEAD
 import { AdminMain } from './Admin'
 import { me, fetchWatches } from './store'
-=======
-import { AdminMain } from './admin'
-import { me, fetchWatches} from './store'
-
->>>>>>> 91d1b1002be7083f597fa205c2a7290f5ad53151
 
 /**
  * COMPONENT
