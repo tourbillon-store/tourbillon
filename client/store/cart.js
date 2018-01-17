@@ -35,7 +35,6 @@ export const flushCart = userId =>
     } else {
       dispatch(emptyCart())
     }
-    console.log('history', history)
     history.push('/watches')
   }
 
@@ -44,7 +43,6 @@ export const fetchCart = (userId) =>
     axios.get(`/api/users/${userId || 'visitor'}/cart`)
       .then(res => res.data)
       .then(cart => {
-        console.log('fetchCart', cart)
         if (cart && cart[0] && cart[0].watches) {
           cart = cart[0].watches.map(watch => {
             return {

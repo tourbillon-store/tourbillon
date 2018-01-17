@@ -113,7 +113,6 @@ const mapDispatch = (dispatch) => {
       dispatch(addShippingDetails(values))
     },
     handleBillingFormSubmit() {
-      // dispatch(updateOrders(orderId, status, orders))
       dispatch(completePurchase())
       dispatch(flushCart())}
   }
