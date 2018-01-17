@@ -112,16 +112,7 @@ renderWatchSearch () {
   }
 }
 
-<<<<<<< HEAD
 const mapStateToProps = ({watches}) => ({watches})
-=======
-
-const mapStateToProps = (state) => {
-  return {
-    watches: state.watches
-  }
-}
->>>>>>> 706f2837c39c573c8575e0ff73c92278d01cf4c6
 
 const mapDispatchToProps = (dispatch) => {
   return {
