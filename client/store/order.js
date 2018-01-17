@@ -16,9 +16,9 @@ export const resetOrder = order => ({type: RESET_ORDER, order})
 /**
  * THUNK CREATORS
  */
-export const fetchOrder = orderId =>
+export const fetchOrder = (orderId, userId) =>
   dispatch =>
-    axios.get(`/api/orders/${orderId}`)
+    axios.get(`/api/users/${userId}/orders/${orderId}`)
       .then(order => {
         dispatch(getOrder(order.data))
       })

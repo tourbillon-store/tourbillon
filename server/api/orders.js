@@ -11,27 +11,3 @@ router.get('/', (req, res, next) => {
   .then(orders => res.json(orders))
   .catch(next)
 })
-
-router.get('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId, {
-    include: [{
-        model: Watch
-    }]
-  })
-  .then(order => res.json(order))
-  .catch(next)
-})
-
-router.put('/:orderId', (req, res, next) => {
-  Order.findById(req.params.orderId, {
-    include: [{
-        model: Watch
-    }]
-  })
-  .then(order => order.update(req.body))
-  .then(order => res.json(order))
-  .catch(next)
-})
-
-
-//cart should work as instance method on the model

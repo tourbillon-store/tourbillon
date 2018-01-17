@@ -5,7 +5,7 @@ import { fetchOrder } from '../store'
 
 class Order extends Component {
   componentDidMount() {
-    this.props.getOrder(+this.props.match.params.orderId);
+    this.props.getOrder(+this.props.match.params.orderId, +this.props.match.params.userId);
   }
 
   render() {
@@ -41,8 +41,8 @@ const mapStateToProps = ({order}) => ({order})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getOrder(orderId) {
-      dispatch(fetchOrder(orderId))
+    getOrder(orderId, userId) {
+      dispatch(fetchOrder(orderId, userId))
     }
   }
 }

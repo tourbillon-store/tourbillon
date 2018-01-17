@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const { User, Watch, Order, OrderWatch } = require('../db/models')
+const { isAdmin } = require('../utils/gatekeepermiddleware')
 module.exports = router
 
-router.get('/', (req, res, next) => {
+router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -116,7 +117,6 @@ router.put('/:userId/cart/:watchId', (req, res, next) => {
 })
 
 router.delete('/:userId/cart', (req, res, next) => {
-  console.log('delete cart api params', req.params)
   let { userId } = req.params
   if (req.user && (+userId === +req.user.id || req.user.isAdmin)) {
     getCart(userId)
@@ -130,7 +130,6 @@ router.delete('/:userId/cart', (req, res, next) => {
       .then(() => res.sendStatus(202))
       .catch(next)
   } else if (userId === 'visitor') {
-    console.log('in visitor bloc')
     req.session.cart = []
     res.sendStatus(202)
   } else {
@@ -158,7 +157,26 @@ router.delete('/:userId/cart/:watchId', (req, res, next) => {
   }
 })
 
+router.get('users/:userId/orders/:orderId', (req, res, next) => {
+  Order.findById(req.params.orderId, {
+    include: [{
+        model: Watch
+    }]
+  })
+  .then(order => res.json(order))
+  .catch(next)
+})
 
+router.put('users/:userId/orders/:orderId', isAdmin, (req, res, next) => {
+  Order.findById(req.params.orderId, {
+    include: [{
+        model: Watch
+    }]
+  })
+  .then(order => order.update(req.body))
+  .then(order => res.json(order))
+  .catch(next)
+})
 
 // utils
 const getCart = (userId) => {
