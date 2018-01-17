@@ -1,6 +1,6 @@
-const gatekeeperMiddleware = {}
+const gateKeeperMiddleware = {}
 
-gatekeeperMiddleware.isLoggedIn = (req, res, next) => {
+gateKeeperMiddleware.isLoggedIn = (req, res, next) => {
   if (req.user) {
     next()
   } else {
@@ -9,7 +9,7 @@ gatekeeperMiddleware.isLoggedIn = (req, res, next) => {
   }
 }
 
-gatekeeperMiddleware.isAdminOrSelf = (req, res, next) => {
+gateKeeperMiddleware.isAdminOrSelf = (req, res, next) => {
   if (req.user.isAdmin || req.user.id === req.params.id) {
     next()
   } else {
@@ -18,7 +18,7 @@ gatekeeperMiddleware.isAdminOrSelf = (req, res, next) => {
   }
 }
 
-gatekeeperMiddleware.isAdmin = (req, res, next) => {
+gateKeeperMiddleware.isAdmin = (req, res, next) => {
   if (req.user.isAdmin) {
     next()
   } else {
@@ -26,7 +26,7 @@ gatekeeperMiddleware.isAdmin = (req, res, next) => {
   }
 }
 
-gatekeeperMiddleware.hasCart = (req, res, next) => {
+gateKeeperMiddleware.hasCart = (req, res, next) => {
   if (req.session.cart) {
     next()
   } else {
@@ -36,4 +36,4 @@ gatekeeperMiddleware.hasCart = (req, res, next) => {
 }
 
 
-module.exports = gatekeeperMiddleware
+module.exports = gateKeeperMiddleware

@@ -11,7 +11,7 @@ const AuthForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit= { (evt, cart) => handleSubmit(evt) } name={name}>
         {name === 'signup' &&
           <div>
             <div>
