@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchCart, updateCart, deleteWatchFromCart, showQuantityUnderflowError } from '../store'
+import { fetchCart } from '../store'
+import { CartRow, ModifyCartButtons } from '../components'
+import { Table, TableHeader as Header, TableHeaderCell as HeaderCell, TableBody as Body, TableRow as Row } from 'semantic-ui-react'
 
 class Cart extends Component {
   componentDidMount () {
@@ -8,34 +11,34 @@ class Cart extends Component {
   }
 
   render() {
-    const {user, cart, changeQuantity, removeWatch} = this.props
+    const { cart } = this.props
     return (
       <div>
         <h1>Shopping Cart</h1>
         {(cart && cart.length)
           ? <div>
-              <div className="cart-container">
-                {cart.map(watch => {
-                  return (
-                    <div className="cart-row" key={watch.id}>
-                      <div className="cart-product-row">
-                        <div><h3>{watch.make}</h3></div>
-                        <div><h3>{watch.model}</h3></div>
-                        <div><h4>{watch.price}</h4></div>
-                        <div className="cart-quantity-container">
-                          <button className="minus-button" onClick={() => changeQuantity(watch.id, watch.quantity - 1, user.id)}>-</button>
-                          <h4>{watch.quantity}</h4>
-                          <button className="plus-button" onClick={() => changeQuantity(watch.id, watch.quantity + 1, user.id)}>+</button>
-                        </div>
-                        <button className="delete-button" onClick={() => removeWatch(watch.id, user.id)}>Delete</button>
-                      </div>
-                      {watch.hasOwnProperty('underflowErr') && <div className="quantity-error">Quantity cannot be less than one. You can delete the item from your cart instead</div> }
-                    </div>
-                  )
-                })}
-              </div>
+            <Table className="cart-container">
+              <Header>
+                <Row>
+                  <HeaderCell>Make</HeaderCell>
+                  <HeaderCell>Model</HeaderCell>
+                  <HeaderCell>Price</HeaderCell>
+                  <HeaderCell>Quantity</HeaderCell>
+                </Row>
+              </Header>
+              <Body>
+              {cart.map(watch => {
+                return (
+                  <Row key={watch.id}>
+                    <CartRow watch={watch} />
+                    <ModifyCartButtons watch={watch} />
+                  </Row>
+                )}
+              )}
+              </Body>
+            </Table>
               <div className="purchase-button">
-                <button>Complete Purchase</button>
+                <Link to="checkout">Complete Purchase</Link>
               </div>
             </div>
           : <h2>Your shopping cart is empty. <a href="/watches">Browse Watches</a></h2>
@@ -46,15 +49,8 @@ class Cart extends Component {
 }
 
 const mapState = ({ cart, user }) => ({ cart, user })
-const mapDispatch = (dispatch) => {
-  return {
-    getCart(userId) { dispatch(fetchCart(userId)) },
-    changeQuantity(watchId, newQuantity, userId) {
-      if (newQuantity < 1) dispatch(showQuantityUnderflowError(watchId))
-      else dispatch(updateCart(watchId, newQuantity, userId))
-    },
-    removeWatch(watchId, userId) {dispatch(deleteWatchFromCart(watchId, userId))}
-  }
+const mapDispatch = dispatch => {
+  return { getCart(userId) { dispatch(fetchCart(userId)) } }
 }
 
 export default connect(mapState, mapDispatch)(Cart)
