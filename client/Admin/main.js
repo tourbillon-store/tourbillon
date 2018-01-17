@@ -17,10 +17,10 @@ class Main extends Component {
         <div className="admin">
           <AdminMenu />
           <Switch>
-            <Route path="/admin/users" component={Users} />
             <Route path="/admin/watches" component={Watches} />
             <Route path="/admin/orders" component={Orders} />
           </Switch>
+          <Route path="/admin/users" component={Users} />
         </div>
       </div>
     )

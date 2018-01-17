@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, List } from 'semantic-ui-react'
+import { TableCell as Cell, List } from 'semantic-ui-react'
 
 const OrdersTableRow = (props) => {
   const { order, name } = props
@@ -10,22 +10,22 @@ const OrdersTableRow = (props) => {
     but Babel support still in beta. Using an array requires a key on every element.
     */
     [
-    <Table.Cell key={key++} textAlign="center">
+    <Cell key={key++} textAlign="center">
       {order.id}
-    </Table.Cell>,
-    <Table.Cell key={key++} textAlign="center">
+    </Cell>,
+    <Cell key={key++} textAlign="center">
       {order.status}
-    </Table.Cell>,
-    <Table.Cell key={key++} textAlign="center">
+    </Cell>,
+    <Cell key={key++} textAlign="center">
       {name}
-    </Table.Cell>,
-    <Table.Cell key={key++} textAlign="center">
+    </Cell>,
+    <Cell key={key++} textAlign="center">
       {order.createdAt}
-    </Table.Cell>,
-    <Table.Cell key={key++} textAlign="center">
+    </Cell>,
+    <Cell key={key++} textAlign="center">
       {order.updatedAt}
-    </Table.Cell>,
-    <Table.Cell key={key++} >
+    </Cell>,
+    <Cell key={key++} >
       <List selection divided verticalAlign="middle">
         {order.watches.map((watch) => (
           <List.Item key={watch.id}>
@@ -37,7 +37,7 @@ const OrdersTableRow = (props) => {
           </List.Item>
         ))}
       </List>
-    </Table.Cell>
+    </Cell>
     ]
   )
 }

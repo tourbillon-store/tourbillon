@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableCell as Cell, List } from 'semantic-ui-react'
+import { TableCell as Cell } from 'semantic-ui-react'
 import { DeleteButton } from './index'
 
 const WatchesTableRow = (props) => {
@@ -24,7 +24,7 @@ const WatchesTableRow = (props) => {
       {watch.complications}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {`${watch.imageUrl.slice(8, 28)}...`}
+      {`${watch.imageUrl.slice(0, 20)}...`}
     </Cell>,
     <Cell key={key++} textAlign="center">
       {watch.year}
@@ -33,7 +33,7 @@ const WatchesTableRow = (props) => {
       {watch.price}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {watch.available ? "Available" : "Unavailable"}
+      {watch.available ? 'Available' : 'Unavailable'}
     </Cell>,
     <Cell key={key++} textAlign="center">
       {watch.createdAt}
@@ -42,7 +42,7 @@ const WatchesTableRow = (props) => {
       {watch.updatedAt}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      <DeleteButton className="delete-button" type={"watch"} watchId={watch.id} />
+      <DeleteButton className="delete-button" type={'watch'} watchId={watch.id} />
     </Cell>
     ]
   )

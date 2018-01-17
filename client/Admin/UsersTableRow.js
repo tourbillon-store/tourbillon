@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableCell as Cell, List } from 'semantic-ui-react'
+import { TableCell as Cell } from 'semantic-ui-react'
 import { DeleteButton } from './index'
 
 const UsersTableRow = (props) => {

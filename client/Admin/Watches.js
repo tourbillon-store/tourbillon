@@ -6,31 +6,35 @@ import { WatchesModal, AddWatchModal } from './index'
 
 const Watches = (props) => {
   return (
-  <Segment attached="bottom">
-    <AddWatchModal />
-    <Table selectable celled padded attached="bottom">
-      <Header>
-        <Row>
-          <HeaderCell textAlign="center" width={2}>Watch Id</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Make</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Model</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Complications</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Image URL</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Year</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Price</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Available</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
-          <HeaderCell textAlign="center" width={2}>Actions</HeaderCell>
-        </Row>
-      </Header>
-      <Body>
-        {props.watches.length ? props.watches.map(watch =>
-           <WatchesModal key={watch.id} watch={watch} />
-        ) : null}
-      </Body>
-    </Table>
-  </Segment>
+    <div>
+      <Segment attached="bottom">
+        <AddWatchModal />
+        <div className="admin-watches-table">
+          <Table selectable celled padded attached="bottom">
+            <Header>
+              <Row>
+                <HeaderCell textAlign="center" width={2}>Watch Id</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Make</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Model</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Complications</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Image URL</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Year</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Price</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Available</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Actions</HeaderCell>
+              </Row>
+            </Header>
+            <Body>
+              {props.watches.length ? props.watches.map(watch =>
+                <WatchesModal key={watch.id} watch={watch} />
+              ) : null}
+            </Body>
+          </Table>
+        </div>
+      </Segment>
+    </div>
 )}
 
 const mapStateToProps = ({watches}) => ({watches})
