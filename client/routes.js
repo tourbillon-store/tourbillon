@@ -28,6 +28,8 @@ class Routes extends Component {
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
               <Route path="/watches/:watchId" component={SingleWatch} />
+              <Route path="/cart" component={Cart} />
+                  <Route path="/checkout" component={Checkout} />
               {
                 isLoggedIn &&
                 <Switch>
@@ -35,11 +37,10 @@ class Routes extends Component {
                   <Route path="/home" component={UserHome} />
                   <Route exact path="/orders" component={AllOrders} />
                   <Route path="/orders/:orderId" component={SingleOrder} />
+
                 </Switch>
               }
-              {/* Display landing page as fallback */}
-              <Route path="/cart" component={Cart} />
-              <Route path="/checkout" component={Checkout} />
+              {/* Display page as fallback */}
               <Route component={VisitorHome} />
             </Switch>
           </Main>

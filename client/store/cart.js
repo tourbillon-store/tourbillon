@@ -39,7 +39,8 @@ export const flushCart = userId =>
   }
 
 export const fetchCart = (userId) =>
-  dispatch =>
+  dispatch => {
+    console.log('fetchCart userId', userId)
     axios.get(`/api/users/${userId || 'visitor'}/cart`)
       .then(res => res.data)
       .then(cart => {
@@ -58,6 +59,7 @@ export const fetchCart = (userId) =>
         dispatch(getCart(cart))
       })
       .catch(console.error)
+    }
 
 export const pushWatchToCart = (watch, userId) =>
   dispatch =>
