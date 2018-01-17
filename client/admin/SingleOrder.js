@@ -48,8 +48,8 @@ const mapStateToProps = ({orders}) => ({orders})
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleFormSubmit(orderId, status, orders) {
-      dispatch(updateOrders(orderId, status, orders))
+    handleFormSubmit(orderId, userId, status, orders) {
+      dispatch(updateOrders(orderId, userId, status, orders))
     }
   };
 };
