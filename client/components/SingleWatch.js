@@ -13,7 +13,6 @@ class Watch extends Component {
 
   render() {
     const {watch, addWatchToCart, user} = this.props;
-    const unavailableMessage = watch.available ? '' : 'Currently Unavailable'
     let rating
     if (watch.reviews) rating = watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length
     return (
@@ -29,7 +28,7 @@ class Watch extends Component {
         </Link>
         <Header as="h1">{watch.make} {watch.model}</Header>
         <Image className="single-watch-image" src={watch.imageUrl} size="large" rounded />
-        <Header as="h3" className="unavailable-watch">{unavailableMessage}</Header>
+        {watch.available && <Header as="h3" className="unavailable-watch">Currently Unavailable</Header>}
           <Header as="h4">Complications: {watch.complications}</Header>
           <Rating name="rating" disabled icon="star" defaultRating={Math.round(rating)} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
           <div>{parseFloat(rating).toFixed(2)} out of 5 stars</div>
