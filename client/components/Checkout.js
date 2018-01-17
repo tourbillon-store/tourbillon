@@ -12,7 +12,7 @@ class Checkout extends Component {
   }
 
   render() {
-    const { cart, checkout, handleSubmit, handleShippingFormSubmit, handleBillingFormSubmit } = this.props
+    const { user, cart, checkout, handleSubmit, handleShippingFormSubmit, handleBillingFormSubmit } = this.props
     const { completedShippingForm, completedBillingForm } = checkout
     return (
       <Container className="checkout-container">
@@ -82,7 +82,7 @@ class Checkout extends Component {
             </Form>
             }
             {completedShippingForm && !completedBillingForm &&
-              <Form className="checkout-form" size="large" onSubmit={handleSubmit(() => handleBillingFormSubmit())}>
+              <Form className="checkout-form" size="large" onSubmit={handleSubmit(() => handleBillingFormSubmit(user.id))}>
               <Field
                 name="agree"
                 component={Checkbox}
@@ -112,10 +112,9 @@ const mapDispatch = (dispatch) => {
       values.completedShippingForm = true
       dispatch(addShippingDetails(values))
     },
-    handleBillingFormSubmit() {
-      // dispatch(updateOrders(orderId, status, orders))
+    handleBillingFormSubmit(userId) {
       dispatch(completePurchase())
-      dispatch(flushCart())}
+      dispatch(flushCart(userId))}
   }
 }
 
