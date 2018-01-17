@@ -111,7 +111,7 @@ form div {
 }
 
 .admin-menu {
-  min-width: 12em;
+  max-width: 12em;
 }
 
 .view-as-user {
