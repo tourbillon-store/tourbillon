@@ -55,7 +55,7 @@ class Cart extends Component {
 }
 
 const mapState = ({ cart, user }) => ({ cart, user })
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return { getCart(userId) { dispatch(fetchCart(userId)) } }
 }
 

@@ -14,4 +14,6 @@ const CartRow = props => {
   )
 }
 
-export default connect()(CartRow)
+const mapState = ({ user, cart }) => ({ user, cart })
+
+export default connect(mapState)(CartRow)
