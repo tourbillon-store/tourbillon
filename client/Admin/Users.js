@@ -25,11 +25,12 @@ class Users extends Component {
               <HeaderCell textAlign="center" width={2}>Admin Status</HeaderCell>
               <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
               <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
+              <HeaderCell textAlign="center" width={2}>Actions</HeaderCell>
             </Row>
           </Header>
           <Body>
             {users.length ? users.map(user =>
-               <UsersModal key={user.id} user={user} />
+              <UsersModal key={user.id} user={user} />
             ) : null}
           </Body>
         </Table>
