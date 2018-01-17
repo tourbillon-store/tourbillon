@@ -28,7 +28,7 @@ class Routes extends Component {
               <Route path="/signup" component={Signup} />
               <Route exact path="/watches" component={AllWatches} />
               <Route exact path="/watches/:watchId" component={SingleWatch} />
-              <Route exact path="/watches/:watchId/reviews" component={AllReviews} />
+              <Route exact path="/watches/:watchId/reviews" component={AllReviews} needsContainer="all-reviews-container" />
               <Route path="/watches/:watchId/reviews/:reviewId" component={SingleReview} />
               <Route path="/cart" component={Cart} />
               <Route path="/checkout" component={Checkout} />
