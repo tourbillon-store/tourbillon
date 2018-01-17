@@ -5,7 +5,7 @@ import { fetchOrder } from '../store'
 
 class Order extends Component {
   componentDidMount() {
-    this.props.getOrder(+this.props.match.params.orderId, +this.props.match.params.userId);
+    this.props.getOrder(+this.props.match.params.orderId);
   }
 
   render() {
