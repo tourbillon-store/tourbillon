@@ -11,7 +11,7 @@ const OrderStatusForm = (props) => {
     statusOptions.push({key: i, value: status, text: status});
   })
   return (
-    <Form onSubmit={props.handleSubmit(values => props.handleFormSubmit(order.id, values, orders))}>
+    <Form onSubmit={props.handleSubmit(values => props.handleFormSubmit(order.id, order.userId, values, orders))}>
       <Field name="status" component={SelectField} placeholder={order.status} options={statusOptions} />
       <div>
           <Button disabled={props.pristine || props.submitting} onClick={props.reset}>Reset Form</Button>

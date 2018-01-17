@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { Watch, Review } = require('../db/models')
+const { isAdmin } = require('../utils/gatekeepermiddleware')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -22,7 +23,7 @@ router.get('/:watchId', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
   Watch.create(req.body)
     .then(watch => res.status(201).json(watch))
     .catch(next);
