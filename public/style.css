@@ -110,7 +110,8 @@ form div {
   display: flex;
 }
 
-.admin-menu {
+.ui.inverted.vertical.bottom.attached.admin-menu.menu {
+  min-width: 12em;
   max-width: 12em;
 }
 
