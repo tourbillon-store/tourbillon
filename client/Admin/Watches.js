@@ -20,6 +20,7 @@ const Watches = (props) => {
           <HeaderCell textAlign="center" width={2}>Available</HeaderCell>
           <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
           <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
+          <HeaderCell textAlign="center" width={2}>Actions</HeaderCell>
         </Row>
       </Header>
       <Body>

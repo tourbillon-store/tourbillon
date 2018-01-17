@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome, VisitorHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
 import { AdminMain } from './admin'
-import { me, fetchWatches, fetchOrders, fetchUsers } from './store'
+import { me, fetchWatches} from './store'
+
 
 /**
  * COMPONENT
@@ -66,8 +67,6 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchWatches())
-      dispatch(fetchOrders())
-      dispatch(fetchUsers())
     }
   }
 }

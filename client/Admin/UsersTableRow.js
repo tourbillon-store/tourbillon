@@ -1,5 +1,6 @@
 import React from 'react'
 import { TableCell as Cell, List } from 'semantic-ui-react'
+import { DeleteButton } from './index'
 
 const UsersTableRow = (props) => {
   const { user } = props
@@ -33,6 +34,9 @@ const UsersTableRow = (props) => {
     </Cell>,
     <Cell key={key++} textAlign="center">
       {user.updatedAt}
+    </Cell>,
+    <Cell key={key++} textAlign="center">
+      <DeleteButton className="delete-button" type={"user"} userId={user.id} />
     </Cell>
     ]
   )
