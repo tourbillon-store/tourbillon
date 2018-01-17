@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchWatch, pushWatchToCart } from '../store'
-import { Container, Header, Image, Button } from 'semantic-ui-react'
+import { Container, Header, Image, Button, Icon } from 'semantic-ui-react'
 import { numberWithCommas } from '../utils'
 
 class Watch extends Component {
@@ -17,9 +17,12 @@ class Watch extends Component {
       !watch.loading &&
       <Container className="single-watch-container">
         <Link to="/watches">
-          <Button
-            content="< Back"
-            color="grey" />
+          <Button animated color="grey">
+            <Button.Content visible>Back</Button.Content>
+            <Button.Content hidden>
+              <Icon name="left arrow" />
+            </Button.Content>
+          </Button>
         </Link>
         <Header as="h1">{watch.make} {watch.model}</Header>
         <Image className="single-watch-image" src={watch.imageUrl} size="large" rounded />
@@ -29,8 +32,8 @@ class Watch extends Component {
           <Header as="h4">Price: ${numberWithCommas(watch.price)}</Header>
         {watch.available &&
           <Button
-            content="Add to Cart"
             primary
+            animated
             onClick={() => addWatchToCart({
               id: watch.id,
               make: watch.make,
@@ -39,7 +42,13 @@ class Watch extends Component {
               createdAt: watch.createdAt
               },
               user.id
-            )} />
+            )}
+          >
+            <Button.Content visible>Add to Cart</Button.Content>
+            <Button.Content hidden>
+              <Icon name="shop" />
+            </Button.Content>
+          </Button>
         }
       </Container>
     )

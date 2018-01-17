@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+nav a:hover {
+  font-weight: bold;
+}
+
 label {
   display: block;
 }
