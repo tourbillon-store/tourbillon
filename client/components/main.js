@@ -14,7 +14,7 @@ const Main = (props) => {
   const { children, handleClick, isLoggedIn, isAdmin } = props
   return (
     <div>
-      <h1>GRACE SHOPPER</h1>
+      <div id="main-title">TOURBILLON</div>
       <nav>
         {
           isLoggedIn

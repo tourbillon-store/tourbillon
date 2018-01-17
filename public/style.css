@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  margin: auto 0;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -15,22 +20,43 @@ nav a {
   margin: 1em;
 }
 
+nav div {
+  text-align: center;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
 }
 
+#main-title {
+  /* height: 5em; */
+  padding-top: 1em;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-size: 2em;
+  font-weight: 100;
+  letter-spacing: 0.75em;
+}
+
 /* AllWatches */
 .all-watches {
-  margin: 1em;
+  margin: 5em;
 }
 
-.all-watches-float{
-  margin-left: 3em;
-
+.all-watches-form {
+  margin-bottom: 3em;
+  display: flex;
 }
-.all-watch-form{
-  padding: 15px;
+
+.all-watches-form div{
+  flex-basis: 7em;
+  flex-grow: 1;
+}
+
+
+.all-watches-card-container {
+  display: flex;
 }
 
 .all-watch-card{
@@ -47,44 +73,17 @@ form div {
 .unavailable-watch {
   color: red;
 }
-/* Cart */
-/* .cart-container {
-}
-
-.cart-product-row {
-  display: flex;
-}
-
-.cart-product-row div {
-  flex-basis: 5em;
-  flex-grow: 1;
-}
-
-.cart-quantity-container {
-  display: flex;
-}
-
-.cart-quantity-container button,h4 {
-  flex-grow: 1;
-  text-align: center
-}
-
-.purchase-button {
-  text-align: center;
-}
-
-.minus-button {
-
-}
-
-.delete-button {
-
-} */
 
 .quantity-error {
   color: rgb(182, 48, 48);
   font-weight: bold;
-} */
+}
+
+/* Single Watch */
+.single-watch-image {
+  max-height: 400px;
+  max-width: 600px;
+}
 
 /* admin */
 .admin {
@@ -126,8 +125,5 @@ form div {
 
 .checkout-form div {
   flex-basis: 100%;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 91d1b1002be7083f597fa205c2a7290f5ad53151
+
