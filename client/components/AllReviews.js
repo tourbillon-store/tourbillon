@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetReview } from '../store'
 import { Review } from './SingleReview'
+import { Header } from 'semantic-ui-react'
 class AllReviews extends Component {
   componentDidMount() {
     this.props.resetReview();
@@ -17,8 +18,11 @@ class AllReviews extends Component {
       reviewWatch = watches.find(watch => watch.id === watchId)
     }
     return (
-      reviews.length && watches.length && <div>
-        <Link to={`/watches/${watchId}`}><h2>{reviewWatch.make} {reviewWatch.model}</h2></Link>
+      reviews.length && watches.length &&
+        <div className={this.props.match.url.split('/')[3] === 'reviews' ? 'all-reviews-container' : ''}>
+        {!this.props.hideName &&
+        <Header as="h1" className="all-reviews-title"><Link to={`/watches/${watchId}`}>{reviewWatch.make} {reviewWatch.model} Reviews </Link></Header>
+        }
         {reviews.map(review => {
           return (
             <Review key={review.id} review={review} user={review.user} />

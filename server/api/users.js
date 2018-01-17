@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const Sequelize = require('sequelize')
 const { User, Watch, Order, OrderWatch } = require('../db/models')
-const { isAdmin } = require('../utils/gatekeepermiddleware')
+const { isAdmin } = require('../utils/gateKeeperMiddleware')
 module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
