@@ -24,7 +24,7 @@ const WatchesTableRow = (props) => {
       {watch.complications}
     </Cell>,
     <Cell key={key++} textAlign="center">
-      {watch.imageUrl}
+      {`${watch.imageUrl.slice(8, 28)}...`}
     </Cell>,
     <Cell key={key++} textAlign="center">
       {watch.year}
