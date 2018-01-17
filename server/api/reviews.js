@@ -1,25 +1,29 @@
 const router = require('express').Router()
-const { Watch, Review } = require('../db/models')
+const { Watch, Review, User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
   Review.findAll({
     include: [{
       model: Watch
+    }, {
+      model: User
     }]
   })
-    .then(reviews => res.json(reviews))
-    .catch(next)
+  .then(reviews => res.json(reviews))
+  .catch(next)
 })
 
 router.get('/:reviewId', (req, res, next) => {
   Review.findById(req.params.reviewId, {
     include: [{
       model: Watch
+    }, {
+      model: User
     }]
   })
-    .then(review => res.json(review))
-    .catch(next)
+  .then(review => res.json(review))
+  .catch(next)
 })
 
 router.post('/', (req, res, next) => {

@@ -21,7 +21,7 @@ class AllReviews extends Component {
         <Link to={`/watches/${watchId}`}><h2>{reviewWatch.make} {reviewWatch.model}</h2></Link>
         {reviews.map(review => {
           return (
-            <Review key={review.id} review={review} />
+            <Review key={review.id} review={review} user={review.user} />
           )
         })}
       </div>

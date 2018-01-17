@@ -4,12 +4,13 @@ import { withRouter, Link } from 'react-router-dom'
 import { fetchReview } from '../store'
 
 export const Review = (props) => {
-  const { review } = props
+  const { review, user } = props
   const watchId = review.watch.id
   return (
     <div>
       <Link to={`/watches/${watchId}/reviews/${review.id}`}>{review.title}</Link>
         <ul>
+          <li>By: {user.firstName} {user.lastName}</li>
           <li>Rating: {review.rating}</li>
           <li>Content: {review.content}</li>
         </ul>
@@ -22,12 +23,12 @@ class SingleReview extends Component {
   }
 
   render() {
-    const review = this.props.review;
+    const {review} = this.props
     return (
       !review.loading &&
       <div className="SingleReview">
         <h2>{review.watch.make} {review.watch.model}</h2>
-        <Review review={review} />
+        <Review review={review} user={review.user} />
       </div>
     )
   }
