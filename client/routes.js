@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, VisitorHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { Main, Login, Signup, UserHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
 import { AdminMain } from './admin'
 import { me, fetchWatches} from './store'
 
@@ -38,10 +38,10 @@ class Routes extends Component {
                   <Route path="/orders/:orderId" component={SingleOrder} />
                 </Switch>
               }
-              {/* Display landing page as fallback */}
               <Route path="/cart" component={Cart} />
               <Route path="/checkout" component={Checkout} />
-              <Route component={VisitorHome} />
+              {/* Display watches page as fallback */}
+              <Route component={AllWatches} />
             </Switch>
           </Main>
         </Switch>
