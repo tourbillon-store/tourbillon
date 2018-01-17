@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetWatch } from '../store'
 import { Container, Header, Input, Card, Image, CardContent as Content, CardHeader, CardMeta, CardDescription, Radio} from 'semantic-ui-react'
+import { numberWithCommas } from '../utils'
 
 class AllWatches extends Component {
   constructor(props){
@@ -49,10 +50,8 @@ class AllWatches extends Component {
                         <CardMeta>Complications: {watch.complications}</CardMeta>
                       </Content>
                       <Content extra>
-                        <a>
-                          <CardMeta> Year: {watch.year}, </CardMeta>
-                          Price: ${watch.price}.00
-                        </a>
+                        <CardMeta>Year: {watch.year},</CardMeta>
+                        Price: ${numberWithCommas(watch.price)}
                       </Content>
                     </Card>
                  </Link>

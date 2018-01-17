@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCart } from '../store'
 import { CartRow, ModifyCartButtons } from '../components'
-import { Table, TableHeader as Header, TableHeaderCell as HeaderCell, TableBody as Body, TableRow as Row } from 'semantic-ui-react'
+import { Container, Table, TableHeader as Header, TableHeaderCell as HeaderCell, TableBody as Body, TableRow as Row, Button } from 'semantic-ui-react'
 
 class Cart extends Component {
   componentDidMount () {
@@ -13,11 +13,11 @@ class Cart extends Component {
   render() {
     const { cart } = this.props
     return (
-      <div>
+      <Container className="cart-container">
         <h1>Shopping Cart</h1>
         {(cart && cart.length)
           ? <div>
-            <Table className="cart-container">
+            <Table className="cart-table">
               <Header>
                 <Row>
                   <HeaderCell>Make</HeaderCell>
@@ -38,12 +38,18 @@ class Cart extends Component {
               </Body>
             </Table>
               <div className="purchase-button">
-                <Link to="checkout">Complete Purchase</Link>
+                <Link to="checkout">
+                  <Button
+                    content="Complete Purchase"
+                    primary
+                    ref={this.handleRef}
+                  />
+                </Link>
               </div>
             </div>
           : <h2>Your shopping cart is empty. <a href="/watches">Browse Watches</a></h2>
         }
-      </div>
+      </Container>
     )
   }
 }
