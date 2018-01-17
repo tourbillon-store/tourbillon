@@ -95,6 +95,15 @@ form div {
   max-width: 600px;
 }
 
+/* All Orders */
+.order-container {
+  margin: 5em;
+}
+
+.order-listing {
+  margin-top: 5em;
+}
+
 /* Review Form */
 .review-form-title-content {
   display: flex;
