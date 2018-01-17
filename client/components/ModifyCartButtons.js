@@ -5,6 +5,7 @@ import { TableCell as Cell} from 'semantic-ui-react'
 
 const ModifyCartButtons = props => {
   const {user, watch, changeQuantity, removeWatch } = props
+  console.log('modify user', user)
   return (
     <Cell className="cart-quantity-container">
       <button className="minus-button" onClick={() => changeQuantity(watch.id, watch.quantity - 1, user.id)}>-</button>
