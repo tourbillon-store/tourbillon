@@ -21,10 +21,32 @@ form div {
 }
 
 /* AllWatches */
+.all-watches {
+  margin: 1em;
+}
+
+.all-watches-float{
+  margin-left: 3em;
+
+}
+.all-watch-form{
+  padding: 15px;
+}
+
+.all-watch-card{
+  background-color: rgba(247, 242, 241, 0.893);
+}
+
+.all-watch-card-title{
+  background-color: rgba(233, 230, 229, 0.893);
+}
+
+.all-watch-single-card{
+
+}
 .unavailable-watch {
   color: red;
 }
-
 /* Cart */
 .cart-container {
   margin: 1em 2.5em 2.5em 2.5em;
@@ -81,4 +103,8 @@ form div {
 
 .view-as-user:hover {
   color: white;
+}
+
+.order-status-dropdown {
+  margin-bottom: 1em;
 }

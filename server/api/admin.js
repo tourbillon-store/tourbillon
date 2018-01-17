@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, Watch } = require('../db/models')
 module.exports = router
 
 router.get('/users', (req, res, next) => {
@@ -11,3 +11,16 @@ router.get('/users', (req, res, next) => {
     .catch(next)
 })
 
+router.delete('/users/:userId', (req, res, next) => {
+  const id = req.params.userId
+  User.destroy({where: { id } })
+    .then(() => res.status(204).end())
+    .catch(next)
+})
+
+router.delete('/watches/:watchId', (req, res, next) => {
+  const id = req.params.watchId
+   Watch.destroy({where: { id } })
+    .then(() => res.status(204).end())
+    .catch(next)
+})
