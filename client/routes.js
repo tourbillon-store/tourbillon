@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Login, Signup, UserHome, VisitorHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
-import { AdminMain } from './Admin'
-import { me, fetchWatches } from './store'
+import { Main, Login, Signup, UserHome, Cart, Checkout, AllWatches, SingleWatch, AllOrders, SingleOrder } from './components'
+import { AdminMain } from './admin'
+import { me, fetchWatches} from './store'
+
 
 /**
  * COMPONENT
@@ -40,8 +41,10 @@ class Routes extends Component {
 
                 </Switch>
               }
-              {/* Display page as fallback */}
-              <Route component={VisitorHome} />
+              <Route path="/cart" component={Cart} />
+              <Route path="/checkout" component={Checkout} />
+              {/* Display watches page as fallback */}
+              <Route component={AllWatches} />
             </Switch>
           </Main>
         </Switch>
