@@ -11,7 +11,7 @@ import { logout } from '../store'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const { children, handleClick, isLoggedIn, isAdmin, user } = props
+  const { user, children, handleClick, isLoggedIn, isAdmin } = props
   return (
     <div>
       <div id="main-title">TOURBILLON</div>
