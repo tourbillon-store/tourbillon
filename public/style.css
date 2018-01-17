@@ -54,29 +54,27 @@ form div {
   flex-grow: 1;
 }
 
-
 .all-watches-card-container {
   display: flex;
 }
 
-.all-watch-card{
-  background-color: rgba(247, 242, 241, 0.893);
+.all-watches-card-container > div {
+  margin-bottom: 5em;
+  flex-basis: 4em;
+  flex-grow: 1;
 }
 
-.all-watch-card-title{
-  background-color: rgba(233, 230, 229, 0.893);
+.all-watches-single-card{
+  height: 30em;
 }
 
-.all-watch-single-card{
-
+.all-watches-img {
+  height: 15em;
+  object-fit: cover;
 }
+
 .unavailable-watch {
   color: red;
-}
-
-.quantity-error {
-  color: rgb(182, 48, 48);
-  font-weight: bold;
 }
 
 /* Single Watch */
@@ -104,6 +102,12 @@ form div {
 
 .order-status-dropdown {
   margin-bottom: 1em;
+}
+
+/* Cart */
+.quantity-error {
+  color: rgb(182, 48, 48);
+  font-weight: bold;
 }
 
 /* Checkout */

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetWatch } from '../store'
-import { Container, Header, Input, Card, Image, CardContent as content, CardHeader, CardDescription as Description, Radio} from 'semantic-ui-react'
+import { Container, Header, Input, Card, Image, CardContent as Content, CardHeader, CardMeta, CardDescription, Radio} from 'semantic-ui-react'
 
 class AllWatches extends Component {
   constructor(props){
@@ -41,17 +41,19 @@ class AllWatches extends Component {
               return (
                 <div key={watch.id}>
                 <Link to={`/watches/${watch.id}`}>
-                    <Card className="all-watch-single-card" raised={true} >
-                    <Header as="h2" className="all-watch-card-title">{watch.make} </Header>
-                      <Image src={watch.imageUrl} />
-                      <content className="all-watch-card">
-                        <CardHeader>{watch.model}</CardHeader>
-                        <CardHeader>Make: {watch.make}</CardHeader>
-                        <CardHeader>Model: {watch.model}</CardHeader>
-                        <p> Year: {watch.year} </p>
-                        <p>Complications: {watch.complications}</p>
-                        <Description>Price: {watch.price}</Description>
-                      </content>
+                    <Card className="all-watches-single-card" raised centered color="blue">
+                      <Image className="all-watches-img" src={watch.imageUrl} />
+                      <Content className="all-watch-card">
+                        <CardHeader>{watch.make}</CardHeader>
+                        <CardMeta>{watch.model}</CardMeta>
+                        <CardMeta>Complications: {watch.complications}</CardMeta>
+                      </Content>
+                      <Content extra>
+                        <a>
+                          <CardMeta> Year: {watch.year}, </CardMeta>
+                          Price: ${watch.price}.00
+                        </a>
+                      </Content>
                     </Card>
                  </Link>
                 </div>
