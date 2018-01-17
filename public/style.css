@@ -114,6 +114,23 @@ form div {
   margin: 0;
 }
 
+/* Reviews */
+.all-reviews-container {
+  margin: 5em;
+}
+
+.all-reviews-title {
+  padding-bottom: 5em;
+}
+
+.single-review-container {
+  margin-bottom: 5em;
+}
+
+.review-content {
+  margin-top: 1em;
+}
+
 /* admin */
 .admin {
   display: flex;

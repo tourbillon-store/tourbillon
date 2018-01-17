@@ -2,18 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { fetchReview } from '../store'
+import { Header, Label, Rating } from 'semantic-ui-react'
 
 export const Review = (props) => {
   const { review, user } = props
   const watchId = review.watch.id
   return (
-    <div>
-      <Link to={`/watches/${watchId}/reviews/${review.id}`}>{review.title}</Link>
-        <ul>
-          <li>By: {user.firstName} {user.lastName}</li>
-          <li>Rating: {review.rating}</li>
-          <li>Content: {review.content}</li>
-        </ul>
+    <div className="single-review-container">
+      <Header as="h3"><Link to={`/watches/${watchId}/reviews/${review.id}`}>{review.title}</Link></Header>
+        <a className="review-head">
+          <Label>{user.firstName} {user.lastName}</Label>
+          <Rating
+            name="rating"
+            maxRating="5"
+            disabled icon="star"
+            defaultRating={review.rating}
+          />
+        </a>
+        <div className="review-content">Content: {review.content}</div>
     </div>
   )
 }
