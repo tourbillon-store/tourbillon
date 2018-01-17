@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { Watch, Review } = require('../db/models')
-const { isAdmin } = require('../utils/gatekeepermiddleware')
+const { isAdmin } = require('../utils/gateKeeperMiddleware')
 module.exports = router
 
 router.get('/', (req, res, next) => {
