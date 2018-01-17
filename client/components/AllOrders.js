@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetOrder, fetchUserOrders } from '../store'
+import { CartRow } from '../components'
+import { Container, Header, Table, TableHeader, TableHeaderCell as HeaderCell, TableBody as Body, TableRow as Row, TableCell as Cell } from 'semantic-ui-react'
 
 class AllOrders extends Component {
   componentDidMount() {
@@ -12,34 +14,34 @@ class AllOrders extends Component {
   render() {
     let { orders, user } = this.props;
     return (
-      <div>
+      <Container className="order-container">
         {orders.map(order => {
           return (
-            <div key={order.id}>
-              <Link to={`/orders/${order.id}`}><h2>ORDER ID: {order.id}</h2></Link>
-              <ul>
-                <li>Status: {order.status}</li>
-                <li>Created At: {order.createdAt}</li>
-                <li>Updated At: {order.updatedAt}</li>
-                <li>Watches: </li>
+            <div key={order.id} className="order-listing">
+              <Link to={`/orders/${order.id}`}><Header as="h1">Status: {order.status}</Header></Link>
+                <Table className="cart-table">
+                  <TableHeader>
+                    <Row>
+                      <HeaderCell>Make</HeaderCell>
+                      <HeaderCell>Model</HeaderCell>
+                      <HeaderCell>Price</HeaderCell>
+                      <HeaderCell>Quantity</HeaderCell>
+                    </Row>
+                  </TableHeader>
+                  <Body>
                   {order.watches.map(watch => (
-                  <div key={watch.id}>
-                    <Link to={`/watches/${watch.id}`}>{watch.make} {watch.model}</Link>
-                    <ul>
-                      <li>Year: {watch.year}</li>
-                      <li>Complications: {watch.complications}</li>
-                      <li>Image: {watch.imageUrl}</li>
-                      <li>Order Price: {watch.order_watch.fixedPrice}</li>
-                      <li>Order Quantity: {watch.order_watch.quantity}</li>
-                    </ul>
-                  </div>
-                  ))}
-              </ul>
+                    <Row key={watch.id}>
+                      <CartRow watch={watch} />
+                      <Cell>{watch.quantity}</Cell>
+                    </Row>)
+                  )}
+                  </Body>
+                </Table>
             </div>
           )
         }
         )}
-      </div>
+      </Container>
     )
   }
 }
