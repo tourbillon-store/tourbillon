@@ -52,7 +52,7 @@ class AllWatches extends Component {
                       </Content>
                       <Content extra>
                         <CardMeta>Year: {watch.year},</CardMeta>
-                        <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
+                        <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> ({watch.reviews.length})
                         Price: ${numberWithCommas(watch.price)}
                       </Content>
                     </Card>
