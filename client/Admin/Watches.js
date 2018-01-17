@@ -2,11 +2,12 @@ import React from 'react'
 import { Table, TableHeader as Header, TableRow as Row, TableHeaderCell as HeaderCell, TableBody as Body, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { WatchesModal } from './index'
+import { WatchesModal, AddWatchModal } from './index'
 
 const Watches = (props) => {
   return (
   <Segment attached="bottom">
+    <AddWatchModal />
     <Table selectable celled padded attached="bottom">
       <Header>
         <Row>
