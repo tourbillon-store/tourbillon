@@ -81,6 +81,24 @@ form div {
   color: white;
 }
 
+/* Checkout */
 .checkout-container {
   margin: 5em;
 }
+
+.checkout-column {
+  padding: 1em;
+}
+
+.checkout-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3em 4em 3em 3em;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: .28571429rem;
+}
+
+.checkout-form div {
+  flex-basis: 100%;
+}
+
