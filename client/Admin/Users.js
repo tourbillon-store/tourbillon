@@ -8,7 +8,7 @@ const Users = (props) => {
   const users = props.users
   return (
     <Segment attached="bottom">
-      <Table selectable celled padded attached="bottom">
+      <Table className="admin-users-table" selectable celled padded attached="bottom">
         <Header>
           <Row>
             <HeaderCell textAlign="center" width={2}>User Id</HeaderCell>

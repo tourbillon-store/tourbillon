@@ -31,6 +31,15 @@ export const postWatch = watch =>
       })
       .catch(err => console.log(err))
 
+export const updateWatches = (values, watchId, watches) =>
+  dispatch =>
+    axios.put(`/api/watches/${watchId}`, values)
+      .then(newWatch => {
+        watches = watches.map(watch => {return watch.id === watchId ? newWatch.data : watch})
+        dispatch(getWatches(watches))
+      })
+      .catch(err => console.log(err))
+
 /**
  * REDUCER
  */

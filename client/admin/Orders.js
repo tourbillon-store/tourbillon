@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Segment, Dropdown, Button } from 'semantic-ui-react'
+import { Table, TableHeader as Header, TableRow as Row, TableHeaderCell as HeaderCell, TableBody as Body, Segment, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { OrdersModal } from './index'
@@ -20,24 +20,24 @@ class Orders extends Component {
       <div>
         <Segment attached="bottom">
           {this.renderOrderSearch()}
-          <Table selectable celled padded attached="bottom">
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell textAlign="center" width={2}>Order Id</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>Status</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>User</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>CreatedAt</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>UpdatedAt</Table.HeaderCell>
-                <Table.HeaderCell textAlign="center" width={2}>Watches</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
+          <Table className="admin-orders-table" selectable celled padded attached="bottom">
+            <Header>
+              <Row>
+                <HeaderCell textAlign="center" width={2}>Order Id</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Status</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>User</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>CreatedAt</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>UpdatedAt</HeaderCell>
+                <HeaderCell textAlign="center" width={2}>Watches</HeaderCell>
+              </Row>
+            </Header>
+            <Body>
               {this.props.users.length ? this.props.orders
               .filter(this.filterOrder)
               .map(order =>
                 <OrdersModal key={order.id} order={order} users={this.props.users} />
               ) : null}
-            </Table.Body>
+            </Body>
           </Table>
         </Segment>
       </div>
