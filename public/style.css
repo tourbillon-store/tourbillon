@@ -107,11 +107,11 @@ form div {
 
 /* admin */
 .admin {
-  display: flex
+  display: flex;
 }
 
 .admin-menu {
-  height: -webkit-fill-available;
+  min-width: 12em;
 }
 
 .view-as-user {
