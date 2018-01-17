@@ -110,6 +110,10 @@ form div {
   display: flex;
 }
 
+.button.ui.primary.button.add-watch-button {
+  margin-bottom: 1em;
+}
+
 .ui.inverted.vertical.bottom.attached.admin-menu.menu {
   min-width: 12em;
   max-width: 12em;
@@ -125,6 +129,17 @@ form div {
 
 .order-status-dropdown {
   margin-bottom: 1em;
+}
+
+.watch-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui.input.watch-form-field {
+  width: 30%;
+  margin-bottom: 0em;
+  margin-top: 0em;
 }
 
 /* Cart */
