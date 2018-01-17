@@ -27,8 +27,10 @@ export const postReview = review =>
   dispatch =>
     axios.post('/api/reviews', review)
       .then(newReview => {
-        newReview.data.watch = review.watch
-        return dispatch(createReview(newReview.data))
+        newReview = newReview.data
+        newReview.watch = review.watch
+        newReview.user = review.user
+        return dispatch(createReview(newReview))
       })
       .catch(err => console.log(err))
 

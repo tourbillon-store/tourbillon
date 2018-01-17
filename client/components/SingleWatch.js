@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom'
 import { fetchWatch, pushWatchToCart } from '../store'
 import { Rating, Container, Grid, GridColumn as Column, Header, Image, Button, Icon } from 'semantic-ui-react'
 import { AddReviewModal, AllReviews } from '../components'
-import { Review } from './SingleReview'
 import { numberWithCommas } from '../utils'
 
 class SingleWatch extends Component {
@@ -16,7 +15,6 @@ class SingleWatch extends Component {
     const {watch, addWatchToCart, user} = this.props
     let rating
     if (watch.reviews) rating = watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length
-    // if (!watch.loading) console.log('watch revies', watch.reviews)
     return (
       !watch.loading &&
       <Container className="single-watch-container">
