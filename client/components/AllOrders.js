@@ -10,7 +10,7 @@ class AllOrders extends Component {
   }
 
   render() {
-    let { orders, user } = this.props;
+    let { orders } = this.props;
     return (
       <div>
         {orders.map(order => {
