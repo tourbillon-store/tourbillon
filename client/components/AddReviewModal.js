@@ -22,6 +22,8 @@ class AddReviewModal extends Component {
   }
 
   handleFormSubmit(review, rating) {
+    console.log(this.props.user)
+    review.user = this.props.user
     review.rating = rating
     review.userId = this.props.user.id
     review.watchId = this.props.watch.id
