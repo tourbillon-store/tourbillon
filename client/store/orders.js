@@ -21,6 +21,14 @@ export const fetchOrders = () =>
       })
       .catch(err => console.log(err))
 
+export const fetchUserOrders = userId =>
+  dispatch =>
+    axios.get(`/api/users/${userId}/orders`)
+      .then(orders => {
+        dispatch(getOrders(orders.data))
+      })
+      .catch(err => console.log(err))
+
 export const updateOrders = (orderId, status, orders) =>
   dispatch =>
     axios.put(`/api/orders/${orderId}`, status)
