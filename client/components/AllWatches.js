@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { resetWatch } from '../store'
-import { Input, Card, Image, CardContent as content, CardHeader as header, CardDescription as Cdesc, Radio} from 'semantic-ui-react'
+import { Rating, Input, Card, Image, CardContent as content, CardHeader as header, CardDescription as Cdesc, Radio} from 'semantic-ui-react'
 
 class AllWatches extends Component {
   constructor(props){
@@ -37,24 +37,25 @@ class AllWatches extends Component {
         <div className="all-watches-float">
         <Card.Group>
           {watches.filter(this.filterWatch).map(watch => {
-            if (watch.available){
+            if (watch.available) {
+              const rating = Math.round(watch.reviews.reduce((prev, curr) => prev + curr.rating, 0) / watch.reviews.length)
               return (
                 <div key={watch.id}>
-                <Link to={`/watches/${watch.id}`}>
-                    <Card className="all-watch-single-card" raised={true} >
-                    <h2 className="all-watch-card-title">{watch.make} </h2>
-                      <Image src={watch.imageUrl} />
-                      <content className="all-watch-card">
-                        <header>{watch.model}</header>
-                        <header>Make: {watch.make}</header>
-                        <header>Model: {watch.model}</header>
-                        <p> Year: {watch.year} </p>
-                        <p>Complications: {watch.complications}</p>
-                        <Rating name="rating" disabled icon="star" defaultRating={watch.rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>(watch.rating)</Link>
-                        <Cdesc>Price: {watch.price}</Cdesc>
-                      </content>
-                    </Card>
-                 </Link>
+                  <Card className="all-watch-single-card" raised={true} >
+                    <Link to={`/watches/${watch.id}`}>
+                      <h2 className="all-watch-card-title">{watch.make} </h2>
+                        <Image src={watch.imageUrl} />
+                    </Link>
+                    <content className="all-watch-card">
+                      <header>{watch.model}</header>
+                      <header>Make: {watch.make}</header>
+                      <header>Model: {watch.model}</header>
+                      <p> Year: {watch.year} </p>
+                      <p>Complications: {watch.complications}</p>
+                      <Rating name="rating" disabled icon="star" defaultRating={rating} maxRating={5} /> <Link to={`/watches/${watch.id}/reviews`}>({watch.reviews.length})</Link>
+                      <Cdesc>Price: {watch.price}</Cdesc>
+                    </content>
+                  </Card>
                 </div>
               )
             }
