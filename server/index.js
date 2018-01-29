@@ -9,6 +9,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
+const postgraphql = require(`postgraphql`).postgraphql
+const { graphqlExpress, graphiqlExpress } = require(`apollo-server-express`)
+const schema  = require('./db/schema')
 const app = express()
 module.exports = app
 
@@ -34,6 +37,8 @@ const createApp = () => {
   app.use(morgan('dev'))
 
   // body parsing middleware
+  app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
+  app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -91,6 +96,7 @@ const createApp = () => {
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
+  app.use(postgraphql('postgres://localhost:5432', 'public', {graphiql: true}))
   const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
 }
 
