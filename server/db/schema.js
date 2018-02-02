@@ -61,6 +61,38 @@ const schema = new GraphQLSchema({
         resolve: resolver(User)
       }
     }
+  }),
+  mutation: new GraphQLObjectType({
+    name: 'createUser',
+    fields: {
+      createUser: {
+        type: userType,
+        args: {
+          firstName: {
+            type: new GraphQLNonNull(GraphQLString),
+            description: 'firstName of the user',
+          },
+          lastName: {
+            type: new GraphQLNonNull(GraphQLString),
+            description: 'lastName of the user',
+          },
+          email: {
+            type: new GraphQLNonNull(GraphQLString),
+            description: 'email of the user',
+          },
+          password: {
+            type: GraphQLString,
+            description: 'password of the user',
+          },
+        },
+        resolve: (root, user, info) => {
+          return User.create(user)
+            .catch(err => {
+              return Promise.reject(err)
+            })
+        }
+      }
+    }
   })
 })
 module.exports = schema
